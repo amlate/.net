@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Web", "AiJiaXi.Web\AiJiaXi.Web.csproj", "{F86F64D9-6663-4F6B-836B-F6D157B52E08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Web.Tests", "AiJiaXi.Web.Tests\AiJiaXi.Web.Tests.csproj", "{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Domain", "AiJiaXi.Domain\AiJiaXi.Domain.csproj", "{245162B6-1ACC-4E45-BB41-00107551C3FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Common", "AiJiaXi.Common\AiJiaXi.Common.csproj", "{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Plugin", "AiJiaXi.Plugin\AiJiaXi.Plugin.csproj", "{347FF0C4-B41F-4EEC-B7F2-195ADB243558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiPay", "WeiPay\WeiPay.csproj", "{D137DE17-657E-45E8-9F97-6E0F836B5C6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F86F64D9-6663-4F6B-836B-F6D157B52E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86F64D9-6663-4F6B-836B-F6D157B52E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F86F64D9-6663-4F6B-836B-F6D157B52E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F86F64D9-6663-4F6B-836B-F6D157B52E08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245162B6-1ACC-4E45-BB41-00107551C3FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245162B6-1ACC-4E45-BB41-00107551C3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245162B6-1ACC-4E45-BB41-00107551C3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245162B6-1ACC-4E45-BB41-00107551C3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347FF0C4-B41F-4EEC-B7F2-195ADB243558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347FF0C4-B41F-4EEC-B7F2-195ADB243558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347FF0C4-B41F-4EEC-B7F2-195ADB243558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347FF0C4-B41F-4EEC-B7F2-195ADB243558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D137DE17-657E-45E8-9F97-6E0F836B5C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D137DE17-657E-45E8-9F97-6E0F836B5C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D137DE17-657E-45E8-9F97-6E0F836B5C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D137DE17-657E-45E8-9F97-6E0F836B5C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+	EndGlobalSection
+EndGlobal

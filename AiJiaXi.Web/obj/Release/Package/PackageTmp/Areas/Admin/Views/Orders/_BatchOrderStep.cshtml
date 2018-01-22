@@ -1,0 +1,86 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model List<AiJiaXi.Domain.Entities.Orders.Order>
+
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">批量订单管理详情</div>
+    <div class="panel-body">
+        <p class="text-danger">以下是所选订单的简单介绍，请确认后谨慎更改订单状态！</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-bordered table-hover table-striped text-center">
+        <tr>
+            <th class="nowrap text-center">
+                订单编号
+            </th>
+            <th class="nowrap text-center">
+                用户名
+            </th>
+            <th class="nowrap text-center">
+                订单状态
+            </th>
+            <th class="nowrap text-center">
+                订单金额
+            </th>
+            <th class="nowrap text-center">
+                订单提交时间
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.OrderNo
+                </td>
+                <td>
+                    @item.ApplicationUser.UserName
+                </td>
+                <td>
+                    @item.OrderStatus.GetDescription()
+                </td>
+                <td>
+                    @item.Fact
+                </td>
+                <td>
+                    @item.RiseTime.SimpleDateFull()
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@using (Html.BeginForm("BatchOrderSteps", "Orders", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="orders" name="orders"/>
+
+    <div class="form-group">
+        <label for="note" class="col-md-3 control-label">订单状态</label>
+        <div class="col-sm-4">
+            <select id="status" name="status" class='multi_select'>
+                @foreach (var item in Enum.GetValues(typeof(OrderStatus)))
+                {
+                    var s = (int)item;
+                    if (s >= 1 && s <= 6)
+                    {
+                        <option value="@item">@item.GetDescription()</option>
+                    }
+                }
+            </select>   
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="note" class="col-md-3 control-label">批量操作说明</label>
+        <div class="col-sm-4">
+            <input type="text" id="note" name="note" placeholder="批量操作说明" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-5">
+            <button type="submit" class="btn btn-primary">提 交 更 改</button>
+        </div>
+    </div>
+}

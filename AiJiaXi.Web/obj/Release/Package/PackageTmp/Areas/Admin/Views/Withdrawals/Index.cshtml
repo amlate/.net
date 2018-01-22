@@ -1,0 +1,149 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+
+@{
+    ViewBag.Title = "我的提现记录";
+    ViewBag.Top = "我的提现记录";
+    ViewBag.Second = "提现记录";
+}
+<div class="container-fluid">
+    <div class="row">
+
+      
+            @using (Ajax.BeginForm("SearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <input id="Phone" name="Phone" type="hidden" value="@ViewBag.MyPhone" />
+
+                <div class="form-group">
+                    <label class="sr-only" for="name">银行卡号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">银行卡号</div>
+                        <input type="text" class="form-control" id="BankCard" name="BankCard" placeholder="银行卡号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+
+
+                @*<div class="form-group">
+                    <label class="sr-only" for="name">好友人数</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">好友人数</div>
+                        <div class="input-group-addon" style="color:red;">100</div>
+                    </div>
+                </div>*@
+
+                <div class="form-group">
+                    <label class="sr-only" for="name">我的余额</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">我的余额</div>
+                        <div class="input-group-addon" style="color:red;">@ViewBag.FrendsCount 元</div>
+                        <div class="input-group-addon">冻结金额</div>
+                        <div class="input-group-addon" style="color:red;">@ViewBag.djye 元</div>
+                        
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+
+
+                    @Ajax.ActionLink("预提现申请", "PreWithdrawals", new { Phone = ViewBag.MyPhone, PreApplyDate = DateTime.Now.ToString()}, new AjaxOptions() { Confirm = "确定准备预提现申请吗？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+                    <label class="input-addon" style="color:red;font-size:15px;">@Html.Raw(ViewBag.preWith)</label>
+
+                    @*<button type="button" class="btn btn-primary">
+                            <span class="fa" aria-hidden="true"></span> 预提现
+
+                        </button>*@
+
+                    @*<div class="input-group-addon" style="color:red;">点击按钮后开始计时，【预提现申请日期为：2016-01-21 11:20  目前您已消费1600元】</div>*@
+                </div>
+
+                <br />
+
+                    <div class="form-group">
+                        <label class="sr-only" for="name">提现银行</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">提现银行</div>
+                            <input type="text" class="form-control" id="Bank" name="Bank" placeholder="提现银行">
+                            <div class="input-group-addon">目前支持银行：中国银行，工商银行，建设银行，农业银行，交通银行，招商银行，浦发银行</div>
+                          </div>
+                      
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <label class="sr-only" for="name">银行卡姓名</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">银行卡姓名</div>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="银行卡姓名">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="sr-only" for="name">银行卡帐号</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">银行卡帐号</div>
+                            <input type="text" class="form-control" id="Accounts" name="Accounts" placeholder="银行卡帐号">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label class="sr-only" for="name">可提现金额</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">可提现金额</div>
+                            <input type="text" class="form-control" id="Amount" name="Amount" placeholder="可提现金额">
+                        </div>
+                    </div>
+                    <br />
+                    @*@Ajax.ActionLink("提现", "Withdrawals", new { Phone = ViewBag.MyPhone, ApplyDate = DateTime.Now.ToString(), State = AiJiaXi.Domain.Enums.PreWithdrawalsStatus.CanWithdrawals }, new AjaxOptions() { Confirm = "确定准备预提现申请吗？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })*@
+
+
+
+                    <button id="btnWithdrawals" type="button" class="btn btn-primary">
+                        <span class="fa" aria-hidden="true"></span> 提现
+                    </button>
+
+                   
+            }
+       
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+
+<div id="datatable">
+    @Html.Partial("_WithdrawalsSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#btnWithdrawals").bind("click", function () {
+
+            var question = confirm("确定要申请提现吗？")
+
+            //不等于0其实就是不等于FALSE
+            if (question != "0") {
+                btnWithdrawals();
+            }
+           
+        });
+
+    });
+
+        //提现申请
+    function btnWithdrawals() {
+        var action = $("#searchForm")[0].action
+        $("#searchForm")[0].action = "/admin/Withdrawals/Withdrawals";
+        $("#searchForm").submit();
+        $("#searchForm")[0].action = action;
+
+        }
+</script>
+}

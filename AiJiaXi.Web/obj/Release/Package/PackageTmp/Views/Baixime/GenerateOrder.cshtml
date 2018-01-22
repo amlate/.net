@@ -1,0 +1,347 @@
+﻿@model IEnumerable<AiJiaXi.Domain.Entities.Orders.OrderItem>
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var CartItem = ViewBag.CartItem as List<AiJiaXi.Domain.Entities.Orders.CartItem>;
+    var Order = ViewBag.Order as AiJiaXi.Domain.Entities.Orders.Order;
+    var AddressList = ViewBag.AddressList as List<AiJiaXi.Domain.Entities.UserProfile.UserAddress>;
+}
+<script>
+
+    store('countyId', '@ViewBag.CountyId');//设置当前首页选中的区域ID
+    store('pageName', 'order_sub');
+    store('applicationUserId','@Order.ApplicationUserId');
+    var ajaxData = new Array();
+</script>
+<section class="order_sub">
+    <header><span class="left back"><i class="icon back"></i>提交订单</span><i class="icon home"></i></header>
+    <input id="deliveryId" value="" type="hidden">
+    <input id="pickupTime" value="" type="hidden">
+    <input id="pickupDate" value="" type="hidden">
+    <div id="subWarp">
+        <div id="order_add" class="flashUp flashShow">
+            <span>请添加地址</span><i class="icon add"></i>
+        </div>
+        <div id="order_time" class="flashUp flashShow" flash-step="200">
+            <p class="time_none">请预约上门时间<i class="icon add"></i></p>
+            <p class="time_sel">上门时间<i class="icon right"></i></p>
+            <p class="time_info">上门时间<br><span>06月04日&nbsp; 星期四 12:00——14:00</span><i class="icon upd"></i></p>
+            <div class="date_sel">
+                <ul class="fl">
+                    @for (int i = 0; i < 8; i++)
+                    {
+                        var date = DateTime.Now.AddDays(i);
+                        if (i == 0)
+                        {
+                            <li data-value="@date.ToString("yyyy-MM-dd")" class="sel">@date.ToString("MM月dd日") @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(date.DayOfWeek)</li>
+                        }
+                        else
+                        {
+                            <li data-value="@date.ToString("yyyy-MM-dd")" class="">@date.ToString("MM月dd日") @System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(date.DayOfWeek)</li>
+                        }
+                    }
+                </ul>
+                <ul class="fr">
+                    @{
+                        for (int i = 8; i < 22; i++)
+                        {
+                            if (i == 8)
+                            {
+                                <li class="sel" data-value="@i :00-@(i+1) :00">@i:00 — @(i+1) :00</li>
+                            }
+                            else
+                            {
+                                <li  data-value="@i :00-@(i+1) :00">@i:00 — @(i+1) :00</li>
+                            }
+
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <p class="title flashUp flashShow" flash-step="300"><span>洗涤列表</span></p>
+        <ul class="cart flashUp flashShow" flash-step="400">
+            @foreach (var item in Model)
+            {
+                <li id="product_@item.Id" class="flashUp flashShow" data-value="@ViewBag.OrderId">
+                    <img src="/upload/@item.ImageUrl">
+                    <span class="item_name">@item.Name</span>
+                    <span class="item_price">¥ &nbsp;@item.Price/件</span>
+                    <span class="item_num">
+                        <u id="product_@(item.Id)_num">@CartItem.Find(a => a.OrderItemId == item.Id).Nums</u>
+                        <b class="add" data-value="product_@item.Id"><i class="icon add"></i></b>
+                        <b class="del" data-value="product_@item.Id"><i class="icon del"></i></b>
+                    </span>
+                </li>
+            }
+        </ul>
+        <div class="clear grey flashUp flashShow" flash-step="600"></div>
+        @*LC注释*@
+        @*<div id="order_cart" class="title flashUp flashShow" flash-step="600">继续添加洗涤物件<i class="icon add"></i></div>*@
+    </div>
+    <div class="clear"></div>
+    <ul class="order_price">
+        <li>洗涤金额<i class="r"></i><span id="cartProductFee">@(Order.TotalPrice)元</span></li>
+        <li>运费<i class="r"></i><span id="cartDeliveryFee">0元</span></li>
+        <li class="last" id="order_coupon">洗衣优惠券<i class="l"><b id="coupon_num">0</b>张可用</i><span id="coupon_msg"></span></li>
+    </ul>
+    <footer class="order_sub">
+        <span data-value="open"><i class="icon tt3"></i>订单金额<font id="cartOrderFee">@(Order.TotalPrice)元</font></span>
+        <div id="order_submit" data-value="@ViewBag.OrderId" class="btn gre2">提 交 订 单</div>
+    </footer>
+</section>
+<section class="order_add">
+    <header class="reback"><span class="left back"><i class="icon back"></i>地址</span><i class="icon home"></i></header>
+    <ul class="add_list">
+        @{
+            foreach (var item in AddressList)
+            {
+                <li data-note="@item.Addr" data-id="@item.Id" data-Contact="@item.Contact @item.ContactPhoneNum" data-ContactPhoneNum="@item.ContactPhoneNum" data-default="@item.IsDefault">
+                    <i>@item.Contact</i> <i>@item.ContactPhoneNum</i><br>
+                    <i>@item.Addr</i>
+                    @*<i class="upd icon"></i>
+    <span class="upd">编辑</span>
+    <span class="del">删除</span>*@
+                </li>
+            }
+        }
+    </ul>
+    <ul class="add_add">
+        <form id="form_add_add">
+            <input id="isDefault" value="0" type="hidden">
+            <li><input maxlength="6" id="realname" placeholder="姓名" type="text"></li>
+            <li><input maxlength="11" id="phone" placeholder="手机号" type="text"></li>
+            <li>
+                <i class="icon bt2" style="display:none"></i>
+                @*<span>( 您当前的首页定位锁定为上海 )</span>*@
+                <select id="selCity" disabled="disabled">
+                    @*<option value="1" selected="selected">上海市</option>*@
+                </select>
+            </li>
+            <li>
+                <i class="icon bt2"></i>
+                <select id="selDistrict">
+                    @*<option selected="selected" value="1">黄浦区</option>*@
+                </select>
+            </li>
+            <li><input id="address" placeholder="请输入您的详细地址" type="text"></li>
+            <li class="def"><span class="checkbox"></span>设置为默认地址</li>
+        </form>
+    </ul>
+    <footer class="order_address">
+        <div id="address_submit" data-value="close" class="btn gre2">添 加 新 地 址</div>
+    </footer>
+</section>
+<section class="order_cart">
+    <header class="reback"><span class="left back"><i class="icon back"></i>增加洗涤服务</span><i class="icon home"></i></header>
+    <p class="title"><span>衣物</span></p>
+    <ul class="cart">
+        <li id="product_1_cart">
+            <img src="subcart/201507291809381619d5.png">
+            <span class="item_name">配饰类</span>
+            <span class="item_price">¥ &nbsp;8/件</span>
+            <span class="item_num none">
+                <u id="product_1_num_cart">0</u>
+                <b class="add" data-value="product_1"><i class="icon add"></i></b>
+                <b class="del" data-value="product_1"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_2_cart">
+            <img src="subcart/2015111927874466fd33.png">
+            <span class="item_name">小件</span>
+            <span class="item_price">¥ &nbsp;12/件</span>
+            <span class="item_num none">
+                <u id="product_2_num_cart">0</u>
+                <b class="add" data-value="product_2"><i class="icon add"></i></b>
+                <b class="del" data-value="product_2"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_3_cart">
+            <img src="subcart/20151119278746554dec.png">
+            <span class="item_name">中件</span>
+            <span class="item_price">¥ &nbsp;18/件</span>
+            <span class="item_num none">
+                <u id="product_3_num_cart">0</u>
+                <b class="add" data-value="product_3"><i class="icon add"></i></b>
+                <b class="del" data-value="product_3"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_4_cart">
+            <img src="subcart/201511192787474074c7.png">
+            <span class="item_name">大件</span>
+            <span class="item_price">¥ &nbsp;28/件</span>
+            <span class="item_num none">
+                <u id="product_4_num_cart">0</u>
+                <b class="add" data-value="product_4"><i class="icon add"></i></b>
+                <b class="del" data-value="product_4"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_5_cart">
+            <img src="subcart/2015111727723576777e.png">
+            <span class="item_name">超大件</span>
+            <span class="item_price">¥ &nbsp;38/件</span>
+            <span class="item_num none">
+                <u id="product_5_num_cart">0</u>
+                <b class="add" data-value="product_5"><i class="icon add"></i></b>
+                <b class="del" data-value="product_5"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_6_cart">
+            <img src="subcart/2015111727723592734a.png">
+            <span class="item_name">超长件</span>
+            <span class="item_price">¥ &nbsp;48/件</span>
+            <span class="item_num none">
+                <u id="product_6_num_cart">0</u>
+                <b class="add" data-value="product_6"><i class="icon add"></i></b>
+                <b class="del" data-value="product_6"><i class="icon del"></i></b>
+            </span>
+        </li>
+    </ul>
+    <p class="title"><span>家纺</span></p>
+    <ul class="cart">
+        <li id="product_7_cart">
+            <img src="subcart/204398539711.png">
+            <span class="item_name">小件</span>
+            <span class="item_price">¥ &nbsp;18/件</span>
+            <span class="item_num none">
+                <u id="product_7_num_cart">0</u>
+                <b class="add" data-value="product_7"><i class="icon add"></i></b>
+                <b class="del" data-value="product_7"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_8_cart">
+            <img src="subcart/20439839a444.png">
+            <span class="item_name">中件</span>
+            <span class="item_price">¥ &nbsp;28/件</span>
+            <span class="item_num none">
+                <u id="product_8_num_cart">0</u>
+                <b class="add" data-value="product_8"><i class="icon add"></i></b>
+                <b class="del" data-value="product_8"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_9_cart">
+            <img src="subcart/18093915ae58.png">
+            <span class="item_name">大件</span>
+            <span class="item_price">¥ &nbsp;38/件</span>
+            <span class="item_num none">
+                <u id="product_9_num_cart">0</u>
+                <b class="add" data-value="product_9"><i class="icon add"></i></b>
+                <b class="del" data-value="product_9"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_287_cart">
+            <img src="subcart/20151117277235095f12.png">
+            <span class="item_name">地毯</span>
+            <span class="item_price">¥ &nbsp;48/件</span>
+            <span class="item_num none">
+                <u id="product_287_num_cart">0</u>
+                <b class="add" data-value="product_287"><i class="icon add"></i></b>
+                <b class="del" data-value="product_287"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_288_cart">
+            <img src="subcart/201511172772353105b9.png">
+            <span class="item_name">普通棉被</span>
+            <span class="item_price">¥ &nbsp;58/件</span>
+            <span class="item_num none">
+                <u id="product_288_num_cart">0</u>
+                <b class="add" data-value="product_288"><i class="icon add"></i></b>
+                <b class="del" data-value="product_288"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_289_cart">
+            <img src="subcart/2015111727723552c8f3.png">
+            <span class="item_name">高档被</span>
+            <span class="item_price">¥ &nbsp;138/件</span>
+            <span class="item_num none">
+                <u id="product_289_num_cart">0</u>
+                <b class="add" data-value="product_289"><i class="icon add"></i></b>
+                <b class="del" data-value="product_289"><i class="icon del"></i></b>
+            </span>
+        </li>
+    </ul>
+    <p class="title"><span>鞋靴</span></p>
+    <ul class="cart">
+        <li id="product_290_cart">
+            <img src="subcart/2015111927874915199d.png">
+            <span class="item_name">普通鞋</span>
+            <span class="item_price">¥ &nbsp;18/件</span>
+            <span class="item_num ">
+                <u id="product_290_num_cart">1</u>
+                <b class="add" data-value="product_290"><i class="icon add"></i></b>
+                <b class="del" data-value="product_290"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_291_cart">
+            <img src="subcart/20151119278582658afb.png">
+            <span class="item_name">短鞋靴</span>
+            <span class="item_price">¥ &nbsp;28/件</span>
+            <span class="item_num none">
+                <u id="product_291_num_cart">0</u>
+                <b class="add" data-value="product_291"><i class="icon add"></i></b>
+                <b class="del" data-value="product_291"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_292_cart">
+            <img src="subcart/2015111927875105e111.png">
+            <span class="item_name">中鞋靴</span>
+            <span class="item_price">¥ &nbsp;38/件</span>
+            <span class="item_num none">
+                <u id="product_292_num_cart">0</u>
+                <b class="add" data-value="product_292"><i class="icon add"></i></b>
+                <b class="del" data-value="product_292"><i class="icon del"></i></b>
+            </span>
+        </li>
+        <li id="product_293_cart">
+            <img src="subcart/2015111927858290c916.png">
+            <span class="item_name">长鞋靴</span>
+            <span class="item_price">¥ &nbsp;48/件</span>
+            <span class="item_num none">
+                <u id="product_293_num_cart">0</u>
+                <b class="add" data-value="product_293"><i class="icon add"></i></b>
+                <b class="del" data-value="product_293"><i class="icon del"></i></b>
+            </span>
+        </li>
+    </ul>
+    <footer class="order_address cart_btn">
+        <div class="btn gre2">选 好 了</div>
+    </footer>
+</section>
+<section class="coupon order_coupon">
+    <header class="reback"><span class="left back"><i class="icon back"></i>选择洗涤券</span><i class="icon home"></i></header>
+    <ul></ul>
+</section>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/order_sub.js"></script>
+<script type="text/javascript">
+    $(function() {
+        serverHour = 0;
+        Order.init_page();
+        //$('footer.order_sub span').click();
+        //if (store('cityId') == 20) {//北京
+        //    areaMsg = '服务暂仅开通五环以内，如有不便敬请谅解！';
+        //} else if (store('cityId') == 1) {//上海
+        //    areaMsg = '服务暂仅开通外环以内，如有不便敬请谅解！';
+        //} else {
+        //    areaMsg = '服务暂仅开通外环以内，如有不便敬请谅解！';
+        //}
+        GetCounty();
+    });
+
+    
+    function GetCounty() {
+
+        //store('PcityId',210200);
+        //store('PcityName',"大连市");
+        //store('cityName',"西岗区");
+        //store('cityId',210203);
+        var PcityId = store('PcityId');
+        var PcityName = store('PcityName');
+        //区域名称
+        var cityName = store('cityName');
+        //区域id
+        var cityId = store('cityId');
+        $(".icon bt2").append("<span>( 您当前的首页定位锁定为" + PcityName + " )</span>");
+        $("#selCity").html("<option value='" + PcityId + "'selected='selected'>" + PcityName + "( 您当前的首页定位锁定为" + PcityName + " )</option>");
+        $("#selDistrict").html("<option value='" + cityId + "'selected='selected'>" + cityName + "</option>");
+    }
+</script>

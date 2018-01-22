@@ -1,0 +1,108 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "白洗么";
+    ViewBag.Top = "首页";
+    ViewBag.Second = "推广员首页";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">白洗么后台管理系统</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">26</div>
+                            <div>已推广用户数</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index", "JoinApplications")">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看当月统计</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>总提成金额</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Going", "Orders")">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看相关统计</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>总提现金额</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Going", "Orders")">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看所有进行中的订单</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-support fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>已消费金额</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="@Url.Action("Index", "Events")">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看已完成订单</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>

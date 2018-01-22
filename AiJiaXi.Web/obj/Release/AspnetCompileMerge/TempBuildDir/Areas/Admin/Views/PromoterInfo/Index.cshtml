@@ -1,0 +1,72 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.PromoterInfo>
+
+@{
+    ViewBag.Title = "我的推广管理";
+    ViewBag.Top = "我的推广管理";
+    ViewBag.Second = "推广信息列表";
+}
+<div class="container-fluid">
+    <div class="row">
+
+       
+
+        <button id="btnEr" name="btnEr" class="btn btn-primary">
+            <span class="fa" aria-hidden="true"></span> 我的二维码
+        </button>
+
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("SearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+
+
+                <div class="form-group">
+                    <label class="sr-only" for="name">好友手机号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">好友手机号</div>
+                        <input type="text" class="form-control" id="FriendsPhone" name="FriendsPhone" placeholder="好友手机号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+
+            }
+        </div>
+        </div>
+
+
+
+        <div class="row" style="height: 5px;"></div>
+    </div>
+<div id="datatable">
+    @Html.Partial("_PromoterInfoSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+   <script type="text/javascript">
+       $(function () {
+
+           $("#btnEr").bind("click", function () {
+
+
+               window.location.href = "/Admin/QrCode/Index/"
+               //var question = confirm("确定要申请提现吗？")
+
+               ////不等于0其实就是不等于FALSE
+               //if (question != "0") {
+               //    btnWithdrawals();
+               //}
+              // $.dialog({ id: "V", title: "二维码 ", content: "/QrCode/Index/", min: false, max: false, width: "1200px", height: "700px" });
+
+           });
+
+       });
+
+       
+
+
+</script>
+
+}

@@ -1,0 +1,70 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.JoinApplication>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            申请名称
+        </th>
+        <th class="text-center">
+            申请人手机号码
+        </th>
+        <th class="text-center">
+            申请人邮件
+        </th>
+        <th class="text-center">
+            加盟方式
+        </th>
+        <th class="text-center">
+            申请负责区域
+        </th>
+        <th class="text-center">
+            申请表填写时间
+        </th>
+        <th class="text-center">
+            申请处理
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="status" data-type="select" data-pk="@item.Id" data-value="@item.FeedbackStatus" data-source="@Url.Action("FeedbackStatus")" data-title="加盟申请">
+                    @item.FeedbackStatus.GetDescription()
+                </a>
+            </td>
+            <td>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

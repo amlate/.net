@@ -1,0 +1,26 @@
+﻿@using AiJiaXi.Domain.Enums
+@using Senparc.Weixin.MP.Helpers
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "程序发生错误";
+    ViewBag.Top = "程序发生错误";
+    ViewBag.Second = "错误详细";
+}
+
+<div class="panel panel-danger">
+    <div class="panel-heading">程序处理您的请求时发生异常</div>
+    <div class="panel-body">
+        处理你的请求时出错。可能是由于您操作不当引起，如有问题请联系管理员！
+    </div>
+
+    <!-- List group -->
+    <ul class="list-group">
+        <li class="list-group-item">请求的地址：@Request.Url。</li>
+        <li class="list-group-item">异常信息：@Model.Exception.Message</li>
+        <li class="list-group-item">
+            @Html.ActionLink("返回主页", "Index", "Home")
+        </li>
+    </ul>
+</div>
+

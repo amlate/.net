@@ -1,0 +1,76 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.UserProfile.Voucher>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th>
+            代金券兑换码
+        </th>
+        <th class="text-center">
+            代金券名称
+        </th>
+        <th class="text-center">
+            金额
+        </th>
+        <th class="text-center">
+            使用条件
+        </th>
+        <th class="text-center">
+            有效时间
+        </th>
+        <th class="text-center">
+            分配用户
+        </th>
+        <th class="text-center">
+            所属活动
+        </th>
+        <th class="text-center">
+            所属代理商
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @item.VoucherNo
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                ￥ @item.Amount
+            </td>
+            <td>
+                ￥ @item.PriceToUse
+            </td>
+            <td>
+                @item.StartTime.SimpleDateFull() - @item.EndTime.SimpleDateFull()
+            </td>
+            <td>
+@*                <a href="#" class="user-editable editable-click" data-type="select2" data-pk="@item.Id" data-value="@(item.UserAccount == null ? "" : item.UserAccount.Id)" data-source="@Url.Action("Users")" data-title="分配代金券">@(item.UserAccount == null ? "暂未分配" : @item.UserAccount.ApplicationUser.UserName)</a>*@
+                <a title="" data-original-title="" class="user-editable editable editable-click" href="#" data-type="select2" data-pk="@item.Id" data-value="@(item.UserAccount == null ? "" : item.UserAccount.Id)" data-source="@Url.Action("Users")" data-title="分配代金券">@(item.UserAccount == null ? "暂未分配" : @item.UserAccount.ApplicationUser.UserName)</a>
+            </td>
+            <td>
+                @item.Event.Name
+            </td>
+            <td>
+                ￥@item.Agency.Name
+            </td>
+            <td>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+</table>

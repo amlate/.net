@@ -1,0 +1,44 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Logs.LoginLog>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            IP
+        </th>
+        <th class="text-center">
+            操作结果
+        </th>
+        <th class="text-center">
+            尝试登录时间
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginIp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginDesc)
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,16 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.Navbar>
+
+@{
+    ViewBag.Title = "菜单管理";
+    ViewBag.Top = "菜单管理";
+    ViewBag.Second = "菜单列表";
+}
+
+<div id="datatable">
+    @Html.Partial("_NavbarList", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+}

@@ -1,0 +1,68 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.BizPartner>
+<a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+</a>
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            合作伙伴名称
+        </th>
+        <th class="text-center">
+            图片
+        </th>
+        <th class="text-center">
+            缩略图
+        </th>
+        <th class="text-center">
+            是否显示
+        </th>
+        <th class="text-center">
+            排序
+        </th>
+        <th class="text-center">
+            添加时间
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageEntity.ImgUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThumbNail)
+            </td>
+            <td>
+
+                <a href="#" class="user-editable" data-name="flag" data-type="select" data-pk="@item.Id" data-value="@item.IsShow" data-source="@Url.Action("Shows")" data-title="合作伙伴">
+                    @(item.IsShow ? "显示" : "不显示")
+                </a>
+                @Html.DisplayFor(modelItem => item.IsShow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @item.AddTime.SimpleDateFull()
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "BizPartner", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

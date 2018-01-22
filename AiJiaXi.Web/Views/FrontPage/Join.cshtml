@@ -1,0 +1,273 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>来和白洗么一起创业吧！</title>
+    <meta name="description" content="来和白洗么一起创业吧！">
+    <meta name="keywords" content="来和白洗么一起创业吧！">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="/front_css/join/swiper3.06.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/front_css/join/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/front_css/join/forJoin.css">
+    <script type="text/javascript" src="/Scripts/front_js/join/jquery-1.10.1.min.js"></script>
+    <style type="text/css">
+    </style>
+    <script type="text/javascript">
+        //	$(function(){
+        //		$(".music").click(function () {
+        //			if($(this).hasClass("on")){
+        //				$("#myaudio")[0].pause();
+        //				$(".music").removeClass("on");
+        //			}else{
+        //				$("#myaudio")[0].play();
+        //				$(".music").addClass("on");
+        //			}
+        //
+        //		});
+        //	});
+        $(function () {
+            $(".music").click(function () {
+                if ($(this).hasClass("on")) {
+                    $("#myaudio")[0].pause();
+                    $(".music").removeClass("on");
+                } else {
+                    $("#myaudio")[0].play();
+                    $(".music").addClass("on");
+                }
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <!--controls-->
+    <div class="main">
+        @*<audio id="myaudio" src="/images/join/yy.mp3" autoplay loop hidden="true" style="width:0;height:0"></audio>*@
+        <div class="optiongroup">
+            @*<div class="music  on"></div>*@
+        </div>
+    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+
+            <!-- 页面1 -->
+            <div class="swiper-slide slider1">
+                <div class="top1">
+                    <p class="star01" style="display: none;"><img src="/images/join/star001.png" /></p>
+                    <p class="star02"><img src="/images/join/star.jpg" /></p>
+                </div>
+                <div class="con1 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.1s">
+                    <img src="~/images/join/pic1_02.jpg" width="100%" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+
+            <!-- 页面2 -->
+            <div class="swiper-slide slider2">
+                <div class="top2">
+                    @*<ul>
+                        <li class="li01 ani" swiper-animate-effect="rollIn" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                            <img src="/images/join/jump01.png" />
+                        </li>
+                        <li class="li02 ani" swiper-animate-effect="rollIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+                            <img src="/images/join/jump02.png" />
+                        </li>
+                        <li class="li03 ani" swiper-animate-effect="rollIn" swiper-animate-duration="1s" swiper-animate-delay="1s">
+                            <img src="/images/join/jump03.png" />
+                        </li>
+                        <li class="li04 ani" swiper-animate-effect="rollIn" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
+                            <img src="/images/join/jump04.png" />
+                        </li>
+                        <li class="li05 ani" swiper-animate-effect="rotateInDownLeft" swiper-animate-duration="1s" swiper-animate-delay="2s">
+                            <img src="/images/join/jump05.png" />
+                        </li>
+                    </ul>*@
+                    @*<p class="left ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                        <img src="/images/join/pic2_left.png" />
+                    </p>*@
+                </div>
+                <div class="con2 ani" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.5s">
+                    <img src="/images/join/pic2_01.jpg" />
+                </div>
+                <p class="right ani" swiper-animate-effect="fadeInUpBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s"><img src="/images/join/pic2_right.png" /></p>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+
+            <!-- 页面3 -->
+            <div class="swiper-slide slider3">
+                <div class="top3">
+                    <p class="p1 ani" swiper-animate-effect="fadeInDownBig" swiper-animate-duration="1s" swiper-animate-delay="0.5s"><img src="/images/join/pic3_03.png" /> </p>
+                    <p class="p2 ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s"><img src="/images/join/pic3_02.png" /> </p>
+                    <p class="p3 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s"><img src="/images/join/pic3_01.png" /> </p>
+                    <p class="p4 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="1s"><img src="/images/join/pic3_04.png" /> </p>
+                    <p class="p5 ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="1s"><img src="/images/join/pic3_05.png" /> </p>
+                </div>
+                <div class="con3 ani" swiper-animate-effect="swing" swiper-animate-duration="1s" swiper-animate-delay="1.5s">
+                    <img src="/images/join/pic3_06.png">
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面4-->
+            <div class="swiper-slide slider4">
+                <div class="top4" style="margin-left: 40px;">
+                    <img src="/images/join/LOGO.png" />
+                </div>
+                <div class="con4 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/pic4_02.png" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面5 -->
+            <div class="swiper-slide slider5">
+                <div class="con4 ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/1-2.jpg" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面5结束 -->
+            <!-- 页面6 -->
+            <div class="swiper-slide slider6">
+                <div class="con4 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/3-4.jpg" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面6结束 -->
+            <!-- 页面7 -->
+            <div class="swiper-slide slider7">
+                <div class="con4 ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/5-6.jpg" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面7结束 -->
+            <!-- 页面10 -->
+            @*<div class="swiper-slide slider6">
+                <div class="con4 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/8.jpg" />
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>*@
+            <!-- 页面10结束 -->
+            <!-- 页面8 -->
+            <div class="swiper-slide slider8">
+                <div class="ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                    <img src="/images/join/7.png" width="100%" height="100%" />
+                    <div class="form1">
+                        <p style="font-size: 30px;">代理商报名</p>
+                        <p style="font-size: 18px; line-height: 160%; margin-bottom: 10px;">填写您的信息，我们将尽快与您联系。<br>加盟方式：推广员、区域代理</p>
+                        <form id="form">
+                            <input id="name" type="text" placeholder="姓名" class="text1" />
+                            <input id="phone" type="text" placeholder="手机" class="text1" />
+                            <input id="email" type="text" placeholder="E-mail" class="text1" />
+                            <input id="type" type="text" placeholder="加盟方式" class="text1" />
+                            <input id="city" type="text" placeholder="意向城市" class="text1" />
+                            <input id="addTojoin" type="button" value="提交" style="height: 44px; width: 80%; background-color: #ddb208; color: #fff; font-size: 20px; font-family: '微软雅黑'; border: 0; margin-left: 10%; margin-top: 10px;" />
+                        </form>
+                    </div>
+                </div>
+                <div class='up'><img src="/images/join/down.png"></div>
+            </div>
+            <!-- 页面8结束 -->
+            @*<!-- 页面9-->
+                <div class="swiper-slide slider9">
+                    <div class="top4">
+                        <img src="/images/join/LOGO.png" />
+                    </div>
+                    <div class="con4 ani" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                        <img src="/images/join/pic4_02.png" />
+                    </div>
+                    <div class="con6 ani" swiper-animate-effect="fadeInLeftBig" swiper-animate-duration="1s" swiper-animate-delay="0.1s">
+                        <img src="/images/join/pic4_01.png" />
+                    </div>
+                </div>
+                <!-- 页面9结束 --->*@
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="/Scripts/front_js/join/swiper.animate1.0.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/front_js/join/swiper3.06.min.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript">
+    var swiper = new Swiper('.swiper-container', {
+        direction: 'vertical',
+        mousewheelControl: true,
+        onInit: function (swiper) {
+            swiperAnimateCache(swiper);
+            swiperAnimate(swiper);
+        },
+        onSlideChangeEnd: function (swiper) {
+            swiperAnimate(swiper);
+        }
+    });
+    $(function () {
+        //Msg('请输入姓名',2);
+
+        $("#addTojoin").bind("click", function () {
+            Join();
+        });
+    });
+
+    function Join() {
+        var name = $("#name").val();
+        if (!name) {
+           // alert("请输入姓名");
+            Msg('请输入姓名!', 2);
+            return;
+        }
+        var phone = $("#phone").val();
+        if (!phone) {
+            //alert("请输入手机号");
+            Msg('请输入手机号!', 2);
+            return;
+        }
+        if (!checkTel(phone)) {
+            //alert("请输入正确的手机号");
+            Msg('请输入正确的手机号!', 2);
+            return;
+        }
+        var email = $("#email").val();
+        if (!email) {
+            // alert("请输入Email");
+            Msg('请输入Email!', 2);
+            return;
+        }
+        var type = $("#type").val();
+        if (!type) {
+            // alert("请输入加盟方式");
+            Msg('请输入加盟方式!', 2);
+            return;
+        }
+        var city = $("#city").val();
+        if (!city) {
+            //alert("请输入意向城市");
+            Msg('请输入意向城市!', 2);
+            return;
+        }
+        var data = { name: name, phone: phone, email: email, type: type, city: city }
+        $.post("/ajax/join", data, function (data) {
+            Msg('您的信息已提交，我们会在二十四小时之内与您取得联系，请保持电话畅通！', 1);
+            //alert("您的信息已提交，我们会在二十四小时之内与您取得联系，请保持电话畅通！");
+                $("#form input[type=text]").each(function () {
+                    $(this).val("");
+                });
+        });
+    }
+    function checkTel(tel) {
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+        if (reg.test(tel)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</html>

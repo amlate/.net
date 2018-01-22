@@ -1,0 +1,170 @@
+﻿@using AiJiaXi.Domain.Entities
+@using AiJiaXi.Domain.Enums
+@model AiJiaXi.Domain.Entities.Orders.Event
+
+@{
+    ViewBag.Title = "活动管理";
+    ViewBag.Top = "活动管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Events", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group"></div>
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">活动名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "活动名称" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Agencies" class="col-sm-2 control-label">代金券 - 代理商</label>
+            <div class="col-sm-4">
+                <select id="Agencies" name="agencies" class="selectpicker show-tick form-control" data-live-search="true" multiple>
+                    @foreach (var item in (List<Agency>)ViewBag.Agencies)
+                    {
+                        if (Model != null && Model.Agencies!=null && Model.Agencies.Select(m => m.Id).Contains(item.Id))
+                        {
+                            <option value="@item.Id" selected="selected">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Desc" class="col-sm-2 control-label">活动描述</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Desc, new { @class = "summernote", title = "Content" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="EventType" class="col-sm-2 control-label">活动类型</label>
+            <div class="col-sm-4">
+                <select id="EventType" name="EventType" class="multi_select">
+                    @foreach (var item in Enum.GetValues(typeof(EventType)))
+                    {
+                        if (Model != null && Model.EventType == (EventType)item)
+                        {
+                            <option value="@item.ToString()" selected="selected">@item.GetDescription()</option>
+                        }
+                        else
+                        {
+                            <option value="@item.ToString()">@item.GetDescription()</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="EventUrl" class="col-sm-2 control-label">活动地址</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.EventUrl, new {@class = "form-control", placeholder = "http://xxx.xxx"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="PriceTo" class="col-sm-2 control-label">参与活动资格（消费金额或充值金额）</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.PriceTo, new { @class = "form-control", placeholder = "消费金额" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Discount" class="col-sm-2 control-label">活动折扣(或按百分比充值优惠)</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Discount, new {@class = "form-control", placeholder = "活动折扣"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="BenefitPrice" class="col-sm-2 control-label">活动优惠（满减优惠或充值满多少送多少）</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.BenefitPrice, new {@class = "form-control", placeholder = "活动优惠金额"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="UseMaxVoucherNum" class="col-sm-2 control-label">允许使用的优惠券数目</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.UseMaxVoucherNum, new { @class = "form-control", placeholder = "优惠券数目" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Flag" class="col-sm-2 control-label">立即生效</label>
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.Flag, new Dictionary<string, object>() { { "class", "form-control" }, { "data-on-text", "立即生效" }, { "data-off-text", "稍后决定" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Desc" class="col-sm-2 control-label">活动有效期</label>
+
+            <div class="col-sm-2">
+                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-sm-2">
+                @Html.TextBoxFor(model => model.EndTime, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/laydate/laydate.js"></script>
+    <script>
+        $('input[type=checkbox]').bootstrapSwitch();
+
+        var start = {
+            elem: '#StartTime',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas; //将结束日的初始值设定为开始日
+            }
+        };
+        var end = {
+            elem: '#EndTime',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(),
+            max: '2099-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+    </script>
+    <script>
+        $(function() {
+            $('.summernote').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+}

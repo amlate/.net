@@ -1,0 +1,59 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.OrderItemClass>
+
+@{
+    ViewBag.Title = "产品类别管理";
+    ViewBag.Top = "产品类别管理";
+    ViewBag.Second = "产品类别列表";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+            </a>
+        </div>
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("OrderItemClassSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <div class="form-group">
+                    <label class="sr-only" for="City">所属地区</label>
+                    @Html.DropDownList("City", (IEnumerable<SelectListItem>)ViewBag.Cities, "全部地区", new Dictionary<string, object>() { { "class", "selectpicker show-tick form-control" }, { "data-live-search", "true" } })
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="name">名称</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">名称</div>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="类别名称">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_OrderItemClassSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script>
+        $(function() {
+            $('.counties').editable({
+                pk: 1,
+                name: 'counties',
+                placement: 'bottom',
+                mode: 'inline',
+                url:'@Url.Action("Post")',
+                showbuttons: true,
+                limit: 0
+            });
+        });
+    </script>
+}

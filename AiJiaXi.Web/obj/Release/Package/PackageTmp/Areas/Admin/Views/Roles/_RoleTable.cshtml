@@ -1,0 +1,54 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.ApplicationRole>
+
+<a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+</a>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            角色名称
+        </th>
+        <th class="text-center">
+            角色描述
+        </th>
+        <th class="text-center">
+            
+        </th>
+        <th class="text-center">
+           操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Details", "Roles", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-object-group" aria-hidden="true"></i>
+                    权限管理
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "Roles", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

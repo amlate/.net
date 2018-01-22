@@ -1,0 +1,50 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Logs.OperationLog>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            模块
+        </th>
+        <th class="text-center">
+            操作方法
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            IP
+        </th>
+        <th class="text-center">
+            操作时间
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Module)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Action)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserIP)
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+        </tr>
+    }
+
+</table>

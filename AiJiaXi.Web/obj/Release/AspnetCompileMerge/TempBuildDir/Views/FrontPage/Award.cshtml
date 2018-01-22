@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    //ViewBag.Title = "抽奖纪录";
+    ViewBag.Title = "用户评价";
+}
+@model AiJiaXi.Domain.Entities.UserProfile.UserAccount
+
+<section class="space">
+    @*<header class="reback"><span class="left back"><i class="icon back"></i>抽奖纪录</span><i class="icon home"></i></header>*@
+    <header class="reback"><span class="left back"><i class="icon back"></i>用户评价</span><i class="icon home"></i></header>
+    <section>
+        @*<ul class="jllist">
+            
+            @{
+                foreach (var item in ViewBag.awardList)
+                {
+                    <li><i></i><span class="jpname">抽奖结果：@item.EventPrize.Name</span><span class="res">奖品由白洗么提供</span></li>
+                }
+            }
+        </ul>*@
+        <ul class="pllist">
+            @{
+                foreach (var itema in ViewBag.OrderRate)
+                {
+                    var item = (AiJiaXi.Domain.Entities.Orders.OrderRate)itema;
+                    <li>
+                        <div class="plinfo">
+                            <span class="pluser">用户：@item.Order.ApplicationUser.UserAccount.CardNumber</span>
+                            <span class="pltime">@item.RiseTime</span>
+                        </div>
+                        <div class="plstar">
+                            @*评价星级*@
+                            @{
+                                for (int i = 1; i <= 5; i++)
+                                {
+                                    if (i <= item.Stars)
+                                    {
+                                        <span class="star"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="star star1"></span>
+                                    }
+                                }
+                            }
+
+                        </div>
+                        <p class="plcontent">
+                            @item.OrderComment
+                        </p>
+                        <div class="plpic">
+                            @{
+                                if (!String.IsNullOrWhiteSpace(item.ShareOrderImgUrls))
+                                {
+                                    string[] imgArr = item.ShareOrderImgUrls.Split(',');
+                                    foreach (var img in imgArr)
+                                    {
+                                        if (!string.IsNullOrEmpty(img))
+                                        {
+                                            <span><img src="@img" width="100%" height="100%"></span>
+                                        }
+
+                                    }
+                                }
+
+                            }
+
+                        </div>
+                    </li>
+
+                                }
+
+            }
+
+
+        </ul>
+    </section>
+    <section class="h1"></section>
+    <footer class="fpic">
+        <div class="fpic1"><i></i></div>
+    </footer>
+</section>
+
+<script type="text/javascript" src="/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="/Scripts/front_js/award.js"></script>
+<script>
+    $(function() {
+        Award.init_page();
+    });    
+</script>

@@ -1,0 +1,93 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.Order>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="nowrap text-center">
+            订单编号
+        </th>
+        <th class="text-center">
+            用户地址
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            订单详情
+        </th>
+        <th class="text-center">
+            预约时间
+        </th>
+        <th class="text-center">
+            支付方式
+        </th>
+        <th class="text-center">
+            订单总价
+        </th>
+        <th class="text-center">
+            实际支付价格
+        </th>
+        <th class="text-center">
+            提交订单时间
+        </th>
+        <th class="text-center">
+            接单代理商
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @item.OrderNo
+            </td>
+            <td>
+                @item.UserAddress.Addr
+            </td>
+            <td>
+                @item.ApplicationUser.UserName
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "CartItems", new {@id = @item.Id})" class="btn btn-xs btn-default">查看</a>
+            </td>
+            <td>
+                @item.Appointment.SimpleDateFull()
+            </td>
+            <td>
+                @item.PayType.GetDescription()
+            </td>
+            <td>
+                ￥@item.TotalPrice
+            </td>
+            <td>
+                ￥@item.Fact
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+            <td>
+                @item.Agency.Name
+            </td>
+            <td>
+                <button class="btn btn-primary btn-xs" data-toggle="modal" data-url="@Url.Action("CancelOrder", "Orders", new {@id = item.Id})" data-ordername="取消订单-@item.OrderNo" data-target="#OrderModal">
+                    取消订单
+                </button>
+                <button class="btn btn-danger btn-xs" data-toggle="modal" data-url="@Url.Action("ConfirmPayed", "Orders", new {@id = item.Id})" data-ordername="确认支付-@item.OrderNo" data-target="#OrderModal">
+                    确认支付
+                </button>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,47 @@
+﻿@using AiJiaXi.Domain.Enums
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.EventAward>
+
+@{
+    ViewBag.Title = "中奖名单";
+
+    ViewBag.Top = "中奖名单";
+    ViewBag.Second = "中奖名单";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("EventAwardsSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <div class="form-group">
+                    <label class="sr-only" for="name">名称</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">名称</div>
+                        <input type="text" class="form-control" id="name " name="name" placeholder="名称">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_EventAwardsResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+    <script>
+        $(function() {
+            $('.user-editable').editable({
+                url: '@Url.Action("Post")',
+                showbuttons: true
+            });
+        })
+    </script>
+}

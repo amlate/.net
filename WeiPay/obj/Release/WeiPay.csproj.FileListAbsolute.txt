@@ -1,0 +1,5 @@
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Release\WeiPay.dll
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Release\WeiPay.pdb
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Release\WeiPay.csprojResolveAssemblyReference.cache
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Release\WeiPay.dll
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Release\WeiPay.pdb

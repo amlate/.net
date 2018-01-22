@@ -1,0 +1,4 @@
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Debug\WeiPay.dll
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Debug\WeiPay.pdb
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Debug\WeiPay.dll
+F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Debug\WeiPay.pdb

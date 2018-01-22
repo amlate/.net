@@ -1,0 +1,29 @@
+@charset "utf-8";
+html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, 
+del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend {vertical-align: baseline;font-family: inherit;font-weight: inherit;font-style: inherit;font-size: 100%;outline: none;padding: 0;margin: 0;border: none;}
+/* remember to define focus styles! */
+*{-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent;}
+*:focus{-webkit-tap-highlight-color: rgba(0,0,0,0);-webkit-tap-highlight-color: transparent;}
+.borderImage {-webkit-tap-highlight-color:rgba(0,0,0,0);}
+ *{font-family:Arial,'微软雅黑',Verdana,Sans-serif;font-style:normal;font-size:14px;padding:0;margin:0}
+ section{
+-webkit-backface-visibility:hidden;
+-moz-backface-visibility:hidden;
+-ms-backface-visibility:hidden;
+backface-visibility:hidden;
+-webkit-perspective:1000;
+-moz-perspective:1000;
+-ms-perspective:1000;
+perspective:1000;
+}
+body:before { content:""; position:fixed; top: -10px; left: 0; width: 100%; height: 10px; z-index: 999;}
+input,textarea{ outline:none;border-radius:none}
+textarea{ resize:none; overflow-y:hidden;}
+a,a:visited { outline:none; color:#636363; text-decoration:none; cursor:pointer;}
+img,img:hover{border:0;outline:none;}
+ul,li{list-style:none}
+
+::-webkit-scrollbar/*整体部分*/
+{width: 0px;height:0px;}

@@ -1,0 +1,78 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            提现状态
+        </th>
+        <th class="text-center">
+            预提现申请时间
+        </th>
+        <th class="text-center">
+            提现申请时间
+        </th>
+        <th class="text-center">
+            提现银行
+        </th>
+        <th class="text-center">
+            银行卡姓名
+        </th>
+        <th class="text-center">
+            银行卡帐号
+        </th>
+        <th class="text-center">
+            提现金额
+        </th>
+        <th class="text-center">
+            处理提现时间
+        </th>
+     
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.State)*@
+
+                @Html.Raw(AiJiaXi.Domain.Enums.EnumExtensions.GetDescription((AiJiaXi.Domain.Enums.WithdrawalsStatus)item.State))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreApplyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accounts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandleDate)
+            </td>
+      
+            @*<td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "BizPartner", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>*@
+        </tr>
+    }
+
+</table>

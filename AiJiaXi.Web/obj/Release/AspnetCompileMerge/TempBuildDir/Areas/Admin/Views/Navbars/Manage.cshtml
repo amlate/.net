@@ -1,0 +1,63 @@
+﻿@model AiJiaXi.Domain.Entities.IdentityModel.Navbar
+
+@{
+    ViewBag.Title = "菜单管理";
+    ViewBag.Top = "菜单管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Navbars", FormMethod.Post, new {@class = "form-horizontal"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group"></div>
+        <div class="form-group">
+            <label for="NameOption" class="col-sm-2 control-label">显示名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.NameOption, new {@class = "form-control", placeholder = "请输入显示名称"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Controller" class="col-sm-2 control-label">Controller</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Controller, new {@class = "form-control", placeholder = "请输入Controller"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Action" class="col-sm-2 control-label">Action</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Action, new {@class = "form-control", placeholder = "请输入Action"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Area" class="col-sm-2 control-label">Area</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Area, new {@class = "form-control", placeholder = "请输入Area"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ImageClass" class="col-sm-2 control-label">菜单图标类别(<a href="http://fontawesome.io/" target="_blank">教我选</a>)</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.ImageClass, new {@class = "form-control", placeholder = "请输入菜单图标类别"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ParentId" class="col-sm-2 control-label">菜单位置</label>
+            <div class="col-sm-4">
+                @Html.DropDownListFor(model => model.ParentId, (IEnumerable<SelectListItem>) ViewData["NavParents"], "顶级菜单", new {@class = "multi_select"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>

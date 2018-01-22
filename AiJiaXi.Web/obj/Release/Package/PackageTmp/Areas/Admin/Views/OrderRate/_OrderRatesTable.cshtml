@@ -1,0 +1,90 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.OrderRate>
+
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            订单号
+        </th>
+        <th class="text-center">
+            总评
+        </th>
+        <th class="text-center">
+            揽件评星
+        </th>
+        <th class="text-center">
+            送件评星
+        </th>
+        <th class="text-center">
+            订单评论
+        </th>
+        <th class="text-center">
+            揽件评论
+        </th>
+        <th class="text-center">
+            送件评论
+        </th>
+        <th class="text-center">
+            晒单
+        </th>
+        <th class="text-center">
+            评论时间
+        </th>
+        <th class="text-center">
+            审核
+        </th>
+        <th class="text-center">
+            
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Order.OrderNo
+            </td>
+            <td>
+                @item.Stars
+            </td>
+            <td>
+                @item.PatchStars
+            </td>
+            <td>
+                @item.DispatchStars
+            </td>
+            <td>
+                @item.OrderComment
+            </td>
+            <td>
+                @item.PatchComment
+            </td>
+            <td>
+                @item.DispatchComment
+            </td>
+            <td>
+                @if (!string.IsNullOrWhiteSpace(item.ShareOrderImgUrls))
+                {
+                    foreach (var img in item.ShareOrderImgUrls.TrimEnd(',').Split(','))
+                    {
+                        <img src="@img" alt="..." width="50" height="50" class="img-thumbnail">
+                    }
+                }
+
+                
+
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="approval" data-type="select" data-pk="@item.Id" data-value="@item.IsApproval" data-source="@Url.Action("Approvals")" data-title="开启活动">
+                    @(item.IsApproval ? "审核通过" : "审核不通过")
+                </a>
+            </td>
+            <td>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+</table>

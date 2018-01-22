@@ -1,0 +1,294 @@
+﻿@using AiJiaXi.Domain.Enums
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+
+<head>
+    <title>我的</title>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+       
+        store('countyId', '@ViewBag.CountyId');//设置当前首页选中的区域ID
+        store('pageName', 'order_list');
+        var ajaxData = new Array();
+    </script>
+</head>
+
+<section class="order_list">
+    <header class="reback"><span class="left back"><i class="icon back"></i>订单</span><i class="icon home"></i></header>
+    <nav>
+        <span >待支付</span>
+        <span>服务中</span>
+        <span>已完成</span>
+        <i><b><i class="icon order_nav"></i></b></i>
+    </nav>
+    <div class="pay">
+        <ul>
+            @{
+                foreach (var item in ViewBag.orderList)
+                {
+                    if (item.OrderStatus==OrderStatus.ToPay)
+                    {
+                        <li data-id="@item.OrderNo">
+                            <i class="icon type order_type1"> </i>
+                            <span>订单号</span>@item.OrderNo
+                            <br>
+                            <span>下单时间</span>@item.RiseTime
+                            <i class="icon lt"></i>
+                        </li>
+                    }
+                }
+            }
+
+        </ul>
+    </div>
+    <div class="fuwu">
+        <ul>
+            @{
+                foreach (var item in ViewBag.orderList)
+                {
+                    if (item.OrderStatus != OrderStatus.ToPay&&item.OrderStatus!=OrderStatus.Cancelled&& item.OrderStatus != OrderStatus.Succeed)
+                    {
+                        <li data-id="@item.OrderNo">
+                            <i class="icon type order_type1"> </i>
+                            <span>订单号</span>@item.OrderNo
+                            <br>
+                            <span>下单时间</span>@item.RiseTime
+                            <i class="icon lt"></i>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+    <div class="end">
+        @*<p class="title"><span>本周</span></p>
+        <ul>
+            @{
+                DateTime dt = DateTime.Now;
+                DateTime startWeek = dt.AddDays(1 - Convert.ToInt32(dt.DayOfWeek.ToString("d")));
+                DateTime endWeek = startWeek.AddDays(6);
+                foreach (var item in ViewBag.orderList)
+                {
+                    if (item.OrderStatus == OrderStatus.Succeed&&item.RiseTime<endWeek&& item.RiseTime>startWeek)
+                    {
+                        <li data-id="@item.OrderNo">
+                            <i class="icon type order_type1"> </i>
+                            <span>订单号</span>@item.OrderNo
+                            <br>
+                            <span>下单时间</span>@item.RiseTime
+                            <i class="icon lt"></i>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+        <p class="title"><span>上周</span></p>
+        <ul>
+            @{
+                DateTime lastWeek = startWeek.AddDays(-6);
+                foreach (var item in ViewBag.orderList)
+                {
+                    if (item.OrderStatus == OrderStatus.Succeed && item.RiseTime > lastWeek&& item.RiseTime< startWeek)
+                    {
+                        <li data-id="@item.OrderNo">
+                            <i class="icon type order_type1"> </i>
+                            <span>订单号</span>@item.OrderNo
+                            <br>
+                            <span>下单时间</span>@item.RiseTime
+                            <i class="icon lt"></i>
+                        </li>
+                    }
+                }
+            }
+        </ul>*@
+        <ul>
+            @{
+                foreach (var item in ViewBag.orderList)
+                {
+                    if (item.OrderStatus == OrderStatus.Succeed|| item.OrderStatus == OrderStatus.Cancelled)
+                    {
+                        <li data-id="@item.OrderNo">
+                            <i class="icon type order_type1"> </i>
+                            <span>订单号</span>@item.OrderNo
+                            <br>
+                            <span>下单时间</span>@item.RiseTime
+                            <i class="icon lt"></i>
+                        </li>
+                    }
+                }
+            }
+           
+        </ul>
+    </div>
+</section>
+<section class="order_info">
+    <header class="reback"><span class="left back"><i class="icon back"></i>订单</span><i class="icon home"></i></header>
+    <div class="order">
+        <p>下单时间 <font id="order_info_date"></font><span>订单号<b id="order_info_id"></b></span></p>
+        <p class="g"><font id="order_info_statusMsg"><span>预计<b>27日 07-08时</b></span></font>
+        </p>
+        <font>
+            <font>
+                <ul>
+                    <li><s><i class="icon order_type1"></i></s><br><b><i class="icon order_nav"></i></b></li>
+                    <li><s><i class="icon order_type3"></i></s><br><b><i class="icon order_nav"></i></b><span></span></li>
+                    <li class="doing"><s><i class="icon order_type5"></i></s><br><b><i class="icon order_nav"></i></b><span></span></li>
+                    <li class="next"><s><i class="icon order_type6 g"></i></s><br><b><i class="icon order_nav"></i></b><span></span></li>
+                    <li class="next"><s><i class="icon order_type7 g"></i></s><br><b><i class="icon order_nav"></i></b><span></span></li>
+                </ul>
+            </font>
+        </font>
+    </div>
+    <font>
+        <font>
+            <p class="title"><span>订单信息</span></p>
+            <ul class="info">
+                <li id="order_info_address"><p></p></li>
+                @*在order_info.js中绑定事件*@
+
+                @*  LC  注释，，暂时先不放上去<span class="g s">查看详情<i class="icon lt"></i></span>*@
+                <li id="details">洗涤数量<b id="order_info_num">0件</b></li>
+                <li>洗涤金额<span id="order_info_totalFee">0元</span></li>
+                <li>运费<span id="order_info_deliveryFee">0元</span></li>
+                @*<li id="coupon">优惠券<span id="order_info_assetFee">0元</span></li>*@
+             
+                <li id="coupon">优惠券<span class="g s"><span id="order_info_assetFee">选择优惠券</span><i class="icon lt"></i></span></li>
+
+                <li>支付金额<span class="g" id="order_info_orderFee">0元</span></li>
+            </ul>
+            <p class="title"><span>订单追踪</span></p>
+            <ul id="order_wuliu_info" class="wuliu">
+                @*<li class="first grey">
+                    <i></i><b></b>
+                    <p><span>27日</span>星期五<br>2015年6月 08-09时</p>
+                    <s>签单预计</s>
+                </li>
+                <li  class="first">
+                    <i></i><b></b>
+                    <p><span>27日</span>星期五<br>2015年6月 07-08时</p>
+                    <s>送返预计</s>
+                    <span class="pai">王四<br>130 0000 0000</span>
+                </li>
+                <li >
+                    <i></i><b></b>
+                    <p><span>26日</span>星期四<br>2015年6月 15:22:56</p>
+                    <s>洗涤完成</s>
+                </li>
+                <li >
+                    <i></i><b></b>
+                    <p><span>26日</span>星期四<br>2015年6月 13:22:56</p>
+                    <s>到达工厂</s>
+                </li>
+                <li >
+                    <i></i><b></b>
+                    <p><span>25日</span>星期三<br>2015年6月 13:22:56</p>
+                    <s>揽件成功</s>
+                </li>
+                <li >
+                    <i></i><b></b>
+                    <p><span>25日</span>星期三<br>2015年6月 11:22:56</p>
+                    <s>支付成功</s>
+                </li>
+                <li>
+                    <i></i><b></b>
+                    <p><span>25日</span>星期三<br>2015年6月 11:20:13</p>
+                    <s>下单成功</s>
+                </li>*@
+            </ul>
+            <footer class="kefu" style="margin-top:6px;display: none">
+                <div id="order_pay_btn" class="btn gre2">支付订单</div>
+                </div>
+            </footer>
+            <footer class="kefu" style="margin-top:6px;display: none">
+                <div id="order_ok" class="btn gre2">确认收货</div>
+                </div>
+            </footer>
+            <footer class="kefu" style="margin-top:6px">
+                <div id="order_kefu" class="btn gre2 callTel"><i class="icon kefu"></i>联系客服</div>
+            </footer>
+            <footer class="kefu" style="margin-top: 6px;display: none">
+                <div id="order_cancer" data-value="" class="btn org">取消订单</div>
+            </footer>
+            <footer class="kefu" style="margin-top: 6px;display: none">
+                <div id="order_grade" data-value="" class="btn org">评价</div>
+            </footer>
+        </font>
+    </font>
+</section>
+        <section class="order_details">
+            <header class="reback"><span class="left back"><i class="icon back"></i>订单详情</span><i class="icon home"></i></header>
+            <div class="warp">
+                <table id="xiaci_table">
+                    @*<tbody>
+                        <tr><th width="32">编号</th><th width="60">物件</th><th>瑕疵</th></tr>
+                        <tr class="grey"><td class="gre">1</td><td>T恤1</td><td>领口开线</td></tr>
+                        <tr><td class="gre">2</td><td>T恤2</td><td></td></tr>
+                        <tr class="grey"><td class="gre">3</td><td>T恤3</td><td></td></tr>
+                        <tr><td class="gre">4</td><td>T恤4</td><td></td></tr>
+                        <tr class="grey"><td class="gre">5</td><td>牛仔裤1</td><td></td></tr>
+                        <tr><td class="gre">6</td><td>牛仔裤2</td><td>拉链松动</td></tr>
+                        <tr class="grey"><td class="gre">7</td><td>内裤</td><td></td></tr>
+                        <tr><td class="gre">8</td><td>鞋子</td><td></td></tr>
+                    </tbody>*@
+                </table>
+            </div>
+            <p class="title"><span>瑕疵展示</span></p>
+            <div class="xiaci">
+                @*<img src="images/xiaci.png">
+                <img src="images/xiaci.png">
+                <img src="images/xiaci.png">*@
+            </div>
+            <div class="imgWarp">
+                <div class="bg"></div>
+                <div class="imgArea">
+                    <img id="imgShow" src="">
+                    <img id="imgClose" src="/Images/icons/close.gif">
+                </div>
+            </div>
+            <footer class="kefu">
+                <div class="btn gre2 callTel"><i class="icon kefu"></i>联系客服</div>
+            </footer>
+        </section>
+
+@*使用优惠券*@
+<section class="order_coupon">
+    <header class="reback"><span class="left back"><i class="icon back"></i>使用优惠券</span><i class="icon home"></i></header>
+    <ul id="order_coupon_ul">
+
+        @*在order_list.js中处理的*@
+        @*@{   
+            foreach (var item in ViewBag.voucherList)
+            {
+                string style = string.Empty;
+                if (item.Amount > 100)
+                {
+                    style = "font-size:32px";
+                }            
+                <li class="">
+
+                    <span class="l"></span><span class="r"></span><font>¥<b style="@style">@item.Amount</b></font><p class="f">@item.Desc</p><p>品类:洗衣券</p><p>期限:@item.EndTime</p>
+                </li>
+
+            }
+        }*@
+    </ul>
+</section>
+
+
+
+   
+        <script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+        <script type="text/javascript" src="~/Scripts/front_js/order_list.js"></script>
+        <script type="text/javascript" src="~/Scripts/front_js/order_info.js"></script>
+        <script type="text/javascript">
+            var selIndex =@ViewBag.FromType
+            $(function () {
+                OrderList.init_page();
+                Order.init_page();
+                var orderid = '@ViewBag.orderId';
+                if (orderid.length > 0) {
+                    OrderList.TurnPageOrder(orderid);
+                }
+            });
+        </script>

@@ -1,0 +1,104 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.Navbar>
+
+<a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+</a>
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            显示名称
+        </th>
+        <th class="text-center">
+            菜单路径
+        </th>
+        <th class="text-center">
+            菜单图标
+        </th>
+        <th class="text-center">
+            状态
+        </th>
+        <th class="text-center">
+            是否顶级菜单
+        </th>
+        <th class="text-center">
+            排序序号
+        </th>
+        <th class="text-center" style="width: 150px;">
+            操作
+        </th>
+    </tr>
+
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        if (item.IsParent)
+        {
+            <tr>
+                <td>
+                    @(Model.StartItemIndex + i++)
+                </td>
+                <td style="text-align: left">
+                    |---&nbsp;&nbsp;@item.NameOption
+                </td>
+                <td>
+                    @(string.IsNullOrWhiteSpace(item.Controller) ? "" : String.Format("/{0}/{1}/{2}", item.Area, item.Controller, item.Action))
+                </td>
+                <td>
+                    @item.ImageClass
+                </td>
+                <td>
+                    @(item.Status ? "有效" : "无效")
+                </td>
+                <td>
+                    @(item.IsParent ? "顶级菜单" : "子菜单")
+                </td>
+                <td>
+                    顶级菜单序号 - @item.Order
+                </td>
+                <td>
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "Navbars", new RouteValueDictionary() { {"id", item.Id} })">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+
+                    @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+
+        foreach (var sub in Model.Where(navbar => (!navbar.IsParent) && navbar.ParentId == item.Id))
+                    {
+            <tr>
+                <td>
+                    @(Model.StartItemIndex + i++)
+                </td>
+                <td style="text-align: left">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|---&nbsp;&nbsp;@sub.NameOption
+                </td>
+                <td>
+                    @(string.IsNullOrWhiteSpace(sub.Controller) ? "" : string.Format("/{0}/{1}/{2}", sub.Area, sub.Controller, sub.Action))
+                </td>
+                <td>
+                    @sub.ImageClass
+                </td>
+                <td>
+                    @(sub.Status ? "有效" : "无效")
+                </td>
+                <td>
+                    @(sub.IsParent ? "顶级菜单" : "子菜单")
+                </td>
+                <td>
+                    子菜单序号 - @sub.Order
+                </td>
+                <td>
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "Navbars", new RouteValueDictionary() {{"id", sub.Id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+                    @Ajax.ActionLink("删除", "Delete", new  { id = sub.Id },new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace}, new { @class = "btn btn-danger btn-xs" })
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -1,0 +1,62 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Agency>
+
+@{
+    ViewBag.Title = "代理商管理";
+    ViewBag.Top = "代理商管理";
+    ViewBag.Second = "代理商列表";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+            </a>
+        </div>
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("AgencySearchPost", new RouteValueDictionary {{"id", ""}}, new AjaxOptions {UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace}, new RouteValueDictionary {{"id", "searchForm"}, {"class", "form-inline"}}))
+            {
+                <div class="form-group">
+                    <label class="sr-only" for="City">城市</label>
+                    @Html.DropDownList("city", (IEnumerable<SelectListItem>) ViewBag.Cities, "全部地区", new Dictionary<string, object>() {{"class", "selectpicker show-tick form-control"}, {"data-live-search", "true"}})
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="name">区县</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">区县</div>
+                        <input type="text" class="form-control" id="county " name="county" placeholder="区县">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="name">名称</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">名称</div>
+                        <input type="text" class="form-control" id="name " name="name" placeholder="名称">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_AgencySearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+
+    <script>
+        $(function() {
+            $('.user-editable').editable({
+                url: '@Url.Action("Post")',
+                showbuttons: true
+            });
+        })
+    </script>
+}

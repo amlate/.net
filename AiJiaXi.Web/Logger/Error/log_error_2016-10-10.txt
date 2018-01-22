@@ -1,0 +1,9 @@
+[21:02:51] - [Error] - [AiJiaXi.Common.NLogger.Error]
+确认收货findOrder.ApplicationUser.PhoneNumber:13624286247
+
+[21:10:12] - [Error] - [AiJiaXi.Common.NLogger.Error]
+确认收货findOrder.ApplicationUser.PhoneNumber:13624286247
+
+[21:15:29] - [Error] - [AiJiaXi.Common.NLogger.Error]
+确认收货findOrder.ApplicationUser.PhoneNumber:13624286247
+

@@ -1,0 +1,45 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+
+@{
+    ViewBag.Title = "推广员提现记录";
+    ViewBag.Top = "推广员提现记录";
+    ViewBag.Second = "推广员提现记录";
+}
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("SearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+
+
+                <div class="form-group">
+                    <label class="sr-only" for="name">推广员手机号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">推广员手机号</div>
+                        <input type="text" class="form-control" id="Phone" name="Phone" placeholder="好友手机号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+
+            }
+        </div>
+        </div>
+
+
+
+        <div class="row" style="height: 5px;"></div>
+    </div>
+<div id="datatable">
+    @Html.Partial("_PromoterWithdrawalsSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+
+}

@@ -1,0 +1,71 @@
+﻿@using AiJiaXi.Domain.Enums
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser>
+
+@{
+    ViewBag.Title = "系统管理员管理";
+    ViewBag.Top = "系统管理员管理";
+    ViewBag.Second = "系统管理员列表";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-default btn-sm" data-toggle="modal" data-type="batch" data-url="@Url.Action("Batch", "Orders")" data-ordername="订单批量管理" data-target="#OrderModal" style="margin-left: 10px; margin-bottom: 10px">
+                <i class="fa fa-cogs" aria-hidden="true"></i>&nbsp; 批量管理订单
+            </a>
+        </div>
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("AdminSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace, OnComplete = "InitialEdit()" }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <div class="form-group">
+                    <label class="sr-only" for="userType">用户类型</label>
+                    <select id="userType" name="userType" class='selectpicker show-tick form-control' data-live-search="true">
+                        <option value="-1" selected="selected">全部</option>
+                        @foreach (var item in Enum.GetValues(typeof(UserType)))
+                        {
+                            <option value="@item">@item.GetDescription()</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="orderNo">用户名</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">用户名</div>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="=用户名">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_AdminSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script>
+        function InitialEdit() {
+
+            $('.user-editable').editable({
+                url: '@Url.Action("Post")',
+                showbuttons: true
+            });
+        }
+
+
+        $(function() {
+            $('.user-editable').editable({
+                url:'@Url.Action("Post")',
+                showbuttons: true
+            });
+        })
+    </script>
+}

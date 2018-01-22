@@ -1,0 +1,56 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.EventPrize>
+    
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            所属活动
+        </th>
+        <th class="text-center">
+            奖品名称
+        </th>
+        <th class="text-center">
+            奖品数量
+        </th>
+        <th class="text-center">
+            权重系数
+        </th>
+        @*<th class="text-center">
+            奖品图片
+        </th>*@
+        <th class="text-center">
+            奖品剩余数量
+        </th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @item.Event.Name
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Nums
+            </td>
+            <td>
+                @item.Weight
+            </td>
+           @* <td>
+                @item.Images
+            </td>*@
+            <td>
+                @(item.Nums - item.EventAwards.Count)
+            </td>
+        </tr>
+    }
+</table>

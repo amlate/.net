@@ -1,0 +1,89 @@
+﻿@model IEnumerable<AiJiaXi.Domain.Entities.IdentityModel.Navbar>
+
+@{
+    ViewBag.Title = "角色管理";
+    ViewBag.Top = "角色管理";
+    ViewBag.Second = string.Format("{0}-权限列表", ViewBag.RoleName);
+}
+
+
+@{
+    var hasIds = ViewBag.HasNavbars as List<int> ?? new List<int>();
+    var roleId = ViewBag.RoleId as string ?? string.Empty;
+}
+
+@using (Html.BeginForm("Save", "Roles", new {@id = roleId}, FormMethod.Post,new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <table class="table table-bordered table-hover table-striped">
+    @foreach (var item in Model.Where(nav => nav.IsParent))
+    {
+        <tr>
+            <td class="nav_controller" style="width: 300px; line-height: 20px;" >
+                <div class="checkbox">
+                    <label>
+                        @if (hasIds.Contains(item.Id))
+                        {
+                            <input id="@item.Id"  type="checkbox" name="purview" value="@item.Id" checked='checked'/>
+                        }
+                        else
+                        {
+                            <input id="@item.Id" type="checkbox" name="purview" value="@item.Id"/>
+                        }
+                        @item.NameOption
+                    </label>
+                </div>
+            </td>
+            <td class="nav_item" style="line-height: 20px;">
+                @foreach (var sub in Model.Where(subnav => subnav.ParentId == item.Id))
+                {
+                    <label class="checkbox-inline" style="width: 120px">
+                        @if (hasIds.Contains(sub.Id))
+                        {
+                            <input id="@sub.Id" type="checkbox" name="purview" value="@sub.Id" checked />
+                        }
+                        else
+                        {
+                            <input id="@sub.Id" type="checkbox" name="purview" value="@sub.Id" />
+                        }
+                        @sub.NameOption
+                    </label>
+                }
+            </td>
+        </tr>
+    }
+        <tr>
+            <td colspan="2" class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    &nbsp;分配权限
+                </button>
+            </td>
+        </tr>
+</table>
+}
+
+@section Scripts{
+    <script>
+        $(function() {
+            $('.nav_controller input:checkbox').change(function () {
+                if ($(this).prop('checked')) {
+                    $(this).parent().parent().parent().next('td').find('input:checkbox').prop('checked', true);
+                } else {
+                    $(this).parent().parent().parent().next('td').find('input:checkbox').prop('checked', false);
+                }
+            });
+
+            $('.nav_item input:checkbox').each(function (index) {
+                $(this).change(function () {
+                    $(this).parent().parent().prev().find('input:checkbox').prop('checked', false);
+                    $(this).parent().parent().find('input:checkbox').each(function (index_1) {
+                        if ($(this).prop('checked')) {
+                            $(this).parent().parent().prev().find('input:checkbox').prop('checked', true);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+}

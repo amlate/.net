@@ -1,0 +1,59 @@
+﻿@model System.Collections.Generic.List<AiJiaXi.Domain.ViewModels.Admin.SummaryViewModel>
+
+<div class="col-lg-12">
+    <!-- /.panel -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-bar-chart-o fa-fw"></i> @ViewBag.Date
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>代理商</th>
+                                    <th>进行中订单</th>
+                                    <th>共完成订单</th>
+                                    <th>总订单数</th>
+                                    <th>差评率(三星及以下)</th>
+                                    <th>好评率（五星）</th>
+                                    <th>投诉率</th>
+                                    <th>营业额(实际支付)</th>
+                                    <th>总营业额</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Agency-@item.TotalOrdersCount</td>
+                                        <td>@item.Goings</td>
+                                        <td>@item.Completes</td>
+                                        <td>@item.TotalOrdersCount</td>
+                                        <td>@(item.Completes == 0 ? "0" : (((float)item.Negative / item.Completes)).ToString("p"))</td>
+                                        <td>@(item.Completes == 0 ? "0" : (((float)item.Favourite / item.Completes)).ToString("p"))</td>
+                                        <td>@(item.TotalOrdersCount == 0 ? "0" : (((float)item.Complaint / item.TotalOrdersCount)).ToString("p"))</td>
+                                        <td>@item.Turnover</td>
+                                        <td>@item.Total</td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.col-lg-4 (nested) -->
+                <div class="col-lg-8">
+                    <div id="morris-bar-chart"></div>
+                </div>
+                <!-- /.col-lg-8 (nested) -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>

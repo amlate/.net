@@ -1,0 +1,97 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.OrderItemClass>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            类别名称
+        </th>
+        <th class="text-center">
+            类别图标
+        </th>
+        <th class="text-center">
+            类别图标（hover）
+        </th>
+        <th class="text-center">
+            所属城市
+        </th>
+        <th class="text-center">
+            有效地区
+        </th>
+        <th class="text-center">
+            类别地址
+        </th>
+        <th class="text-center">
+            产品目录
+        </th>
+        <th class="text-center">
+            添加时间
+        </th>
+        <th class="text-center">
+            添加用户
+        </th>
+        <th class="text-center">
+            修改时间
+        </th>
+        <th class="text-center">
+            修改用户
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IconUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoverIconUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.Name)
+            </td>
+            <td>
+                <a href="#" class="counties" data-name="counties" data-type="checklist" data-pk="@item.Id" data-source="@Url.Action("Counties", new { @id = item.City.Id})" data-value="@item.Counties" data-title="选择有效区"></a>
+            </td>
+            <th class="text-center">
+                @item.Url
+            </th>
+            <td>
+                <a href="@Url.Action("Index", "Products", new RouteValueDictionary() {{"productClass", item.Id}})" class="btn btn-default btn-xs">
+                    产品管理 <span class="badge">@item.OrderItems.Count(n => n.IsValid)</span>
+                </a>
+            </td>
+            <td>
+                @item.AddTime.SimpleDateFull()
+            </td>
+            <td>
+                @item.AddUser
+            </td>
+            <td>
+                @(item.ModifyTime == null ? string.Empty : item.ModifyTime.Value.SimpleDateFull())
+            </td>
+            <td>
+                @item.ModifyUser
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "ProductClasses", new RouteValueDictionary() { {"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Recycle", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

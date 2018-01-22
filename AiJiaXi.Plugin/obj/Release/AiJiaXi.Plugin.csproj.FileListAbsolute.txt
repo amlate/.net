@@ -1,0 +1,5 @@
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\bin\Release\AiJiaXi.Plugin.dll
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\bin\Release\AiJiaXi.Plugin.pdb
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\obj\Release\AiJiaXi.Plugin.csprojResolveAssemblyReference.cache
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\obj\Release\AiJiaXi.Plugin.dll
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\obj\Release\AiJiaXi.Plugin.pdb

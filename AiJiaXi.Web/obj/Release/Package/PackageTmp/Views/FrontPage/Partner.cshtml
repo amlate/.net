@@ -1,0 +1,48 @@
+﻿@using AiJiaXi.Domain.Entities
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    ViewBag.Title = "Partner";
+}
+    <script>
+       
+        store('pageName','order_sub');
+        var ajaxData = new Array();
+    </script>
+
+<!--主体部分-->
+<body>
+    <section class="order_sub">
+        <header><span class="left back">合作伙伴</span></header>
+        <input id="deliveryId" value="" type="hidden">
+        <input id="pickupTime" value="" type="hidden">
+        <input id="pickupDate" value="" type="hidden">
+        <section class="parlist">
+            <ul>
+                @{
+                    List<BizPartner> list = ViewBag.partnerList;
+                    foreach (var item in list)
+                    {
+                        <li>
+                            <a href="/FrontPage/PartnerDetail?id=@item.Id"><img src="/Upload/@item.ThumbNail" /></a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </section>
+    </section>
+<script>
+    $(function() {
+        GoBack();
+    });
+    function GoBack() {
+        $("header i.icon.back").bind("click", function () {
+            history.go(-1);
+        });
+    }
+</script>
+</body>
+
+
+
+

@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser
+<head>
+    <title>我的地址</title>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+       
+       // store('cityId', '1');//设置当前首页选中的区域ID
+        store('pageName', 'address_list');
+        var ajaxData = new Array();
+    </script>
+</head>
+<section class="address_list">
+    <header class="reback list"><span class="left back"><i class="icon back"></i>我的地址</span><i class="icon home"></i></header>
+    <ul class="add_list">
+        @{
+            foreach (var item in ViewBag.AddressList)
+            {
+                <li data-note="@item.Note" data-openid="@Model.OpenId" data-id="@item.Id" data-Contact="@item.Contact" data-ContactPhoneNum="@item.ContactPhoneNum" data-default="@item.IsDefault">
+                    <i>@item.Contact</i> <i>@item.ContactPhoneNum</i><br>
+                    <i>@item.Addr</i>
+                    <i class="upd icon"></i>
+                    <span class="upd">编辑</span>
+                    <span class="del">删除</span>
+                </li>
+            }
+        }
+    </ul>
+    <footer class="address flashUp flashShow" flash-step="200">
+        <div id="add_page" data-value="close" class="btn gre2">添 加 新 地 址</div>
+    </footer>
+</section>
+<section class="address_add">
+    <header class="reback"><span class="left back"><i class="icon back"></i><span>添加地址</span></span><i class="icon home"></i></header>
+    <input id="add_type" value="add" type="hidden">
+    <input id="addressId" value="0"  type="hidden">
+    <input id="isDefault" value="0" type="hidden">
+    <input id="applicationuserId" value="@Model.Id" type="hidden">
+    <input id="openid" value="@Model.OpenId" type="hidden">
+    <ul class="add_add">
+        <li><input maxlength="6" id="realname" placeholder="姓名" type="text"></li>
+        <li><input maxlength="11" id="phone" placeholder="手机号" type="text"></li>
+        <li>
+            <i class="icon bt2"></i>
+            <select id="selCity">
+                @{
+                    int citycount = 0;
+                    foreach (var item in ViewBag.CityList)
+                    {
+                        if (citycount == 0)
+                        {
+                            <option  value="@item.Id">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option  value="@item.Id">@item.Name</option>
+                        }
+                        citycount++;
+                    }
+                }
+            </select>
+        </li>
+        <li>
+            <i class="icon bt2"></i>
+            <select id="selDistrict">
+                @{
+                    int countycount = 0;
+                    if (ViewBag.CountyList!=null)
+                    {
+                        foreach (var item in ViewBag.CountyList)
+                        {
+                            if (countycount == 0)
+                            {
+                                <option  value="@item.Id">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                            countycount++;
+                        }
+                    }
+                }
+            </select>
+        </li>
+        <li><input id="address" placeholder="请输入您的详细地址" type="text"></li>
+        <li class="def"><span class="checkbox"><i class="icon checkbox"></i></span>设置为默认地址</li>
+    </ul>
+    <footer class="address">
+        <div id="address_submit" data-value="close" class="btn gre2">确 认 更 改</div>
+    </footer>
+</section>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/address_list.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        Address.init_page();
+
+      
+      
+        //设置城市和区域为当前选择的
+        $("#selCity option[value=" + store('PcityId') + "]").prop("selected", true);
+         $('#selCity').attr("disabled", "disabled");     
+
+         $("#selDistrict option[value=" + store('cityId') + "]").prop("selected", true);
+        //$('#selDistrict').attr("disabled", "disabled");
+     
+    });
+</script>
+
+
+

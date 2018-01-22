@@ -1,0 +1,105 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model AiJiaXi.Domain.Entities.UserProfile.UserAccount
+
+@{
+    ViewBag.Title = "会员账户管理";
+    ViewBag.Top = "会员账户管理";
+    ViewBag.Second = "查看会员账户";
+}
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading"><b>@Model.ApplicationUser.UserName - 账户总览</b>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <table class="table table-bordered table-hover table-striped text-center">
+                <tr>
+                    <th class="text-center">
+                        会员名
+                    </th>
+                    <th class="text-center">
+                        余额
+                    </th>
+                    <th class="text-center">
+                        账户冻结金额
+                    </th>
+                    <th class="text-center">
+                        积分余额
+                    </th>
+                    <th class="text-center">
+                        冻结积分
+                    </th>
+                    <th class="text-center">
+                        推广金额
+                    </th>
+                    <th class="text-center">
+                        推广员二维码地址
+                    </th>
+                    <th class="text-center">
+                        代金券
+                    </th>
+                </tr>
+                <tr>
+                    <th class="text-center">
+                        @Model.ApplicationUser.RealName
+                    </th>
+                    <td class="text-center">
+                        <a href="#" id="balance" data-type="text" data-pk="1" data-title="修改余额">@Model.Balance</a> 元
+                    </td>
+                    <td class="text-center">
+                        @Model.FrozenMoney 元
+                    </td>
+                    <td class="text-center">
+                        <a href="#" id="score" data-type="text" data-pk="1" data-title="修改积分">@Model.Score</a> 
+                    </td>
+                    <td class="text-center">
+                        @Model.FrozenScore 
+                    </td>
+                    <td class="text-center">
+                        @Model.CommissionMoney 元
+                    </td>
+                    <td class="text-center">
+                        @Model.CommissionUrl
+                    </td>
+                    <td class="text-center">
+                        @Model.Vouchers.Count 张可用
+                    </td>
+                </tr>
+            </table>
+        </li>
+        <li class="list-group-item">
+            <div class="panel panel-info">
+                <div class="panel-heading">账户交易记录</div>
+                <div id="datatable">
+                    @{ Html.RenderAction("Index", "AccountRecord", new {userId = @Model.Id}); }
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+    <script type="text/javascript">
+        $(function () {
+            $.fn.editable.defaults.mode = 'pop';
+            //editables
+            $('#balance').editable({
+                url: '@Url.Action("ModifyAccount", new { @id = Model.Id})',
+                type: 'text',
+                pk: 1,
+                name: 'balance',
+                title: '请输入变动值'
+            });
+
+            $('#score').editable({
+                url: '@Url.Action("ModifyAccount", new { @id = Model.Id})',
+                type: 'text',
+                pk: 1,
+                name: 'score',
+                title: '请输入变动值'
+            });
+        })
+    </script>
+}

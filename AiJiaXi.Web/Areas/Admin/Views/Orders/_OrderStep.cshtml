@@ -1,0 +1,51 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model AiJiaXi.Domain.Entities.Orders.Order
+
+@using (Html.BeginForm(ViewBag.ActionName as string, "Orders", FormMethod.Post, new {@class = "form-horizontal"}))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="OrderId" name="OrderId" value="@Model.Id"/>
+    <input type="hidden" id="OrderStatus" name="OrderStatus" value="@Model.OrderStatus"/>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">订单流转</div>
+        <div class="panel-body">
+            该订单（@Model.OrderNo）由用户 @Model.ApplicationUser.UserName 于 @Model.RiseTime.SimpleDateFull() 提交
+        </div>
+        @if (Model.OrderSteps.Any())
+        {
+            <ul class="list-group">
+                <li class="list-group-item">订单流程</li>
+                @foreach (var item in Model.OrderSteps)
+                {
+                    <li class='list-group-item  @(Model.OrderStatus == item.OrderStatus ? "list-group-item-warning" : "list-group-item-success")'>
+                        @if (Model.OrderStatus == item.OrderStatus)
+                        {
+                            <i class="fa fa-circle-o-notch fa-spin fa-fw" aria-hidden="true"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-check fa-fw" aria-hidden="true"></i>
+                        }
+                        &nbsp;
+                        订单状态：@item.OrderStatus.GetDescription()， 操作人：@item.OperationUser，时间：@item.RiseTime.SimpleDateFull()，备注：@item.Note
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+
+    <div class="form-group">
+        <label for="note" class="col-md-3 control-label">@(((OrderStatus)(((int)Model.OrderStatus)) + 1).GetDescription()) 说明</label>
+        <div class="col-sm-4">
+            <input type="text" id="note" name="note" placeholder="@ViewBag.StepTitle" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-5">
+            <button type="submit" class="btn btn-primary">提  交</button>
+        </div>
+    </div>
+}

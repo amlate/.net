@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 大连白洗么后台管理系统</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fileinput.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/metisMenu.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.ui.layout.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+<div class="ui-layout-center">
+    <div class="container-fluid">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index","Home")">首页</a></li>
+                <li><a href="#">@ViewBag.Top</a></li>
+                <li class="active">@ViewBag.Second</li>
+            </ol>
+        </div>
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+    <div class="ui-layout-north">
+        <nav class="navbar navbar-inverse" style="margin: 0;">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">大连白洗么后台管理系统</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    @using (Html.BeginForm("LogOff", "Purview", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav navbar-right" style="z-index: 100">
+                            <li>
+                                @Html.ActionLink("你好，" + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                            </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">注销</a></li>
+                        </ul>
+                    }
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="ui-layout-south">South</div>
+    <div class="ui-layout-west">
+        @if (@User.Identity.IsAuthenticated)
+        {
+            Html.RenderAction("NaviPartial", "Purview");
+        }
+    </div>
+
+
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/fileinput/fileinput.min.js"></script>
+    <script src="~/Scripts/fileinput/locales/zh.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-multiselect.js"></script>
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+    <script src="~/Scripts/jquery.layout.min.js"></script>
+    <script src="~/Scripts/layer/layer.js"></script>
+    <script src="~/Scripts/metisMenu.min.js"></script>
+    <link href="~/Scripts/summernote/summernote.css" rel="stylesheet" />
+    <script src="~/Scripts/summernote/summernote.min.js"></script>
+    <script src="~/Scripts/summernote/lang/summernote-zh-CN.min.js"></script>
+    <script src="~/Scripts/admin.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

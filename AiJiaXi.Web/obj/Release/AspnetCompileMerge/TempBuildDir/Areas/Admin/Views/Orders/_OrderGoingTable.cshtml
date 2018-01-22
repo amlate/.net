@@ -1,0 +1,99 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.Order>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="text-center">
+            <input id="all" name="all" value="all" type="checkbox"/>
+        </th>
+        <th class="nowrap text-center">
+            订单编号
+        </th>
+        <th class="text-center">
+            用户地址
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            订单详情
+        </th>
+        <th class="text-center">
+            预约时间
+        </th>
+        <th class="text-center">
+            支付方式
+        </th>
+        <th class="text-center">
+            订单总价
+        </th>
+        <th class="text-center">
+            实际支付价格
+        </th>
+        <th class="text-center">
+            提交订单时间
+        </th>
+        <th class="text-center">
+            订单状态
+        </th>
+        <th class="text-center">
+            接单代理商
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input name="order" value="@item.Id" type="checkbox"/>
+            </td>
+            <td>
+                @item.OrderNo
+            </td>
+            <td>
+                @item.UserAddress.Addr
+            </td>
+            <td>
+                @item.ApplicationUser.UserName
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "CartItems", new {@id = @item.Id})" class="btn btn-xs btn-default">查看</a>
+            </td>
+            <td>
+                @(string.Format("{0} {1}", item.Appointment.SimpleDate(), item.AppointmentTime))
+            </td>
+            <td>
+                @item.PayType.GetDescription()
+            </td>
+            <td>
+                ￥@item.TotalPrice
+            </td>
+            <td>
+                ￥@item.Fact
+            </td>
+            <td>
+                @item.RiseTime.SimpleDateFull()
+            </td>
+            <td>
+                @item.OrderStatus.GetDescription()
+            </td>
+            <td>
+                @item.Agency.Name
+            </td>
+            <td>
+                @if (item.OrderStatus < OrderStatus.Dispatched)
+                {
+                    <button class="btn btn-primary btn-xs" data-toggle="modal" data-url="@Url.Action("NextStep", "Orders", new {@id = item.Id})" data-ordername="订单流转" data-target="#OrderModal">
+                        订单流转
+                    </button>
+                }
+                <button class="btn btn-primary btn-xs" data-toggle="modal" data-url="@Url.Action("GoRefund", "Orders", new {@id = item.Id})" data-ordername="转入退款" data-target="#OrderModal">
+                    转入退款
+                </button>
+            </td>
+        </tr>
+    }
+</table>

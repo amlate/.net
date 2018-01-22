@@ -1,0 +1,26 @@
+﻿@model AiJiaXi.Domain.Entities.BizPartner
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    ViewBag.Title = "PartnerDetail";
+}
+<body>
+    <section class="order_sub">
+        <header><span class="left back"><i class="icon back"></i>合作伙伴</span></header>
+        <input id="deliveryId" value="" type="hidden">
+        <input id="pickupTime" value="" type="hidden">
+        <input id="pickupDate" value="" type="hidden">
+        <img width="100%" src="/Upload/@Model.ImageEntity.ImgUrl"/>
+    </section>
+    <script>
+    $(function() {
+        GoBack();
+    });
+    function GoBack() {
+        $("header i.icon.back").bind("click", function () {
+            history.go(-1);
+        });
+    }
+    </script>
+</body>
+
+

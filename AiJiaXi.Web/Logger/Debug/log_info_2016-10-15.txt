@@ -1,0 +1,80 @@
+[21:18:09] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:18:10] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:20:59] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:20:59] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:22:00] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9190</remainpoint>
+    <taskID>1610154522383050</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[21:22:18] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：0000010022
+
+[21:22:18] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+entity.UserAccount：
+
+[21:22:18] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+保存错误：
+
+[21:22:18] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:22:18] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:23:31] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:23:31] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:23:38] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:23:38] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:40:14] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:40:14] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:40:27] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9189</remainpoint>
+    <taskID>1610154541056440</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[21:40:50] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：0000010023
+
+[21:40:50] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+entity.UserAccount：
+
+[21:40:50] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+保存错误：
+
+[21:40:50] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:40:50] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+

@@ -1,0 +1,58 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.PromoterInfo>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            好友手机号
+        </th>
+        <th class="text-center">
+            成为好友时间
+        </th>
+        @*<th class="text-center">
+            成为好友后消费金额
+        </th>*@
+        <th class="text-center">
+            操作
+        </th>
+       
+       
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+               @{
+                   string phone = "只关注但未注册";
+                   if (!String.IsNullOrWhiteSpace(item.FriendsPhone))
+                   {
+                       phone = item.FriendsPhone;
+                   }
+            }
+            @phone
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FollowDate)
+            </td>
+            @*<td>
+                 50
+                @Html.DisplayFor(modelItem => item.FriendsPhone)
+            </td>*@
+      
+            <td>
+                @*<a class="btn btn-default btn-xs" href="@Url.Action("Manage", "BizPartner", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>*@
+                @Ajax.ActionLink("删除好友关系", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

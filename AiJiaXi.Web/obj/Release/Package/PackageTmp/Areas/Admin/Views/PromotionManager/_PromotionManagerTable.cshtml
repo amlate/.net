@@ -1,0 +1,84 @@
+﻿@using AiJiaXi.Common.Helpers
+@using Webdiyer.WebControls.Mvc
+@using AiJiaXi.Domain.Entities.UserProfile
+@using AiJiaXi.Domain.Repositories.Interface
+@using AiJiaXi.Domain.Repositories.Impl
+@using AiJiaXi.Domain.Entities.IdentityModel
+@model Webdiyer.WebControls.Mvc.PagedList<ApplicationUser>
+@{
+    IRepository<ApplicationUser> _applicationUserRepository = new Repository<ApplicationUser>();
+    IRepository<UserAccount> _userAccountRepository=new Repository<UserAccount>();
+
+    
+}
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            推广员手机号
+        </th>
+        <th class="text-center">
+            好友人数
+        </th>
+        <th class="text-center">
+            推广提成
+        </th>
+        @*<th class="text-center">
+            余额（含提成）
+        </th>*@
+       
+       
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        string tgtc = "0";
+        string ye = "0";
+
+        //获取【公众号或APP】端用户信息  用户类型为 用户
+        var withdraUser = _applicationUserRepository.Find(a => true && a.UserType == AiJiaXi.Domain.Enums.UserType.User && a.PhoneNumber == item.PhoneNumber);
+        if (withdraUser != null)
+        {
+            //取出自定义用户数据
+            var userAccMod = _userAccountRepository.Find(t => t.Id == withdraUser.Id);
+            if (userAccMod != null)
+            {
+                tgtc = userAccMod.CommissionMoney.ToString();
+                ye = userAccMod.Balance.ToString();
+            }
+        }
+
+
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                <a href="@Url.Action("Index", "FrendPromoterInfo", new RouteValueDictionary() {{"MyPhone", item.PhoneNumber}})" class="btn btn-default btn-xs">
+                    数量 <span class="badge">@item.FrendCount</span>
+                </a>
+            </td>
+            <td>
+
+                @tgtc
+            </td>
+            @*<td>
+
+                @ye
+            </td>*@
+            @*<td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "BizPartner", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>*@
+        </tr>
+    }
+
+</table>

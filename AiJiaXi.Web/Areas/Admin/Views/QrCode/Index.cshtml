@@ -1,0 +1,74 @@
+﻿@using Webdiyer.WebControls.Mvc
+@*@{
+    Layout = null;
+}*@
+@{
+    ViewBag.Title = "生成二维码";
+    ViewBag.Top = "生成二维码";
+    ViewBag.Second = "生成二维码";
+}
+<div class="container-fluid">
+    <div class="row">
+
+@using (Ajax.BeginForm("Create", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+{
+        <div class="form-group">
+            <label class="sr-only" for="name">二维码：</label>
+            <div class="input-group">
+                <div class="input-group-addon" style="color:red;">@ViewBag.titleMs</div>
+            </div>
+        </div>
+
+        <button  type="button" onclick="btnWithdrawals()" id="create" name="create" class="btn btn-primary">
+            <span class="fa" aria-hidden="true"></span> 生成二维码
+        </button>
+
+}
+
+    </div>
+
+    @*<label>@ViewBag.path</label>*@
+    <img id="img1" name="img1" src="@ViewBag.path" />
+
+    <div class="row" style="height: 5px;"></div>
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+    <script type="text/javascript">
+
+    $(function () {
+        //$("#create").bind("click", function () {
+        //    var question = confirm("确定要生成二维码吗？")
+
+        //    //不等于0其实就是不等于FALSE
+        //    if (question != "0") {
+        //        //btnWithdrawals();
+        //        $("#searchForm").submit();
+        //    }
+           
+           
+        //});
+
+   
+    });
+    //生成二维码
+    function btnWithdrawals() {
+        //var action = $("#searchForm")[0].action
+        //$("#searchForm")[0].action = "/Admin/QrCode/Create/"
+        //$("#searchForm").submit();
+        //$("#searchForm")[0].action = action;
+        var question = confirm("确定要生成二维码吗？")
+
+        //不等于0其实就是不等于FALSE
+        if (question != "0") {
+            //btnWithdrawals();
+            $("#searchForm").submit();
+        }
+    }
+
+
+
+    </script>
+}

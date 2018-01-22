@@ -1,0 +1,4 @@
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\bin\Debug\AiJiaXi.Plugin.dll
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\bin\Debug\AiJiaXi.Plugin.pdb
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\obj\Debug\AiJiaXi.Plugin.dll
+F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Plugin\obj\Debug\AiJiaXi.Plugin.pdb

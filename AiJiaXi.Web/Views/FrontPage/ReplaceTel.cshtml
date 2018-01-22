@@ -1,0 +1,208 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser
+<head>
+    <title>更换手机号</title>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+       
+        //store('cityId', '1');//设置当前首页选中的区域ID
+        store('pageName', 'address_list');
+        var ajaxData = new Array();
+    </script>
+</head>
+<!--主体部分-->
+<body id="searchForm">
+ 
+    <!---- 登录 ---->
+    <div class="loginWarp">
+        <i class="icon back"></i>
+        <img src="/Images/icons/logo.png">
+        <div class="loginForm">
+            @*@Html.AntiForgeryToken();生成前台TOKEN 用于与后台[ValidateAntiForgeryToken]匹配*@
+
+            @*<span style="box-sizing:border-box;">
+                <input class="fl" id="login_tel" maxlength="11" placeholder="请输入旧手机号码" type="text">
+                <i class="icon tel"></i>
+            </span>*@
+            <span style="padding-right:92px;box-sizing:border-box;">
+                <input class="fl" id="login_tel" maxlength="11" placeholder="请输入原手机号码" type="text">
+                <i class="icon tel"></i>
+                <div   id="yzm" class="btn yzm grey">获取验证码</div>
+
+                @*<input id="yzm" type="button" class="btn yzm grey" onclick="settime(this)" value="获取验证码" />*@
+
+            </span>
+            <span>
+           
+                <input id="login_code" maxlength="6" placeholder="请输入短信中的验证码" type="text">
+                <i class="icon key"></i>
+            </span>
+            <span>
+                <div id="submit" class="btn login grey">下一步</div>
+            </span>
+            @*<span class="xieyi"><b class="checkbox sel"><i class="icon checkbox"></i></b>我已同意 《<a>白洗么用户协议</a>》</span>*@
+       
+       
+        </div>
+       <input type="hidden" id="code" name="code"/>
+        <input type="hidden" id="openid" name="openid" value="@Model.OpenId" />
+        <h2 style="top: 543px;">省时 • 省心 • 更洁净</h2>
+        <h4 style="top: 583px;">关于白洗么</h4>
+    </div>
+
+
+    <script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+    <script type="text/javascript" src="~/Scripts/front_js/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           // var ProductCart = new Array();
+          //  var hasActivity = 0;
+           // hasActivity = 1; var CartPrice = 0;
+            //var ProductJson = putAjaxData(ProductCart);
+       
+               // Main.init_page();
+
+
+                $('#yzm').click(function () {
+                    var phone = $('#login_tel').val();
+                    if (phone == '')
+                    {
+                        Msg('请输入原手机号！',2);                       
+                        return;
+
+                    }
+                    if (!checkTel(phone))
+                    {
+                        Msg('手机号格式错误！', 2);
+                        return
+                    }
+                  
+
+                    // yzm(phone);
+                    settime();
+                })
+
+                $('#submit').click(function () {
+                    //var question = confirm("确定要申请提现吗？")
+
+                    ////不等于0其实就是不等于FALSE
+                    //if (question != "0") {
+                        Next();
+                    //}
+
+                })
+        });
+
+        //下一步
+        function Next() {
+            //获取验证码后返回的隐藏列
+            var oldCode = $('#code').val();
+            //当前手机号和输入验证码
+            var newCode = $('#login_tel').val() + $('#login_code').val();
+   
+            //如果相同则跳到新页面
+            if (oldCode == newCode) {
+
+                window.location.href = "/FrontPage/ReplaceTelNew?openid=" + $('#openid').val() + "&oldPhone=" + $('#login_tel').val();
+                return;
+            }
+            else {
+                Msg('请仔细检查手机号和验证码是否正确！', 2);
+          
+                return;
+            }
+
+
+        }
+        
+        //获取验证码方法
+        function yzm(phone) {          
+
+            var url = "/FrontPage/GetCode?mobile=" + phone + "&token=baiximo@123456";
+            //AJAX请求验证码 
+            ajaxLocal(url, null, function (data)
+            {
+                if (data.state == '0')//成功
+                {
+                    alert(data.code);
+                    //将手机号和验证码组合在一起进行判断，防止修改手机号错误问题
+                    $('#code').val(data.mobile + data.code);
+                }
+                else if (data.state == '-2')//成功
+                    {
+                    Msg('认证失败！', 3);
+
+                } else {
+                    Msg('验证码获取失败，请重新获取！', 3);
+
+                }
+
+               
+            })
+
+            return;
+          
+        }
+
+        
+        /*-------------------------------------------------------------*/
+        //点击验证码的方法
+        var countdown = 60;
+
+        function settime() {
+            if (countdown == 59) {
+                var phone=$('#login_tel').val();
+                //发送验证码的主代码
+                yzm(phone);
+            }
+            if (countdown == 0) {
+                $('#yzm').html('获取验证码');
+                //点击后，过了60秒之后，恢复成获取验证码
+                //$('#yzm').removeAttribute("disabled")
+                //$('#yzm').style.Enable = false;
+                //$('#yzm').style.backgroundColor = "#44aaff";
+                //obj.value = "获取验证码";
+                // $("#yzm").bind()
+
+                //重新绑定事件
+                $('#yzm').click(function () {
+                    var phone = $('#login_tel').val();
+                    if (phone == '') {
+                        Msg('请输入原手机号！', 2);
+                        return;
+
+                    }
+                    if (!checkTel(phone)) {
+                        Msg('手机号格式错误！', 2);
+                        return
+                    }
+
+                    // yzm(phone);
+                    settime();
+                })
+                countdown = 60;
+                return;
+            } else {
+                $('#yzm').html("重新发送(" + countdown + ")");
+                //跳帧 0--->60
+                //$('#yzm').style.Enable = true;
+               // $('#yzm').setAttribute("disabled", true);
+               // $('#yzm').style.backgroundColor = "#ccc";
+                //obj.value = "重新发送(" + countdown + ")";
+            
+                $("#yzm").unbind()
+
+                countdown--;
+            }
+            setTimeout(function () {
+                settime()
+            }, 1000)
+        }
+        /*-------------------------------------------------------------*/
+    </script>
+
+</body>
+

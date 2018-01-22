@@ -1,0 +1,70 @@
+﻿@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.UserProfile.AccountRecord>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            交易订单号
+        </th>
+        <th class="text-center">
+            交易类型
+        </th>
+        <th class="text-center">
+            交易结果
+        </th>
+        <th class="text-center">
+            交易金额
+        </th>
+        <th class="text-center">
+            账户余额
+        </th>
+        <th class="text-center">
+            备注
+        </th>
+    </tr>
+    @if (!Model.Any())
+    {
+        <tr>
+            <td colspan="6" class="text-danger">暂无任务交易记录</td>
+        </tr>
+    }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.TradeId
+            </td>
+            <td>
+                @item.TradeType.GetDescription()
+            </td>
+            <td>
+                @item.ResultType.GetDescription()
+            </td>
+            <td>
+                @if (item.TradeType == TradeType.Recharge || item.TradeType == TradeType.Consume)
+                {
+                    @item.TradeMoney
+                }
+                else
+                {
+                    @item.TradeScore
+                }
+            </td>
+            <td>
+                @if (item.TradeType == TradeType.Recharge || item.TradeType == TradeType.Consume)
+                {
+                    @item.AccountBallance
+                }
+                else
+                {
+                    @item.ScoreBalance
+                }
+            </td>
+            <td>
+                @item.Note
+            </td>
+        </tr>
+    }
+
+</table>

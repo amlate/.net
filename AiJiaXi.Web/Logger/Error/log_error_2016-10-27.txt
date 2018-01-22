@@ -1,0 +1,11 @@
+[17:45:57] - [Error] - [AiJiaXi.Web.OrderAutoDealTaskConfig.Execute]
+确认收货:
+
+
+[17:45:57] - [Error] - [AiJiaXi.Web.OrderAutoDealTaskConfig.Execute]
+确认收货出错:
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   在 EntityFramework.Extensions.BatchExtensions.Update[TEntity](IQueryable`1 source, Expression`1 updateExpression)
+   在 AiJiaXi.Web.OrderAutoDealTaskConfig.Execute(IJobExecutionContext context) 位置 F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Web\App_Start\TaskConfig.cs:行号 52
+

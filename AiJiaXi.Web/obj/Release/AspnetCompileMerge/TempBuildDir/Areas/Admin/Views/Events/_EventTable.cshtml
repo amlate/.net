@@ -1,0 +1,132 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.Event>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            活动名称
+        </th>
+        <th class="text-center">
+            活动类型
+        </th>
+        <th class="text-center">
+            参与活动资格
+        </th>
+        <th class="text-center">
+            活动优惠
+        </th>
+        <th class="text-center">
+            开始时间
+        </th>
+        <th class="text-center">
+            结束时间
+        </th>
+        <th class="text-center">
+            代理商
+        </th>
+        <th class="text-center">
+            审核进度
+        </th>
+        <th class="text-center">
+            活动状态
+        </th>
+        <th class="text-center">
+            优惠券使用数量
+        </th>
+        <th class="text-center">
+            中奖名单
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.EventType.GetDescription()
+            </td>
+            <td>
+                @(item.PriceTo == 0 ? "均可参与活动": string.Format("消费或充值金额满{0}元可参与", item.PriceTo))
+            </td>
+            <td>
+                @switch (item.EventType)
+                {
+                    case EventType.Benefit:
+                        @(item.BenefitPrice == 0 ? string.Format("商品折扣为：{0}", item.Discount) : string.Format("消费满{0}元减{1}元", item.PriceTo, item.BenefitPrice))
+                        break;
+                    case EventType.Voucher:
+                        <label>优惠券</label>
+                        break;
+                    case EventType.Recharge:
+                        @(item.BenefitPrice == 0 ? string.Format("充值满{0}额外送{1}%", item.PriceTo,item.Discount) : string.Format("充值满{0}元送{1}元", item.PriceTo, item.BenefitPrice))
+                        break;
+                    case EventType.LuckyDraw:
+                        <a href="@Url.Action("Index", "EventPrizes", new RouteValueDictionary() {{"eventId", item.Id}})" class="btn btn-default btn-xs">
+                            奖品设置 <span class="badge">@item.EventPrizes.Count</span>
+                        </a>
+                        break;
+                }
+            </td>
+            <td>
+                @item.StartTime.SimpleDateFull()
+            </td>
+            <td>
+                @item.EndTime.SimpleDateFull()
+            </td>
+            <td>
+                @(!item.Agencies.Any() ? "全部" : item.Agencies.Select(s => s.Name).Aggregate(string.Empty, (cur, next) => cur + "," + next).Trim(','))
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="status" data-type="select" data-pk="@item.Id" data-value="@item.ApplyStatus" data-source="@Url.Action("ApplyStatus")" data-title="审核状况">
+                    @item.ApplyStatus.GetDescription()
+                </a>
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="flag" data-type="select" data-pk="@item.Id" data-value="@item.Flag" data-source="@Url.Action("Flags")" data-title="开启活动">
+                    @(item.Flag ? "进行中" : "尚未开启")
+                </a>
+            </td>
+            <td>
+                @item.UseMaxVoucherNum 张
+            </td>
+            <td>
+                @if (item.EventType == EventType.LuckyDraw)
+                {
+                    <a href="@Url.Action("Index", "EventAward", new RouteValueDictionary() {{"eventId", item.Id}})" class="btn btn-default btn-xs">
+                        中奖名单
+                    </a>
+                }
+                else if (item.EventType == EventType.Voucher || item.EventType == EventType.Register)
+                {
+                    <a href="@Url.Action("Index", "Voucher", new RouteValueDictionary() {{"eventId", item.Id}})" class="btn btn-default btn-xs">
+                        代金券查看 <span class="badge">@item.Vouchers.Count</span>
+                    </a>
+                }
+                else
+                {
+                    <label>该活动无奖励名单</label>
+                }
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("Manage", "Events", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+</table>

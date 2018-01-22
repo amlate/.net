@@ -1,0 +1,472 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    ViewBag.Title = "用户信息";
+}
+@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser
+
+<script>
+    store('login', '@ViewBag.login');
+    //store('cityId', '210200');////设置当前首页选中的区域ID
+    //OpenId
+    store('OpenId', '@ViewBag.OpenId');
+    //城市ID
+    store('PcityId', '@ViewBag.cityId');
+    //区域ID
+    store('cityId', '@ViewBag.countyId');
+    //城市名称
+    store('PcityName', '@ViewBag.cityName');
+    //区域名称
+    store('cityName', '@ViewBag.countyName');
+
+    store('pageName', 'space');
+    var ajaxData = new Array();
+</script>
+<!---- 个人信息 ----->
+<section class="space">
+    <header class="reback">
+        <span class="left back">
+            @*<i class="icon back"></i>*@
+            我的
+        </span><i class="icon home"></i>
+    </header>
+    @*<div class="memInfo">
+            <b style="transform: translateY(0px);" class="flashDown flashShow"><img src="@Model.HeadAppearUrl"></b>
+            <p>@Model.PhoneNumber &nbsp; &nbsp;@Model.Position</p>
+        </div>*@
+
+    <div class="memInfo membg">
+        <div style="width: 100%; height: 150px; border: none; border-radius: 0; position: relative;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; z-index: 99999">
+                <b class="flashDown flashShow" style="width: 260px; height: 150px; border: none; border-radius: 0;">
+                    <img src="/Images/icons/membg1.png" style="border-radius: 0;" />
+                    <div style="position: absolute; left: 10px; bottom: 5px; color: #fff;">@ViewBag.user.CardNumber</div>
+                </b>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu_top">
+        <a href="orderlist?openid=@Model.OpenId&type=1&countyId=@ViewBag.countyId"><i class="icon menu_order_all"></i><br>全部订单</a>
+        <a href="orderlist?openid=@Model.OpenId&type=0&countyId=@ViewBag.countyId"><i class="icon menu_order_pay"></i><br>待付款</a>
+    </div>
+    <ul class="menu">
+        <li class="pageTurn f" data-url="recharge?openid=@Model.OpenId &countyId=@ViewBag.countyId">
+            <p>
+                <b><i class="icon menu_yue"></i></b>我的余额<font>充值</font><span>@ViewBag.user.Balance 元</span><i class="icon lt"></i>
+            </p>
+        </li>
+        <li>
+            <p>
+                <b><i class="icon menu_jifen"></i></b>我的积分<span>@ViewBag.user.Score 积分</span>
+            </p>
+        </li>
+        <li class="pageTurn flashUp flashShow" data-url="coupon?openid=@Model.OpenId">
+            <p>
+                <b><i class="icon menu_coupon"></i></b>我的洗衣券<span>@ViewBag.VoucherCount 张</span><i class="icon lt"></i>
+            </p>
+        </li>
+        <li class="pageTurn flashUp flashShow" flash-step="200" data-url="AddAddress?openid=@Model.OpenId">
+            <p>
+                <b><i class="icon menu_loc"></i></b>我的地址<i class="icon lt"></i>
+            </p>
+        </li>
+        <li class="pageTurn flashUp flashShow" data-url="award?openid=@Model.OpenId">
+            <p>
+                @*<b><i class="icon menu_coupon"></i></b>我的抽奖记录<span></span><i class="icon lt"></i>*@
+                <b><i class="icon menu_pingjia"></i></b>用户评价<span></span><i class="icon lt"></i>
+            </p>
+        </li>
+        @*<li class="pageTurn flashUp flashShow" flash-step="200" data-url="ReplaceTel?openid=@Model.OpenId">
+                <p>
+                    <b><i class="icon menu_replacePhone"></i></b>更换手机号<i class="icon lt"></i>
+                </p>
+            </li>*@
+        <li class="flashUp flashShow" flash-step="400" id="space_more">
+            <p>
+                <b><i class="icon menu_more"></i></b>更多<i class="icon lt"></i>
+            </p>
+        </li>
+
+        <li style="height:40px;">
+            &nbsp;
+        </li>
+
+    </ul>
+    <footer class="space">
+        <div class="btn gre2 callTel">
+            <i class="icon kefu"></i>联系客服
+        </div>
+    </footer>
+</section>
+<!----- 个人信息结束 ----->
+<!----- 更多 ----->
+<section class="space_more">
+    <header class="reback"><span class="left back"><i class="icon back"></i>更多</span><i class="icon home"></i></header>
+    <ul class="menu">
+        <li page-url="news_about"><p><b><i class="icon menu_logo"></i></b>关于白洗么<i class="icon lt"></i></p></li>
+        <li page-url="news_pingjia"><p><b><i class="icon menu_coupon"></i></b>抽奖记录<i class="icon lt"></i></p></li>
+        <li page-url="news_xieyi"><p><b><i class="icon menu_xieyi"></i></b>用户协议<i class="icon lt"></i></p></li>
+        <li page-url="news_wenti"><p><b><i class="icon menu_news"></i></b>常见问题<i class="icon lt"></i></p></li>
+        <li page-url="fuwu_fanwei"><p><b><i class="icon menu_fanwei"></i></b>服务范围<i class="icon lt"></i></p></li>
+        <li page-url="fankui"><p><b><i class="icon menu_fankui"></i></b>意见反馈<i class="icon lt"></i></p></li>
+
+    </ul>
+</section>
+<!----- 用户评价改成抽奖记录了 ----->
+<section id="news_pingjia" class="news pageChild ">
+    @*<header class="reback"><span page-url="news_pingjia" class="left back"><i class="icon back"></i>用户评价</span><i class="icon home"></i></header>*@
+    <header class="reback"><span page-url="news_pingjia" class="left back"><i class="icon back"></i>抽奖记录</span><i class="icon home"></i></header>
+    <ul class="jllist">
+
+            @{
+                foreach (var item in ViewBag.awardList)
+                {
+                    <li><i></i><span class="jpname">抽奖结果：@item.EventPrize.Name</span><span class="res">奖品由白洗么提供</span></li>
+                }
+            }
+        </ul>
+    @*<ul class="pllist">
+        @{
+            foreach (var itema in ViewBag.OrderRate)
+            {
+                var item = (AiJiaXi.Domain.Entities.Orders.OrderRate)itema;
+                <li>
+                    <div class="plinfo">
+                        <span class="pluser">用户：@item.Order.ApplicationUser.UserAccount.CardNumber</span>
+                        <span class="pltime">@item.RiseTime</span>
+                    </div>
+                    <div class="plstar">
+                        
+                        @{
+                            for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= item.Stars)
+                                {
+                                    <span class="star"></span>
+                                }
+                                else
+                                {
+                                    <span class="star star1"></span>
+                                }
+                            }
+                        }
+
+                    </div>
+                    <p class="plcontent">
+                        @item.OrderComment
+                    </p>
+                    <div class="plpic">
+                        @{
+                            if (!String.IsNullOrWhiteSpace(item.ShareOrderImgUrls))
+                            {
+                                string[] imgArr = item.ShareOrderImgUrls.Split(',');
+                                foreach (var img in imgArr)
+                                {
+                                    if (!string.IsNullOrEmpty(img))
+                                    {
+                                        <span><img src="@img" width="100%" height="100%"></span>
+                                    }
+
+                                }
+                            }
+
+                        }
+
+                    </div>
+                </li>
+
+                            }
+
+        }
+
+
+    </ul>*@
+</section>
+
+@*<section id="news_pingjia" class="space" style="background-color: #fff;">
+
+    </section>*@
+
+<!----- 用户评价结束 ----->
+<!----- 关于 ----->
+<section id="news_about" class="news pageChild ">
+    <header class="reback"><span page-url="news_about" class="left back"><i class="icon back"></i>关于白洗么</span><i class="icon home"></i></header>
+    <div class="flashStep">
+        <p style="color: #0269b6;height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">公司简介</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;font-size:14px;">2016年4月,白洗么诞生于大连，7月完成大连全覆盖，国内首创工厂直达用户模式（F2C）。公司注册资本500万元，拥有后台管理中心，物流配送中心，洗涤公司及皮具养护中心，专业软件开发团队，客户服务中心等。</span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;font-size:14px;">用户需要洗涤衣物的时候，在客户端（微信端/APP端）一键下单，白洗么收派人员预约时间、上门取件，送至白洗么中央洗涤工厂清洗，经过16道工序严格把关清洗，48小时内将衣物送回到客户手里。</span>
+        <span sty le="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;font-size:14px;">白洗么融合线上下单、上门取送和工厂洗涤服务，上游自建洗涤工厂，提供标准化、规范化和系统化的高品质洗涤服务，下游覆盖各类消费人群，提供高频次、强需求的洗涤服务，成为专属洗涤专家，成为深受用户欢迎的在线洗涤品牌。</span>
+    </div>
+</section>
+<!---- 关于结束 ----->
+<!---- 用户协议 ---->
+<section id="news_xieyi" class="news pageChild">
+    <header class="reback"><span page-url="news_xieyi" class="left back"><i class="icon back"></i>用户协议</span><i class="icon home"></i></header>
+    <div class="flashStep">
+        <style>
+            div.flashStep.flashShow p {
+                color: #0269b6;
+                min-height: 32px;
+                line-height: 32px;
+                margin: 8px 0;
+                padding: 0 14px;
+            }
+
+            div.flashStep.flashShow span {
+                color: #545454;
+                line-height: 24px;
+                padding: 0 14px;
+                display: block;
+                text-indent: 2em;
+            }
+        </style>
+        <p>使用协议</p>
+        <span>本协议为您与白洗么平台微信服务号：白洗么，移动APP管理者之间所订立的契约，白洗么的服务由大连艾佳洗网络科技发展有限公司基于以下服务条款及使用条件而提供，具有合同的法律效力，请您仔细阅读。</span>
+        <p>一、 本协议内容、生效、变更</p>
+        <span>本协议内容包括协议正文及所有白洗么已经发布的或将来可能发布的各类规则。所有规则为本协议不可分割的组成部分，与协议正文具有同等法律效力。除另行明确声明外，任何白洗么及其关联公司提供的服务（以下称为白洗么平台服务）均受本协议约束。</span>
+        <span>本协议中，“用户”、“会员”为买方的统称；可单指买方</span>
+        <span>您应当在使用白洗么平台服务之前认真阅读全部协议内容。如您对协议有任何疑问，应向白洗么咨询。您在同意所有协议条款并完成注册程序，才能成为我们的正式用户，您点击“我已经阅读并同意遵守《干洗客用户服务协议》”按钮后，本协议即生效，对双方产生约束力。</span>
+        <span>只要您使用干洗客平台服务，则本协议即对您产生约束，届时您不应以未阅读本协议的内容或者未获得白洗么对您问询的解答等理由，主张本协议无效，或要求撤销本协议。</span>
+        <span>您确认：本协议条款是处理双方权利义务的契约，始终有效，法律另有强制性规定或双方另有特别约定的，依其规定。</span>
+        <span>您承诺接受并遵守本协议的约定。如果您不同意本协议的约定，您应立即停止注册程序或停使用白洗么平台服务。</span>
+        <span>白洗么有权根据需要不定期地制订、修改本协议及/或各类规则，并在白洗么相关平台公示，不再另行单独通知用户。变更后的协议和规则一经公布，立即生效。如您不同意相关变更，应当立即停止使用白洗么平台服务。您继续使用白洗么平台服务的，即表明您接受修订后的协议和规则。</span>
+        <p>二、 注册及充值会员卡</p>
+        <span>注册资格</span>
+        <span>用户须具有法定的相应权利能力和行为能力的自然人、法人或其他组织，能够独立承担法律责任。您完成注册程序或其他干洗客平台同意的方式实际使用本平台服务时，即视为您确认自己具备主体资格，能够独立承担法律责任。若因您不具备主体资格，而导致的一切后果，由您及您的监护人自行承担。</span>
+        <span>注册资料</span>
+        <span>2.1用户应自行诚信向本站提供注册资料，用户同意其提供的注册资料真实、准确、完整、合法有效，用户注册资料如有变动的，应及时更新其注册资料。如果用户提供的注册资料不合法、不真实、不准确、不详尽的，用户需承担因此引起的相应责任及后果，并且干洗客保留终止用户使用本平台各项服务的权利。</span>
+        <span>2.2用户在本站，微信服务号，APP进行浏览、下单购物等活动时，涉及用户真实姓名/名称、通信地址、联系电话、电子邮箱等隐私信息的，本站将予以严格保密，除非得到用户的授权或法律另有规定，本站不会向外界披露用户隐私信息。</span>
+        <span>账户</span>
+        <span>3.1您注册成功后，即成为白洗么平台的会员，将持有白洗么平台唯一编号的会员名和密码等账户信息，您可以根据本站规定改变您的密码。</span>
+        <span>3.2您设置的会员名不得侵犯或涉嫌侵犯他人合法权益。否则，白洗么有权终止向您提供白洗么平台服务，注销您的账户。账户注销后，相应的会员名将开放给任意用户注册登记使用。</span>
+        <span>3.3您应谨慎合理的保存、使用您的会员名和密码，应对通过您的会员名和密码实施的行为负责。除非有法律规定或司法裁定，且征得白洗么平台的同意，否则，会员名和密码不得以任何方式转让、赠与或继承（与账户相关的财产权益除外）。</span>
+        <span>3.4用户不得将在本站注册获得的账户借给他人使用，否则用户应承担由此产生的全部责任，并与实际使用人承担连带责任。</span>
+        <span>3.5如果发现任何非法使用等可能危及您的账户安全的情形时，您应当立即以有效方式通知，白洗么要求白洗么暂停相关服务，并向公安机关报案。您理解白洗么对您的请求采取行动需要合理时间，白洗么对在采取行动前已经产生的后果（包括但不限于您的任何损失）不承担任何责任。</span>
+        <span>3.6为方便您使用白洗么平台服务及干洗客关联公司或其他组织的服务（以下称其他服务），您同意并授权白洗么将您在注册、使用白洗么平台服务过程中提供、形成的信息传递给向您提供其他服务的白洗么关联公司或其他组织，或从提供其他服务的白洗么关联公司或其他组织获取您在注册、使用其他服务期间提供、形成的信息。</span>
+        <span>3.7经由白洗么平台及委托认可的经销商售出的电子或实体的充值卡、会员卡，一经售出后，会员，用户不得以任何方式转让、赠与或继承（与账户相关的财产权益除外），不记名，不挂失，由于以上原因导致产生的账户问题，干洗客平台概不负责。</span>
+        <span>3.8若客户针对由白洗么平台及委托认可的经销商售出的电子或实体的充值卡、会员卡提出退卡，退余额的需求，一但提出退卡，退余额需求将一并扣除所有历史赠送部分。</span>
+        <span>用户信息的合理使用</span>
+        <span>4.1您同意，白洗么平台拥有通过邮件、短信电话等形式，向在本站注册、购物用户、收货人发送订单信息、促销活动等告知信息的权利。</span>
+        <span>4.2您了解并同意，白洗么有权应国家司法、行政等主管部门的要求，向其提供您在白洗么平台填写的注册信息和交易记录等必要信息。如您涉嫌侵犯他人知识产权，则白洗么亦有权在初步判断涉嫌侵权行为存在的情况下，向权利人提供您必要的身份信息。</span>
+        <span>4.3用户同意，白洗么有权使用用户的注册信息、用户名、密码等信息，登陆进入用户的注册账户，进行证据保全，包括但不限于公证、见证等。</span>
+        <p>三、白洗么平台服务规范</p>
+        <span>通过白洗么及其关联公司提供的白洗么平台服务和其它服务，会员可在白洗么平台上查询交易信息、查询商品和服务信息、达成交易并进行交易、参加白洗么组织的活动以及使用其它信息服务及技术服务。</span>
+        <span>在白洗么平台上使用白洗么服务过程中，您同意严格遵守以下义务：</span>
+        <span>2.1不得传输或发表损害国家、社会公共利益和涉及国家安全的信息资料或言论；</span>
+        <span>2.2不利用本站从事窃取商业秘密、窃取个人信息等违法犯罪活动；</span>
+        <span>2.3不采取不正当竞争行为，不扰乱网上交易的正常秩序，不从事与网上交易无关的行为；</span>
+        <span>2.4不发布任何侵犯他人著作权、商标权等知识产权或合法权利的内容；</span>
+        <span>2.5不以虚构或歪曲事实的方式不当评价；</span>
+        <span>2.6不对白洗么平台上的任何数据作商业性利用，包括但不限于在未经白洗么事先书面同意的情况下，以复制、传播等任何方式使用干洗客平台上展示的资料。不使用任何装置、软件或程序干预白洗么平台的正常运营。</span>
+        <span>2.7本站保有删除站内各类不符合法律政策或不真实的信息内容而无须通知用户的权利。</span>
+        <span>2.8您同意，若您未遵守以上规定的，本站有权作出独立判断并采取暂停或关闭用户帐号、订单等措施。</span>
+        <span>2.9经国家行政或司法机关的生效法律文书确认您存在违法或侵权行为，或者白洗么根据自身的判断，认为您的行为涉嫌违反本协议和/或规则的条款或涉嫌违反法律法规的规定的，则干洗客有权在本平台上公示您的该等涉嫌违法或违约行为及白洗么已对您采取的措施。</span>
+        <span>2.10对于您在白洗么平台上发布的涉嫌违法或涉嫌侵犯他人合法权利或违反本协议和/或规则的信息，白洗么有权不经通知您即予以删除，且按照规则的规定进行处罚。</span>
+        <span>2.11对于您在白洗么平台上实施的行为，包括您未在白洗么平台上实施但已经对白洗么平台及其用户产生影响的行为，白洗么有权单方认定您行为的性质及是否构成对本协议和/或规则的违反，并采取暂停或关闭用户帐号及其他措施。</span>
+        <span>2.12对于您涉嫌违反承诺的行为对任意第三方造成损害的，您均应当以自己的名义独立承担所有的法律责任，并应确保白洗么免于因此产生损失或增加费用。</span>
+        <span>2.13如您涉嫌违反有关法律或者本协议之规定，使白洗么遭受任何损失，或受到任何第三方的索赔，或受到任何行政管理部门的处罚，您应当赔偿干洗客因此造成的损失及（或）发生的费用，包括合理的律师费用。</span>
+        <p>四、订单</p>
+        <span>在本网站平台购物的用户，请您仔细确认所购商品的名称、价格、数量、等信息。您下单时须完整填写您希望购买的商品数量、价款、收货人、联系方式、收货地址等内容及选择支付方式。如果您提供的注册资料不合法、不真实、不准确、不详尽的，用户需承担因此引起的相应责任及后果，并且白洗么保留终止用户使用白洗么各项服务的权利。</span>
+        <span>您了解并同意，本平台上的商品、价格、数量等商品信息随时可能发生变动，本站不作特别通知。由于互联网技术原因导致网页显示信息可能会有一定的滞后性或差错，对此在合同未成立前，您接受本平台在发现网页，下单等数据错误，正式向您发出通知后，对商品信息进行调整，订单按照正确的信息执行，或取消订单。</span>
+        <span>
+            白洗么所服务的客户为以终端消费为目的的个人、企、事业单位及其他社会团体，不包括经销商，如发现经销商购物，白洗么将拒绝为其服务。由此产生的一切后果由经销商自行承担。
+            您了解并同意，如您购买商品，发生问题，您有权取消订单；本平台无法保证您提交的订单信息中希望购买的商品都不会有问题。
+        </span>
+        <span>您了解并同意，如您购买商品，发生问题，您有权取消订单；本平台无法保证您提交的订单信息中希望购买的商品都不会有问题。</span>
+        <span>白洗么关联公司将会到您所指定的地址通过自有物流人员，第三方合作商，快递公司以上门及快递形式进行收送。您了解本平台所提示的送货时间供参考，实际送货会与参考时间略有差异。平台管理者和所有者或其关联公司不对因您及收货人原因导致无法送货或延迟送货承担责任。若发生不可抗力或其他正当合理理由导致发货延迟的，您将给予充分理解。</span>
+        <span>白洗么保留在中华人民共和国大陆地区法施行之法律允许的范围内独自决定拒绝服务、关闭用户账户、清除或编辑内容或取消订单的权利。</span>
+        <p>五、责任范围和责任限制</p>
+        <span>白洗么在接到您投诉、主管机关通知或按照法律法规规定，有合理的理由认为特定会员及具体交易事项可能存在重大违法或违约情形时,白洗么可依约定或依法采取相应 措施。</span>
+        <span>您了解并同意，白洗么不对因下述任一情况而导致您的任何损害承担赔偿责任，包括但不限于利润、商誉、使用、数据等方面的损失或其它无形损失的损害赔偿：</span>
+        <span>3.1第三方未经批准的使用您的账户或更改您的数据。</span>
+        <span>3.2您对白洗么平台服务的误解。</span>
+        <span>3.3任何非因干洗客的原因而引起的与白洗么平台服务有关的其它损失。</span>
+        <span>由于法律规定的不可抗力，信息网络正常的设备维护，信息网络连接故障，电脑、通讯或其他系统的故障，电力故障，劳动争议，生产力或生产资料不足，司法行政机关的命令或第三方的不作为及其他本平台无法控制的原因造成的本平台不能服务或延迟服务、丢失数据信息、记录的，白洗么不承担责任，但白洗么将协助处理相关事宜。</span>
+        <p>六、协议终止</p>
+        <span>您同意，白洗么有权自行全权决定以任何理由不经事先通知的中止、终止向您提供部分或全部干洗客平台服务，暂时冻结或永久冻结（注销）您的账户，且无须为此向您或任何第三方承担任何责任。</span>
+        <span>出现以下情况时，白洗么有权直接以注销账户的方式终止本协议:</span>
+        <span>2.1白洗么终止向您提供服务后，您涉嫌再一次直接或间接或以他人名义注册为白洗么用户的；</span>
+        <span>2.2您提供的电子邮箱不存在或无法接收电子邮件，且没有其他方式可以与您进行联系，或白洗么以其它联系方式通知您更改电子邮件信息，而您在白洗么通知后三个工作日内仍未更改为有效的电子邮箱的。</span>
+        <span>2.3您注册信息中的主要内容不真实或不准确或不及时或不完整。</span>
+        <span>2.4本协议（含规则）变更时，您明示并通知干洗客不愿接受新的服务协议的；</span>
+        <span>2.5其它白洗么认为应当终止服务的情况。</span>
+        <span>您有权向白洗么要求注销您的账户，经干洗客审核同意的，白洗么注销（永久冻结）您的账户，届时，您与白洗么基于本协议的合同关系即终止。您的账户被注销（永久冻结）后，白洗么没有义务为您保留或向您披露您账户中的任何信息，也没有义务向您或第三方转发任何您未曾阅读或发送过的信息。</span>
+        <span>您同意，您与白洗么的合同关系终止后，白洗么仍享有下列权利：</span>
+        <span>4.1继续保存您的注册信息及您使用白洗么平台服务期间的所有交易信息。</span>
+        <span>4.2您在使用白洗么平台服务期间存在违法行为或违反本协议和/或规则的行为的，白洗么仍可依据本协议向您主张权利。</span>
+        <span>白洗么中止或终止向您提供白洗么平台服务后，对于您在服务中止或终止之前的交易行为依下列原则处理，您应独力处理并完全承担进行以下处理所产生的任何争议、损失或增加的任何费用，并应确保白洗么免于因此产生任何损失或承担任何费用：</span>
+        <span>5.1您在服务中止或终止之前已经上传至白洗么平台的物品尚未交易的，白洗么有权在中止或终止服务的同时删除此项物品的相关信息；</span>
+        <span>5.3您在服务中止或终止之前已经完成的订单，白洗么可以不删除该项交易，但白洗么有权在中止或终止服务的同时将相关情形通知到您。</span>
+        <p>七、法律适用、管辖与其他</p>
+        <span>本协议包含了您使用白洗么平台需遵守的一般性规范，您在使用白洗么平台时还需遵守适用于该平台的特殊性规范。一般性规范如与特殊性规范不一致或有冲突，则特殊性规范具有优先效力。</span>
+        <span>2.本协议的订立、执行和解释及争议的解决均应适用在中华人民共和国大陆地区适用之有效法律（但不包括其冲突法规则）。 如发生本协议与适用之法律相抵触时，则这些条款将完全按法律规定重新解释，而其它有效条款继续有效。</span>
+        <span>3.因本协议履行过程中，因您使用白洗么服务产生争议应由干洗客与您沟通并协商处理。协商不成时，双方均同意以《白洗么洗染服务争议解决协议》、《中华人民共和国合同法》、《中华人民共和国消费者权益保护法》、《洗染业管理办法》、《洗染业服务经营规范》(SB/T 10624-2011)为依据去沟通并协商处理衣物洗涤不当造成的损坏，遗失等问题的判定和解决！</span>
+    </div>
+</section>
+<!---- 用户协议结束 ---->
+<!---- 常见问题 ---->
+
+<section id="news_wenti" class="news pageChild">
+    <header class="reback"><span page-url="news_wenti" class="left back"><i class="icon back"></i>常见问题</span><i class="icon home"></i></header>
+    <div class="flashStep">
+        <p style=" color #0269b6;min-height 32px;line-height 32px;margin 18px 0;padding 0 14px;font-size:18px;">热门问题  </p>
+        <p style=" color #0269b6;min-height 32px;line-height 32px;margin 8px 0;padding 0 14px;">
+            1、衣服多久可以洗好送回？
+        </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            白洗么将衣物取走常规会在48小时内可将其洗好送回。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">2、如果订单想退单（包含使用优惠券），怎么办？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，对没有付款的订单或者到家支付的订单，您可以选择取消订单再重新下单。如果订单已经付款，请您直接电话400客服，由客服申报退款待审批通过后订单 就会进入退单状态，您支付的费用就会原路退款，同时退单中使用的优惠券会变为“未使用”状态（退款时长：除当天申请外的7个工作日内）。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">3、我的订单已提交退单，大概什么时候可以到账？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，若您选择的是优惠券支付，我们在收到您退货信息时，会把优惠券即时返回到您的白洗么账户内；若您选择的是微信支付，会按照原路径退款，一般2个工作日内到账，遇节假日顺延，如现金支付客户请联系客服提供卡号等信息公司会在24小时内给客户退款谢谢！
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">4、我的衣物丢失了，怎么办？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，请告知您的订单信息，我们将为您追踪您的订单。确认丢失的，我们将按照《白洗么洗染服务协议》，给您进行相应的赔偿（详见：《白洗么洗染服务协议》），但进行过保值的衣物除外。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">
+            5、获得的洗涤券会被取消吗？
+        </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，正常情况下，洗涤券是不会被取消的。除非以下情况发生：满足赠洗涤券条件的订单发生了退货，不再满足满赠条件，则洗涤券过期。因为使用时的当前日期已超过了洗涤券的有效期。 洗涤券使用方法：在您获得优惠券之后，下订单时可以在确认订单信息时，点击“使用洗涤券”，输入洗涤券号即可使用。 洗涤券使用规则：一个订单只能使用一张洗涤券。洗涤券是有期限限制的，请您在有效期内使用哦。（特别提示：任何活动形式赠送的洗衣券或金额仅可使用，但不能够挂失，提现等） 
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">6、我想开发票？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您 好，目前是累积消费满50元，可以开票，您可以直接拨打400客服热线要求开票，开票内容仅为：服务费，请致电客服后提供发票抬头，收件人，联系方式以及 收件地址（特别提示:仅能对已完成的订单以及实际支付的费用进行开票，其他赠送免费体验券等不在开票范围内，另外其他状态的订单需等至订单完成后才能开 票，发票会在除当天申请外的10个工作日内寄到，不便之处，敬请谅解！）
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">7、客服热线以及服务时间？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">您好，在我们的服务时间8:30~18:00内您有任何问题都可以直接拨打400-09-01-082进行咨询</span>
+
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">8、《白洗么洗染服务协议》  </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            本协议为您与白洗么之间所订立的洗染服务契约，具有合同的法律效力，请您仔细阅读。 本协议内容、生效、变更 本协议的内容依据：《大连洗染业行业协会2008年消费争议处理意见》； 当您点选《白洗么洗染服务协议》后，即为同意并认可本协议；
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">3、您承诺接受并遵守本协议的约定。如果您不同意本协议的约定，您应立即停止注册程序或停止使用白洗么平台服务。</span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            4、 白洗么有权根据需要不定期地制订、修改本协议及/或各类规则，并在白洗么平台公示，不再另行单独通知用户。变更后的协议和规则一经公布，立即生效。 如您不同意相关变更，应当立即停止使用白洗么平台服务。您继续使用白洗么平台服务的，即表明您接受修订后的协议和规则。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">二、衣物瑕疵</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            5、服务人员上门收衣、物时，消费者应告知衣、物上的破损、色花、虫蛀、少扣等瑕疵，客服人员会将洗涤加工后产生的后果与消费者事先讲明，且会在订单备注 上注明，产生的后果由消费者自行承担，若消费者存在故意隐瞒，一切后果由消费者本人承担。如消费者对爱家洗检查出来的瑕疵不认可，可至大连洗染协会做相应 鉴定，如属白洗么责任，白洗么承担相关赔偿。
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">6、衣裤其领、袖、裆、臀等部位严重磨损及虫蛀脱绒的，经洗烫加工后破裂者，白洗么视情况免费给予修补，无法修补的白洗么不承担赔偿责任。</span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">7、凡属衣、物面料，制衣等衣、物本身质量问题，以及洗涤标识错误而造成衣、物洗涤后出现缩水、脱线、退色、镶拼衣服串色、搭色、粘合衬起泡等现象，白洗么不承担赔偿责任，白洗么会为消费者向责任方索赔提供便利。</span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">三、出现洗涤质量及经营者过失导致衣物遗失的赔偿方案</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">客收取衣物时应当场检验洗染质量、衣物数量及是否属于自己干洗的衣物，如有问题应与本公司服务人员即时确认，否则本公司不承担赔偿责任。 </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">9、无发票</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">顾 客不能提供受损或丢失衣物发票的：首先由白洗么负责修补，经修补仍有穿用价值的，或顾客不能提供受损衣物发票的，或出现衣物丢失的，白洗么将按该衣物实收 洗涤费的1～6倍金额赔偿;不能修复或丢失的，白洗么将按该衣物实收洗涤费的5～10倍金额赔偿，但上述赔偿金额均不得超过衣物的实际价值。</span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">10、有发票</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">衣 物的实际价值：有发票的，顾客应提供真实、有效的发票，或出现衣物丢失的，以衣物发票记载的实际价格为基数，衣物穿用一年内折旧20% ;穿用两年内折旧40% ;穿用三年内折旧60% ，逐年递增。但最多折旧率不得超过75%，年限以购物发票的日期为准。衣物的实际价值难以确定根据同类衣物的普通市场价格及衣物的折旧状况估算价格。另客 户提供虚假发票的，我司按无发票赔偿机制处理。</span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">11、免责部分</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">11.1、衣物在洗涤之后，如有轻度褪色属正常现象(特别是棉、麻、丝质衣物)，本公司无须承担责任。</span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">11.2、棉、麻、毛料衣物在洗涤之后，不能完全避免缩水现象。如裡(里)布比面布大，不属缩水范围。</span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            11.3、公司对衣物上的顽固污渍尽量清洗，不能完全清洗的情况下不能作为减免收费的理由。浅色或脏污较重的或特殊污渍的衣物尽量洗。清洗过程中需要增加其他过程的，由本公司与顾客协商，需额外支付费用，具体费用以白洗么网站价格为准。
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            11.4、公司拒绝洗涤的衣物，如顾客坚决要洗，本公司不负任何责任。衣物配饰在洗涤后如有轻微磨损，属制作工艺的可能结果，不能完全避免，本公司不承担任何责任。
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            11.5、
+            按照顾客选择的洗涤方法洗涤后，如有顾客认为发生洗涤质量问题的，由本公司与顾客协调，如果确属洗涤质量问题，按照本规定进行修补或赔偿，除此之外，本公 司不承担其他责任。因顾客未事先告知衣物严重褪色，或者衣物本身存在的质量问题导致洗涤事故的，责任由该顾客承担，与本公司无关。
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            11.6、如发生洗涤质量问题，顾客没有选择洗涤方法或不能提供该衣物发票的，一律按照本公司的赔偿标准进行赔偿。但属于衣物固有质量问题或者顾客交付洗涤时就已损坏的，交付衣物时有认真检查并备注相关问题的不属于重大洗涤事故，本公司无须对此承担任何责任。
+        </span>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            11.7、因本公司不能预见、不能克服、不能避免的原因导致顾客衣物毁损灭失的，本公司不承担责任。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">四、争议的解决办法：</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">因履行本协议过程中发生争议的，双方应协商解决或找相关部门进行调解，协商或调解不成的，双方均有权向白洗么平台管理者住所地有管辖权的法院起诉。</span>
+
+        <p style=" color #0269b6;min-height 32px;line-height 32px;margin 18px 0;padding 0 14px;font-size:18px;">取送问题</p>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">
+            1、为什么我的衣物48小时内还没有人送衣服？
+        </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+
+            您好，您的订单中有可能存在衣物材质特殊故无法保证48小时内送达，如果您同意48小时外连同其它衣物一起送达，在我们上门收取时，请在收衣单上签字注 明；如果您不同意，我们将把先洗好的衣物48小时内给您送达，剩余衣物待洗涤完成后另行送回
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">2、白洗么订单什么时候收取洗涤物件？大概多长时间可以洗好并且送回？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+
+            您好，正常情况下您下单成功后，服务人员将会在您预约的时间上门收取洗涤物件。收取洗涤物件之后，您可以在您白洗么“我的订单”中查看流程状态。由于 洗涤公司可能无法实时更新信息，因此您看到的洗涤流程情况可能有一定延迟。我们承诺给客户精心洗涤物件，保证在48小时内快速完成洗涤，并将物件快速送回 客户手中。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">3、白洗么使用什么人员为客户服务？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，为了更好的服务每一位客户，白洗么选择的收派人员，都是专业培训过的。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">4、如果收到的衣物不是我的衣物，应该怎么办？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            您好，如果发现衣物送错的情况，请您先拒收，然后联系我们客服。我们核实好相关信息，会安排送件人员重新给您送件。
+        </span>
+        <p style=" color #0269b6;min-height 32px;line-height 32px;margin 18px 0;padding 0 14px;font-size:18px;">
+            洗涤问题
+        </p>
+
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">1.衣服是跟其他人混洗的吗，会不会不干净？</p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            衣服进入加工系统后，会根据面料进行分类，进行不同方式的专业处理。洗涤会进行专业的杀菌消毒过程，不同面料的衣服会用不同的方法进行烘干消毒处理（高温烘干、低温摇摆式烘干等）。我们确保衣物的洁净、杀菌。您大可放心地将衣服交给我们。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">
+            2、我的衣物没洗干净，怎么办？
+        </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+
+            您好，若发生衣物未洗干净的情况，请您勿将衣物上的洗涤条形码私自拆卸以及在收到衣物后的24小时内直接通过微信或电话400客服反馈您的问题，由我们售 后客服为您处理。返洗流程确认后，我们将安排专人上门收取衣物，安排进行返洗。经过返洗程序后，若相应污垢判别属于惰性污垢是属于无法完全清洗的范围，敬 请谅解。
+        </span>
+        <p style="color: #0269b6;min-height: 32px;line-height: 32px;margin: 8px 0;padding: 0 14px;">
+            3、衣服洗坏了怎么办？
+        </p>
+        <span style="color:#545454;line-height: 24px;padding: 0 14px;display: block;text-indent: 2em;">
+            若衣物在清洗过程中出现损坏、丢失等事故，白洗么会在7个工作日内给到用户满意的答复，快速核实后根据《白洗么洗染服务协议》赔付标准对用户进行先行赔付。白洗么赔付标准高于洗染行业的规定，最高赔付额度高达5000元。
+        </span>
+    </div>
+</section>
+<!---- 常见问题结束 ----->
+<!---- 服务范围 ---->
+<section id="fuwu_fanwei" class="fanwei pageChild">
+    <header class="reback"><span page-url="fuwu_fanwei" class="left back"><i class="icon back"></i>服务范围</span></header>
+    <div class="flashStep">
+        @{
+            foreach (var ra in ViewBag.Range)
+            {
+                AiJiaXi.Domain.Entities.Agency age = (AiJiaXi.Domain.Entities.Agency)ra;
+                <box data-value="@age.CityId">
+                    <span><b><img src="~/Images/icons/icon.png"></b>@age.County.Name</span>
+                    <p>@age.Title</p>
+                    <img src="/Upload/Rangemap/@age.RangeMap">
+                </box>
+
+
+            }
+        }
+    </div>
+</section>
+<!---- 服务范围结束 ----->
+<section id="fankui" data-openId="@Model.OpenId" class="fankui pageChild">
+    <header class="reback"><span page-url="fankui" class="left back"><i class="icon back"></i>意见反馈</span><i class="icon home"></i></header>
+    <div class="input">
+        <textarea id="fankuiContent" placeholder="请输入您的意见或者建议"></textarea>
+        <p>您的意见是我们不断进步的动力，我们会尽快协调处理！</p>
+    </div>
+    <footer class="fankui">
+        <div class="btn gre2">确 认 发 送</div>
+    </footer>
+</section>
+<script type="text/javascript" src="../../Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="../../Scripts/front_js/space.js"></script>
+<script type="text/javascript" src="../../Scripts/front_js/inUserInfo.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+
+        Space.init_page();
+        InUserInfo.defultBind();
+
+    });
+</script>

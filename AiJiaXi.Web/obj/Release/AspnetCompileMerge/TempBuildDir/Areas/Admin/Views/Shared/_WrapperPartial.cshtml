@@ -1,0 +1,127 @@
+﻿@using AiJiaXi.Domain.Entities
+@using Microsoft.AspNet.Identity
+<nav class="navbar navbar-inverse" style="margin-bottom: 0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("白洗么后台管理系统", "Index", new {controller = "Home"}, new {@class = "navbar-brand"})
+            </div>
+        <!-- /.navbar-header -->
+            <ul class="nav navbar-nav navbar-right">
+                @if ((bool)ViewBag.IsAdmin)
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope fa-fw"></i> 加盟申请&nbsp; <span class="badge">@ViewBag.Count</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            @foreach (var item in (List<JoinApplication>)ViewBag.Joins)
+                            {
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <strong class="pull-left">@item.Name</strong>
+                                            <span class="pull-right text-muted">
+                                                <em>@item.RiseTime</em>
+                                            </span>
+                                        </div>
+                                        <div style="clear: both">联系电话：@item.Mobile，申请加盟地区：@item.Area</div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                            }
+                            <li>
+                                <a class="text-center" href="@Url.Action("Index", "JoinApplications")">
+                                    <strong>查看所有申请加盟信息</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-messages -->
+                    </li>
+                }
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell fa-fw"></i>系统消息&nbsp;&nbsp;<i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="@Url.Action("Topay", "Orders")">
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i> 待支付订单
+                                    <span class="pull-right text-muted small">已提交未支付</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("Going", "Orders")">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 进行中的订单
+                                    <span class="pull-right text-muted small">服务中</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("Index", "OrderRate")">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> 订单评论
+                                    <span class="pull-right text-muted small">订单评论管理</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="@Url.Action("Complete", "Orders")">
+                                <div>
+                                    <i class="fa fa-tasks fa-fw"></i> 已完成订单
+                                    <span class="pull-right text-muted small">确认完成的订单</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        @if ((bool) ViewBag.IsAdmin)
+                        {
+                            <li class="divider"></li>
+                            <li>
+                                <a href="@Url.Action("Index", "OperationLog")">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> 系统日志查看
+                                        <span class="pull-right text-muted small">后台用户行为监测</span>
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> @User.Identity.GetUserName() &nbsp; <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="@Url.Action("ChangePassword", "Purview")"><i class="fa fa-gear fa-fw"></i> 修改密码</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Purview", FormMethod.Post, new {id = "logoutForm", @class = "navbar-right"}))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+        </div>
+    </nav>

@@ -1,0 +1,63 @@
+﻿@using AiJiaXi.Domain.Enums
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.OrderRate>
+
+@{
+    ViewBag.Title = "订单评论";
+    ViewBag.Top = "订单评论管理";
+    ViewBag.Second = "全部订单评论";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("OrderRateSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <div class="form-group">
+                    <label class="sr-only" for="status">评论状态</label>
+                    <select id="status" name="status" class="selectpicker show-tick form-control" data-live-search="true">
+                        <option value="-1">全部显示</option>
+                        <option value="0">未审核</option>
+                        <option value="1">审核通过</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="name">订单号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">订单号</div>
+                        <input type="text" class="form-control" id="orderNo" name="orderNo" placeholder="产品名称">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_OrderRateSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+
+    <script>
+        function InitialEdit() {
+
+            $('.user-editable').editable({
+                url: '@Url.Action("Post")',
+                showbuttons: true
+            });
+        }
+
+        $(function() {
+            $('.user-editable').editable({
+                url: '@Url.Action("Post")',
+                showbuttons: true
+            });
+        })
+    </script>
+}

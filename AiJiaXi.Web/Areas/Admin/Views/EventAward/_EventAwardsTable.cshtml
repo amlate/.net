@@ -1,0 +1,59 @@
+﻿@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.EventAward>
+    
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            获奖用户名
+        </th>
+        <th class="text-center">
+            送货地址
+        </th>
+        <th class="text-center">
+            活动名称
+        </th>
+        <th class="text-center">
+            奖品
+        </th>
+        <th class="text-center">
+            备注
+        </th>
+        <th class="text-center">
+            已发货标记
+        </th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @item.User.UserName
+            </td>
+            <td>
+                @(item.Address == null ? string.Empty : item.Address.Addr)
+            </td>
+            <td>
+                @item.EventPrize.Event.Name
+            </td>
+            <td>
+                @item.EventPrize.Name
+            </td>
+            <td>
+                @item.Note
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="flag" data-type="select" data-pk="@item.Id" data-value="@item.Flag" data-source="@Url.Action("Flags")" data-title="开启活动">
+                    @(item.Flag ? "已发货" : "未发货")
+                </a>
+            </td>
+        </tr>
+    }
+</table>

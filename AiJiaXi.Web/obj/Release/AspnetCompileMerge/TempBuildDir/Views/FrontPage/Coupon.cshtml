@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+@model AiJiaXi.Domain.Entities.UserProfile.UserAccount
+<head>
+    <title>我的洗涤券</title>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+       
+        //store('cityId', '1');//设置当前首页选中的区域ID
+        store('pageName', 'coupon');
+        var ajaxData = new Array();
+    </script>
+</head>
+<section class="coupon">
+    <header class="reback"><span class="left back"><i class="icon back"></i>我的洗衣券</span><i class="icon home"></i></header>
+    <div id="assetChangeBox" class="change" data-openid="@Model.OpenId">
+        <input maxlength="100" placeholder="输入洗衣券代码" type="text">
+        <div class="btn grey">兑 换</div>
+    </div>
+    <ul>
+        @{
+
+
+
+            foreach (var item in ViewBag.voucherList)
+            {
+             
+                string style = string.Empty;
+                if (item.Amount >= 100)
+                {
+                    style = "font-size:32px";
+                }
+                <li class="">
+
+                    <span class="l"></span>
+                    <span class="r"></span>
+                    <font style="float:left;">¥<b style="@style">@item.Amount 元</b></font>
+                    <p class="f" style=" text-align:right;">@item.Desc</p>
+                    @*<p style=" text-align:right;">品类:洗衣券</p>*@
+                    <p style=" text-align:right;">使用范围:@item.Agency.County.Name</p>
+                    <p style=" text-align:right;">期限:@item.EndTime</p>
+                </li>
+
+           
+            }
+        }
+    </ul>
+</section>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/coupon.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Coupon.init_page();
+    });
+</script>

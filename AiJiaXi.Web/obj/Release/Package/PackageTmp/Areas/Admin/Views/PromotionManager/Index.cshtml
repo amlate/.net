@@ -1,0 +1,80 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser>
+
+@{
+    ViewBag.Title = "推广管理";
+    ViewBag.Top = "推广管理";
+    ViewBag.Second = "推广管理";
+}
+<div class="container-fluid">
+    <div class="row">
+ 
+       
+            @using (Ajax.BeginForm("SearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+             
+                <div class="form-group">
+                    <label class="sr-only" for="name">推广员手机号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">推广员手机号</div>
+                        <input type="text" class="form-control" id="MyPhone" name="MyPhone" placeholder="推广员手机号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+                <br />
+                <div class="form-group">
+                    <label class="sr-only" for="name">新好友手机号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">新好友手机号</div>
+                        <input type="text" class="form-control" id="FriendsPhone" name="FriendsPhone" placeholder="新好友手机号">
+                    </div>
+                </div>
+                <button id="saveFrend" type="button" class="btn btn-primary">
+                    <span class="fa" aria-hidden="true"></span> 保存好友关系
+                </button>
+
+            }
+       
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+
+<div id="datatable">
+    @Html.Partial("_PromotionManagerSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#saveFrend").bind("click", function () {
+
+            var question = confirm("确定要为保存好友吗？")
+
+            //不等于0其实就是不等于FALSE
+            if (question != "0") {
+                saveFrend();
+            }
+
+        });
+
+    });
+
+        //提现申请
+    function saveFrend() {
+        var action = $("#searchForm")[0].action
+        $("#searchForm")[0].action = "/admin/PromotionManager/SaveFrend";;
+        $("#searchForm").submit();
+        $("#searchForm")[0].action = action;
+
+        }
+</script>
+
+
+}

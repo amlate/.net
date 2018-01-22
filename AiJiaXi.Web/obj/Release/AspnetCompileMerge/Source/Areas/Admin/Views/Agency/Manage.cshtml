@@ -1,0 +1,206 @@
+﻿@using AiJiaXi.Common.Helpers
+@model AiJiaXi.Domain.Entities.Agency
+
+@{
+
+    ViewBag.Title = "代理商管理";
+    ViewBag.Top = "代理商管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Agency", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.ValidationSummary()
+
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "名称" })
+            </div>
+        </div>
+
+         if(Model.Id == 0)
+         {
+            <div class="form-group">
+                <label for="province" class="col-sm-2 control-label">省份</label>
+                <div class="col-sm-4">
+                    <select id="ProvinceId" name="ProvinceId" class="selectpicker show-tick form-control" data-live-search="true"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="CityId" class="col-sm-2 control-label">城市</label>
+                <div class="col-sm-4">
+                    <select id="CityId" name="CityId" class="selectpicker show-tick form-control" data-live-search="true"></select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="CountyId" class="col-sm-2 control-label">区县</label>
+                <div class="col-sm-4">
+                    <select id="CountyId" name="CountyId" class="selectpicker show-tick form-control" data-live-search="true"></select>
+                </div>
+            </div>
+         }
+         else
+         {
+            <div class="form-group">
+                <label for="CountyId" class="col-sm-2 control-label">代理商负责区域</label>
+                <div class="col-sm-4">
+                    @string.Format("{0}{1}{2}", Model.Province.Name, LocationHelper.GetCity(Model.CityId).Name, Model.County.Name)
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="Note" class="col-sm-2 control-label">备注</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Note, new { @class = "form-control", placeholder = "备注" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Price" class="col-sm-2 control-label">联系人</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Contact, new { @class = "form-control", placeholder = "联系人" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Nums" class="col-sm-2 control-label">联系电话</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.ContactMobile, new { @class = "form-control", placeholder = "联系电话" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Nums" class="col-sm-2 control-label">e-mail</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.ContactEmail, new {@class = "form-control", placeholder = "e-mail"})
+            </div>
+        </div>
+
+        if (Model != null && !string.IsNullOrWhiteSpace(Model.RangeMap))
+        {
+            <div class="form-group">
+                <label for="ImageUrl" class="col-sm-2 control-label">服务范围</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.RangeMap" alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="img_map" class="col-sm-2 control-label">服务范围</label>
+            <div class="col-sm-4">
+                <input id="img_map" name="img_map" data-show-upload="false" class="file" type="file" data-min-file-count="0">
+            </div>
+        </div>
+
+        if (Model.Id == 0)
+        {
+            <div class="form-group">
+                <label for="c_icon_hover" class="col-sm-2 control-label">代理商状态</label>
+                <div class="col-sm-4">
+                    @Html.CheckBoxFor(model => model.IsValid, new Dictionary<string, object>() { { "class", "form-control" }, { "data-on-text", "已签约" }, { "data-off-text", "禁用" } })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script>
+        $('input[type=checkbox]').bootstrapSwitch();
+        $('.file').fileinput({
+            language: 'zh',
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+
+        $(function () {
+            $.ajax({
+                url: '/admin/location/provinces',
+                type: 'Get',
+                datatype: 'json',
+                success: function (data) {
+                    $("#ProvinceId option").remove();
+                    var province = $('#ProvinceId');
+                    var opt = '';
+                    opt += '<option value="-1" selected="selected">---请选择---</option>';
+                    $(data).each(function (index) {
+                        if (data[index].Id == '@(Model == null ? 0 : Model.ProvinceId)') {
+                            opt += '<option value="' + data[index].Id + '" selected="selected">' + data[index].Name + '</option>';
+                        } else {
+                            opt += '<option value="' + data[index].Id + '">' + data[index].Name + '</option>';
+                        }
+                    });
+                    province.html(opt);
+                    $('#ProvinceId').selectpicker('refresh');
+                    $('#ProvinceId').change();
+                },
+                erro: function () {
+                    layer.alert('加载省份出错');
+                }
+            });
+
+            $('#ProvinceId').change(function () {
+                $.ajax({
+                    url: '/admin/location/cities/' + $('#ProvinceId').val(),
+                    type: 'Get',
+                    datatype: 'json',
+                    success: function (result) {
+                        $("#CityId option").remove();
+                        var city = $('#CityId');
+                        var opt = '';
+                        $(result).each(function (index) {
+                            if (result[index].Id == '@(Model == null ? 0 : Model.CityId)') {
+                                opt += '<option value="' + result[index].Id + '" selected="selected">' + result[index].Name + '</option>';
+                            } else {
+                                opt += '<option value="' + result[index].Id + '">' + result[index].Name + '</option>';
+                            }
+                        });
+                        city.html(opt);
+                        $('#CityId').change();
+                        $('#CityId').selectpicker('refresh');
+                    },
+                    erro: function () {
+                        layer.alert('加载城市出错');
+                    }
+                });
+            });
+
+            $('#CityId').change(function () {
+                $.ajax({
+                    url: '/admin/location/counties/' + $('#CityId').val(),
+                    type: 'Get',
+                    datatype: 'json',
+                    success: function (result) {
+                        $("#CountyId option").remove();
+                        var city = $('#CountyId');
+                        var opt = '';
+                        $(result).each(function (index) {
+                            if (result[index].Id == '@(Model == null ? 0 : Model.CountyId)') {
+                                opt += '<option value="' + result[index].Id + '" selected="selected">' + result[index].Name + '</option>';
+                            } else {
+                                opt += '<option value="' + result[index].Id + '">' + result[index].Name + '</option>';
+                            }
+                        });
+                        city.html(opt);
+                        $('#CountyId').selectpicker('refresh');
+                    },
+                    erro: function () {
+                        layer.alert('加载县出错');
+                    }
+                });
+            });
+        });
+    </script>
+}

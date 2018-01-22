@@ -1,0 +1,40 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.PromoterInfo>
+
+@{
+    ViewBag.Title = "好友信息";
+    ViewBag.Top = "好友信息";
+    ViewBag.Second = "好友信息";
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("SearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+            <input id="MyPhone" name="MyPhone" type="hidden" value="@ViewBag.MyPhone"/>
+                <div class="form-group">
+                    <label class="sr-only" for="name">好友手机号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">好友手机号</div>
+                        <input type="text" class="form-control" id="FriendsPhone" name="FriendsPhone" placeholder="好友手机号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+
+<div id="datatable">
+    @Html.Partial("_FrendPromoterInfoSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+}

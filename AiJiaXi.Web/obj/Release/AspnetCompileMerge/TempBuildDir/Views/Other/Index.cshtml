@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    ViewBag.Title = "跳转信息";
+}
+<input type="hidden" value="@ViewBag.id" id="hid"/>
+<script type="text/javascript" src="../../Scripts/front_js/mynormal.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        // alert(store('cityId'));
+
+        var id = $('#hid').val();
+        if (id == '1')//主页
+        {
+            pageTurn('/baixime/Index/' + store('PcityId') + '/' + store('cityId') + '/1/'+store('OpenId')+ '/');
+        }
+        else {
+
+        }
+      
+       
+
+		});
+</script>

@@ -1,0 +1,92 @@
+﻿@using AiJiaXi.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            推广员手机号
+        </th>
+        <th class="text-center">
+            预提现时间
+        </th>
+        <th class="text-center">
+            推广员已消费
+        </th>
+        <th class="text-center">
+            提现申请时间
+        </th>
+        <th class="text-center">
+            提现银行
+        </th>
+        <th class="text-center">
+            银行卡姓名
+        </th>
+        <th class="text-center">
+            银行卡帐号
+        </th>
+        <th class="text-center">
+            提现金额
+        </th>
+        <th class="text-center">
+            处理提现时间
+        </th>
+        <th class="text-center">
+            提现状态
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreApplyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlreadyConsumed)
+         
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accounts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandleDate)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.State)*@
+
+               @Html.Raw(AiJiaXi.Domain.Enums.EnumExtensions.GetDescription((AiJiaXi.Domain.Enums.WithdrawalsStatus)item.State))
+            </td>
+            <td>
+          
+                @Ajax.ActionLink("同意转帐", "Transfer", new { Id = item.Id, TempState = item.State,State = AiJiaXi.Domain.Enums.WithdrawalsStatus.Success, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+                @Ajax.ActionLink("拒绝转帐", "CancelWidth", new { Id = item.Id, TempState = item.State, State = AiJiaXi.Domain.Enums.WithdrawalsStatus.Failed, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要取消转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

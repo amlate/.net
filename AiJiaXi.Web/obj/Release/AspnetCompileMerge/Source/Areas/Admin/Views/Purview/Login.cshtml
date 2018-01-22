@@ -1,0 +1,202 @@
+﻿@model AiJiaXi.Domain.ViewModels.Admin.LoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>大连白洗么后台管理系统</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/form-elements.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Top content -->
+    <div class="top-content">
+
+        <div class="inner-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1><strong>白洗么</strong> 后台管理系统</h1>
+                        <div class="description">
+                            <p>
+                                BaiXiMe Management System
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4 form-box">
+                        <div class="form-top">
+                            <div class="form-top-left">
+                                <h3>系统登录</h3>
+                                <p>请输入您的用户名和密码</p>
+                            </div>
+                            <div class="form-top-right">
+                                <i class="fa fa-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-bottom">
+                            @using (Html.BeginForm("Login", "Purview", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form", @role = "form", @id = "loginForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="UserName">用户名</label>
+                                    @Html.TextBoxFor(model => model.UserName, new {@placeholder = "请输入用户名", @class = "form-control"})
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="sr-only" for="Password">密码</label>
+                                    @Html.PasswordFor(model => model.Password, new {@placeholder = "请输入密码", @class = "form-control"})
+                                </div>
+
+                                <div class="form-group form-inline">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="VerificationCode">验证码</label>
+                                        @Html.TextBoxFor(model => model.VerificationCode, new { @placeholder = "请输入验证码", @class = "form-control"})
+                                    </div>
+                                    <img id="verify_code" class="img-rounded" src="@Url.Action("VerificationCode")" align="absmiddle" style="cursor: pointer; float: right; height: 29px" alt="看不清楚，换一张" title="看不清楚，换一张"/>
+                                </div>
+                                <button id="btnSubmit" type="submit" class="btn">
+                                    <i class="fa fa-hand-o-right"></i>
+                                    <span>&nbsp;登&nbsp;&nbsp;陆</span>
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="errors" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">登陆错误信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrapValidator.min.js"></script>
+    <script src="~/Scripts/jquery.backstretch.min.js"></script>
+<script>
+    $(function () {
+        /*
+            全屏背景加载
+        */
+        $.backstretch([
+                        "/Images//backgrounds/2.jpg"
+                      , "/Images/backgrounds/3.jpg"
+                      , "/Images/backgrounds/1.jpg"
+        ], { duration: 3000, fade: 750 });
+
+        // 点击重新加载验证码
+        $("#verify_code").click(function() {
+            $("#verify_code").attr("src", "@Url.Action("VerificationCode")?" + new Date());
+        });
+
+        // 验证逻辑
+        $('#loginForm').bootstrapValidator({
+           message: 'This value is not valid',
+           feedbackIcons: {
+               valid: 'glyphicon glyphicon-ok',
+               invalid: 'glyphicon glyphicon-remove',
+               validating: 'glyphicon glyphicon-refresh'
+           },
+           fields: {
+               UserName: {
+                   validators: {
+                       notEmpty: {
+                           message: '用户名不能为空'
+                       },
+                       stringLength: {
+                           min: 5,
+                           max: 12,
+                           message: '用户名长度必须在5-12个字符之间'
+                       }
+                   }
+               },
+               Password: {
+                   validators: {
+                       notEmpty: {
+                           message: '密码不能为空'
+                       },
+                       stringLength: {
+                           min: 6,
+                           message: '密码长度至少6个字符'
+                       }
+                   }
+               },
+               VerificationCode: {
+                   validators: {
+                       notEmpty: {
+                           message: '验证码不能为空'
+                       },
+                       stringLength: {
+                           min: 5,
+                           max: 5,
+                           message: '验证码长度必须为5位字符'
+                       }
+                   }
+               }
+           }
+        }).on('success.form.bv', function (e) {
+            // Prevent form submission
+            e.preventDefault();
+
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            // Use Ajax to submit form data
+
+            $.ajax({
+                url: $form.action,
+                type: "post",
+                data: $form.serialize(),
+                beforeSend: function () {
+                    $('#btnSubmit i').removeClass('fa fa-hand-o-right');
+                    $('#btnSubmit i').addClass('fa fa-spinner fa-pulse fa-x fa-fw');
+                    $('#btnSubmit span').html('&nbsp;登&nbsp;&nbsp;陆&nbsp;&nbsp;中');
+                },
+                success: function (result) {
+                    if (result.Valid == true || result.Valid == 'true') {
+                        // Or use Javascript to update your page, such as showing the account name
+                        window.location = result.ReturnUrl;
+                    } else {
+                        $('#errors .modal-dialog .modal-content .modal-body').html(result.Msg);
+                        $('#errors').modal('show');
+                        $form.data('bootstrapValidator').resetForm();
+                        $("#verify_code").attr("src", "@Url.Action("VerificationCode")?" + new Date());
+                        $form[0].reset();
+                    }
+                },
+                complete: function () {
+                    $('#btnSubmit i').removeClass('fa fa-spinner fa-pulse fa-x fa-fw');
+                    $('#btnSubmit i').addClass('fa fa-hand-o-right');
+                    $('#btnSubmit span').html('&nbsp;登&nbsp;&nbsp;陆');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

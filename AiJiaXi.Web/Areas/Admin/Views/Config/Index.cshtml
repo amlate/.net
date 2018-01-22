@@ -1,0 +1,31 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "系统管理";
+    ViewBag.Top = "系统管理";
+    ViewBag.Second = "系统配置管理";
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#sms-tab" data-toggle="tab">短信接口配置</a></li>
+    <li class=""><a href="#email-tab" data-toggle="tab">Email配置</a></li>
+</ul>
+
+@using (Ajax.BeginForm("Manage", null, new AjaxOptions() {HttpMethod = "Post", Confirm = "确认保存配置么？"}, new {@class = "form-horizontal", @role = "tablist"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="tab-content">
+        @{ Html.RenderAction("SmsConfig");}
+
+        @{ Html.RenderAction("EmailConfig"); }
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-lg-5 col-lg-offset-3">
+            <button type="submit" class="btn btn-primary">保存配置</button>
+        </div>
+    </div>
+
+}

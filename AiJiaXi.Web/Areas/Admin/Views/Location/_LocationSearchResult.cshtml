@@ -1,0 +1,37 @@
+﻿@using AiJiaXi.Common.Helpers
+@model System.Tuple<System.Collections.Generic.IEnumerable<AiJiaXi.Domain.Entities.Location.Province>, System.Collections.Generic.IEnumerable<AiJiaXi.Domain.Entities.Location.County>>
+
+@foreach (var item in Model.Item1)
+{
+    <div class="panel panel-default" style="width: 98%; margin: 0 auto;">
+        <div class="panel-heading">@item.Name</div>
+
+        <!-- Table -->
+        <table class="table table-bordered table-hover table-striped text-center">
+            <tr>
+                <th class="nowrap text-center">
+                    序号
+                </th>
+                <th class="text-center">
+                    城市
+                </th>
+                <th class="text-center">
+                    区县
+                </th>
+            </tr>
+
+            @{
+                int i = 0;
+            }
+            @foreach (var sub in Model.Item2)
+            {
+                <tr>
+                    <td>@(++i)</td>
+                    <td>@LocationHelper.GetCity(int.Parse(string.Format("{0}00", sub.Id.ToString().Substring(0,4)))).Name</td>
+                    <td>@sub.Name</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+

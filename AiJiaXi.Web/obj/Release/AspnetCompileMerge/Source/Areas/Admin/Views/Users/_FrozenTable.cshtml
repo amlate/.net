@@ -1,0 +1,79 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser>
+
+<a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+    <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+</a>
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            真实姓名
+        </th>
+        <th class="text-center">
+            手机号码
+        </th>
+        <th class="text-center">
+            Email
+        </th>
+        <th class="text-center">
+            添加时间
+        </th>
+        <th class="text-center">
+            会员地址管理
+        </th>
+        <th class="text-center">
+            会员账户查看
+        </th>
+        <th class="text-center">
+            用户类型
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @(item.AddTime == null ? "" : item.AddTime.Value.SimpleDateFull())
+            </td>
+            <td>
+                @item.UserType.GetDescription()
+            </td>
+            <td>
+                111
+            </td>
+            <td>
+                22
+            </td>
+            <td>
+                <a class="btn btn-success btn-xs" href="@Url.Action("Manage", "Users", new RouteValueDictionary() {{"id", item.Id}})">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("激活会员", "Active", new { id = item.Id }, new AjaxOptions() { Confirm = "确认激活么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+                @Ajax.ActionLink("删除", "Delete", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

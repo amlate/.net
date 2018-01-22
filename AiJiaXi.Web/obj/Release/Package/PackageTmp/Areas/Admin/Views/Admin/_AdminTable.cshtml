@@ -1,0 +1,109 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            用户名
+        </th>
+        <th class="text-center">
+            真实姓名
+        </th>
+        <th class="text-center">
+            部门
+        </th>
+        <th class="text-center">
+            职位
+        </th>
+        <th class="text-center">
+            添加时间
+        </th>
+        <th class="text-center">
+            用户类型
+        </th>
+        <th class="text-center">
+            特别说明
+        </th>
+        <th class="text-center">
+            是否启用
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dept)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @(item.AddTime == null ? "":item.AddTime.Value.SimpleDateFull())
+            </td>
+            <td>
+                @item.UserType.GetDescription()
+            </td>
+            <td class="text-center">
+                @if (item.UserType == UserType.Washers)
+                {
+                    <label>@AgencyHelper.GetAgencyName(item.Remark)</label>
+                }
+                else
+                {
+                    <label>@item.Remark</label>
+                }
+            </td>
+            <td>
+                <a href="#" class="user-editable" data-name="frozen" data-type="select" data-pk="@item.Id" data-value="@item.IsFrozen" data-source="@Url.Action("Frozen")" data-title="开启活动">
+                    @(item.IsFrozen ? "已禁用" : "启用")
+                </a>
+            </td>
+            <td>
+                @if (item.UserType == UserType.Admin)
+                {
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Admin", "Admin", new RouteValueDictionary() {{"id", item.Id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+
+                }
+                else if (item.UserType == UserType.Agency)
+                {
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Agency", "Admin", new RouteValueDictionary() {{"id", item.Id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+
+                }
+                else if (item.UserType == UserType.Withdrawals)
+                {
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Withdrawals", "Admin", new RouteValueDictionary() {{"id", item.Id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+                }
+                else if (item.UserType == UserType.Washers)
+                {
+                    <a class="btn btn-default btn-xs" href="@Url.Action("Washers", "Admin", new RouteValueDictionary() {{"id", item.Id}})">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                    </a>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

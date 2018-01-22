@@ -1,0 +1,49 @@
+﻿@model System.Collections.Generic.List<AiJiaXi.Domain.Entities.IdentityModel.Navbar>
+
+<aside class="sidebar" role="navigation">
+    <nav class="sidebar-nav">
+        <ul class="metismenu" id="side-menu">
+            <li>
+                <a href="@Url.Action("Index", "Home")" aria-expanded="true">
+                    <span class="sidebar-nav-item-icon fa fa-github fa-lg"></span>
+                    <span class="sidebar-nav-item">主页</span>
+                </a>
+            </li>
+            @foreach (var item in Model.Where(m => m.IsParent).OrderBy(m => m.Order))
+            {
+                <li>
+                    @{
+                        var result = Model.Where(m => (!m.IsParent) && m.ParentId == item.Id);
+                    }
+                    @if (result.Any())
+                    {
+                        <a href="javascript:void(0)" aria-expanded="true">
+                            <span class="sidebar-nav-item-icon @item.ImageClass fa-lg"></span>
+                            <span class="sidebar-nav-item">@item.NameOption</span>
+                            <span class="fa arrow fa-fw"></span>
+                            @*<span class="badge" style="float: right">@result.Count()<span></span></span>*@
+                        </a>
+                        <ul class="collapse" aria-expanded="false">
+                            @foreach (var subItem in result.OrderBy(m => m.Order))
+                            {
+                                <li>
+                                    <a href="@Url.Action(subItem.Action, subItem.Controller)">
+                                        <span class="sidebar-nav-item-icon @subItem.ImageClass"></span>
+                                        <span class="sidebar-nav-item">@subItem.NameOption</span>
+                                    </a>    
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action(item.Action, item.Controller)" aria-expanded="true">
+                            <span class="sidebar-nav-item-icon @item.ImageClass fa-lg"></span>
+                            <span class="sidebar-nav-item">@item.NameOption</span>
+                        </a>
+                    }
+                </li>
+            }
+        </ul>
+    </nav>
+</aside>

@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+.addDot{position:fixed;width:8px;height:8px;background-color:#fe0000;display:block;border-radius:50%;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;transition:all 0.2s ease;}
+#all_num{transition:all 0.2s ease;}
+
+.flashUp{transition:all 0.8s ease;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
+.flashDown{transition:all 0.8s ease;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
+.flashLeft{transition:all 0.8s ease;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
+.flashStep{transition:all 0.8s ease;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
+.flashLeftStep{transition:all 0.8s ease;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;}
+.flashShow{filter:alpha(opacity=100);-moz-opacity:1;opacity:1;}
+
+
+nav.main span.line{transition:transform 0.4s ease;}
+
+header.main{transition:transform 0.3s ease;}
+nav.main{transition:transform 0.3s ease;}
+
+div.btn{transition:all 0.5s ease;}
+
+div.msgHead{transition:height 1s ease;}
+
+footer.order_sub i.tt3{transition:transform 0.4s ease;}
+
+section.main div.categoryWarp{transition:transform 0.4s ease;}
+
+section.main div span i.numWarp{transition:width 0.4s ease;}
+
+section.main div span i.add2{transition:transform 0.4s ease;}
+
+#loginWarp{transition:transform 0.2s ease;}
+
+section.main{transition:transform 0.3s ease;}
+section.city{transition:transform 0.3s ease;}
+
+section.city li i.city{transition:all 0.4s ease;}
+section.city li i.city b{transition:all 0.2s ease;}
+
+section.order_sub,section.order_add,section.order_cart,section.order_coupon,section.order_list,section.order_info,section.order_details,section.address_list,section.address_add,section.space,section.space_more,section.news,section.fankui,section.fanwei{transition:transform 0.4s ease;}
+
+section.order_sub div#order_time div.date_sel{transition:all 0.4s ease;}
+
+section.order_sub ul.cart li{transition:all 0.4s ease;}
+
+section.order_sub ul.order_price{transition:transform 0.4s ease;}
+
+section.order_add ul.add_list li i.address{transition:all 0.4s ease;}
+
+section.order_add ul.add_list li i.address b{transition:all 0.2s ease;}
+
+section.order_add ul.add_add{transition:height 0.4s ease;}
+section.order_add ul.add_add span.checkbox.sel{transition:all 0.4s ease;}
+
+section.order_cart ul.cart li{transition:all 0.4s ease;}
+
+section.order_cart ul.cart li span.item_num{transition:all 0.2s ease;}
+
+section.order_msg div.msgInfo img{transition:transform 0.4s ease;}
+
+section.main_news{transition:transform 0.2s ease;}
+
+section.order_list nav>i{transition:transform 0.4s ease;}
+
+section.order_list>div{transition:transform 0.3s ease;}
+
+section.order_details div.imgWarp img{transition:all 0.3s ease;}
+
+section.order_pay ul.pay li i.pay{transition:all 0.4s ease;}
+
+section.order_pay ul.pay li i.pay b{transition:all 0.2s ease;}
+
+section.address_list ul.add_list li{transition:all 0.4s ease;}
+
+section.address_list ul.add_list li i.upd{transition:all 0.4s ease;}
+
+section.address_add ul.add_add{transition:height 0.4s ease;}
+
+section.recharge ul li b{transition:all 0.2s ease;}
+
+section.recharge ul li b i{transition:all 0.2s ease;}
+
+section.coupon ul li{transition:all 0.3s ease;}
+
+section.coupon ul li>b{transition:all 0.2s ease;}
+section.coupon ul li>b i{transition:all 0.2s ease;}
+
+
+
+
+
+

@@ -1,0 +1,138 @@
+﻿@using AiJiaXi.Domain.Enums
+@model AiJiaXi.Domain.Entities.Orders.OrderItem
+
+@{
+    ViewBag.Title = "产品管理";
+    ViewBag.Top = "产品管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Products", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ItemClassId)
+
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">产品名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "产品名称" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Thumbnail" class="col-sm-2 control-label">产品展示</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Desc, new { @class = "form-control"})
+            </div>
+        </div>
+
+        if (Model != null && !string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <div class="form-group">
+                <label for="ImageUrl" class="col-sm-2 control-label">当前产品图标</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.ImageUrl" alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="c_icon" class="col-sm-2 control-label">产品图标</label>
+            <div class="col-sm-4">
+                <input id="c_icon" name="c_icon" data-show-upload="false" class="file" type="file" data-min-file-count="0">
+            </div>
+        </div>
+
+        if (Model != null && !string.IsNullOrWhiteSpace(Model.HoverImageUrl))
+        {
+            <div class="form-group">
+                <label for="HoverImageUrl" class="col-sm-2 control-label">当前产品图标(hover)</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.HoverImageUrl" alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="c_icon_hover" class="col-sm-2 control-label">产品图标(hover)</label>
+            <div class="col-sm-4">
+                <input id="c_icon_hover" name="c_icon_hover" class="file" data-show-upload="false" type="file" data-min-file-count="0">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Price" class="col-sm-2 control-label">产品价格</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Price, new {@class = "form-control", placeholder = "产品价格" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Nums" class="col-sm-2 control-label">产品数量</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Nums, new {@class = "form-control", placeholder = "产品数量"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Nums" class="col-sm-2 control-label">洗地周期</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Nums, new { @class = "form-control", placeholder = "洗地周期" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="ClientEventType" class="col-sm-2 control-label">活动专用（类型）</label>
+            <div class="col-sm-4">
+                <select id="ClientEventType" name="ClientEventType" class="multi_select">
+                    @foreach (var item in Enum.GetValues(typeof(AiJiaXi.Domain.Enums.ClientEventType)))
+                    {
+                        if (Model != null && Model.ClientEventType == (AiJiaXi.Domain.Enums.ClientEventType)item)
+                        {
+                            <option value="@item.ToString()" selected="selected">@item.GetDescription()</option>
+                        }
+                        else
+                        {
+                            <option value="@item.ToString()">@item.GetDescription()</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="c_icon_hover" class="col-sm-2 control-label">是否显示</label>
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.IsValid, new Dictionary<string, object>() { { "class", "form-control" }, { "data-on-text", "显示" }, { "data-off-text", "不显示" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="c_icon_hover" class="col-sm-2 control-label">排序序号</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Order, new { @class = "form-control", type = "number" })
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+<script src="~/Scripts/laydate/laydate.js"></script>
+<script>
+        $('input[type=checkbox]').bootstrapSwitch();
+        $('.file').fileinput({
+            language: 'zh',
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+</script>
+}

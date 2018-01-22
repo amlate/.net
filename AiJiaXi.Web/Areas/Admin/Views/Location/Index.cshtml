@@ -1,0 +1,35 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model System.Tuple<System.Collections.Generic.IEnumerable<AiJiaXi.Domain.Entities.Location.Province>,System.Collections.Generic.IEnumerable<AiJiaXi.Domain.Entities.Location.County>>
+
+@{
+    ViewBag.Title = "已开通区域查看";
+    ViewBag.Top = "已开通区域查看";
+    ViewBag.Second = "已开通区域查看";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div style="padding-left: 15px;">
+            @using (Ajax.BeginForm("LocationSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                <div class="form-group">
+                    @Html.DropDownList("province", (IEnumerable<SelectListItem>)ViewBag.Provinces, "全部地区", new Dictionary<string, object>() { { "class", "selectpicker show-tick form-control" }, { "data-live-search", "true" } })
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_LocationSearchResult", Model)
+</div>
+@section Scripts
+{
+    <script>
+        $(function () {
+            $('select').change(function() {
+                $('#searchForm').submit();
+            });
+        })
+    </script>
+}

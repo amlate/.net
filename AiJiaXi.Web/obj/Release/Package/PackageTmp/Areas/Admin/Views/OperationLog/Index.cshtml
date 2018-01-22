@@ -1,0 +1,16 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Logs.OperationLog>
+
+@{
+    ViewBag.Title = "操作日志";
+    ViewBag.Top = "操作日志";
+    ViewBag.Second = "操作日志查看";
+}
+
+<div id="datatable">
+    @Html.Partial("_OperationLogSearchResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+}

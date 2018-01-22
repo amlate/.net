@@ -1,0 +1,137 @@
+﻿@using AiJiaXi.Domain.Entities.IdentityModel
+@using AiJiaXi.Domain.Enums
+@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser
+
+@{
+    ViewBag.Title = "管理员管理";
+    ViewBag.Top = "管理员管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Admin", FormMethod.Post, new {@class = "form-horizontal"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.UserType)
+
+        <div class="form-group"></div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2">
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="UserName" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.UserName, new {@class = "form-control", placeholder = "用户名"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="RealName" class="col-sm-2 control-label">真实姓名</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.RealName, new {@class = "form-control", placeholder = "真实姓名"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber" class="col-sm-2 control-label">移动电话</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.PhoneNumber, new {@class = "form-control", placeholder = "移动电话"})
+                @if (Model.UserType == UserType.Withdrawals)
+                {
+                    <p class="text-danger">当角色为【推广员】时，请准确填写推广员提供的号码！</p>
+                }
+             </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Email, new {@class = "form-control", placeholder = "请输入Email"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Dept" class="col-sm-2 control-label">部门</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Dept, new {@class = "form-control", placeholder = "部门"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Position" class="col-sm-2 control-label">职位</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Position, new {@class = "form-control", placeholder = "职位"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Role" class="col-sm-2 control-label">角色</label>
+            <div class="col-sm-4">
+                <select id="role" name="role" class="multi_select">
+
+                    @{
+                        var selectList = ViewBag.Roles as List<ApplicationRole>;
+                    }
+                    @if (selectList != null)
+                    {
+                        foreach (var item in selectList)
+                        {
+                            if (Model.Roles.Select(r => r.RoleId).Contains(item.Id))
+                            {
+                                <option value="@item.Name" selected="selected">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Name">@item.Name</option>
+                            }
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        if(Model.UserType == UserType.Agency)
+        {
+            <div class="form-group">
+                <label for="AgencyId" class="col-sm-2 control-label">所属代理商</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(model => model.AgencyId, ViewBag.Agencies as SelectList, new { @class = "multi_select" })
+                </div>
+            </div>
+        }
+
+        if (Model.UserType == UserType.Washers)
+        {
+            <div class="form-group">
+                <label for="Remark" class="col-sm-2 control-label">负责区域</label>
+                <div class="col-sm-4">
+                    @Html.DropDownList("Remark", ViewBag.Agencies as SelectList, new { @class = "multi_select", multiple= "multiple" })
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <label for="Remark" class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Remark, new { @class = "form-control", placeholder = "备注" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

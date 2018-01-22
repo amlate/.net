@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    var CartItem = ViewBag.CartItem as List<AiJiaXi.Domain.Entities.Orders.CartItem>;
+}
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>洗涤展示</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+
+    <link rel="stylesheet" href="~/front_css/reset.css" type="text/css">
+    <link rel="stylesheet" href="~/front_css/main.css" type="text/css">
+    <link rel="stylesheet" href="~/front_css/transition.css" type="text/css">
+    <link rel="stylesheet" href="~/front_css/timer.css" type="text/css">
+    <script type="text/javascript" src="~/Scripts/front_js/jquery-1.js"></script>
+    <script type="text/javascript" src="~/Scripts/front_js/store.js"></script>
+    <script type="text/javascript" src="~/Scripts/front_js/fastclick.js"></script>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+//store('pageName','space');
+var ajaxData = new Array();
+    </script>
+</head>
+<!--主体部分-->
+<body>
+    <!---- 个人信息 ----->
+    <section class="space">
+        <header class="reback"><span class="left back"></i>洗涤展示</span></header>
+        <div class="video">
+
+            <video src="/video/baixime.mp4" controls="controls" width="100%" >
+                您的浏览器不支持video标签  
+            </video>
+
+            @*<img src="~/video/ServiceFlow.jpg" width="100%" />*@
+        </div>
+        <div class="arc1">
+            白洗么引进隧道式洗衣龙以及纳米干洗设备，包括干洗机，烘干机，烫平机、折叠机、展布机、穿梭机等，为客户降低消费成本，提高整体生产能力，加快生产效率。隧道式洗衣龙，内置100种洗涤程序可自由编程，独立外置电脑自动控制，触摸式超大屏幕液晶显示，全中文人机对话界面，实现送洗、初洗、洗涤、消毒、过清、漂白、脱水、压干、熨烫、整理等流程;自动蒸汽加热干衣机，在多个环节对衣物进行360度全方位的蒸汽消毒，有效清除残留细菌。
+        </div>
+        <footer class="fpic">
+            <div class="fpic1"><i></i></div>
+        </footer>
+    </section>
+    <!----- 个人信息结束 ----->
+    <script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+</body>
+</html>

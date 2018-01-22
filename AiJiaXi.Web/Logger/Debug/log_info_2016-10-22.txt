@@ -1,0 +1,101 @@
+[18:50:37] - [Debug] - [AiJiaXi.Web.Controllers.BaiximeController+<Index>d__11.MoveNext]
+Index_OpenId:
+
+[18:50:37] - [Debug] - [AiJiaXi.Web.Controllers.BaiximeController+<Index>d__11.MoveNext]
+Index_165:
+
+[18:51:03] - [Debug] - [AiJiaXi.Common.Helpers.SmsHelper+<Send>d__0.MoveNext]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9125</remainpoint>
+    <taskID>1610224251059366</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[18:53:08] - [Debug] - [AiJiaXi.Common.Helpers.SmsHelper+<Send>d__0.MoveNext]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9124</remainpoint>
+    <taskID>1610224253100798</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[18:57:30] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:
+
+[18:57:32] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[18:59:52] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:
+
+[18:59:54] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[19:00:45] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9123</remainpoint>
+    <taskID>1610224300476373</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[19:05:31] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[19:05:31] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[19:05:43] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9122</remainpoint>
+    <taskID>1610224305450470</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[19:06:12] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：0000010025
+
+[19:06:22] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+entity.UserAccount：
+
+[19:06:27] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+保存错误：
+
+[19:10:08] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 AiJiaXi.Web.Controllers.FrontPageController.<AddUser>d__35.MoveNext() 位置 F:\aijiaxi\trunk\AiJiaXi\AiJiaXi.Web\Controllers\FrontPageController.cs:行号 705
+
+[19:11:03] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[19:11:03] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[19:15:44] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：0000010026
+
+[19:16:24] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+entity.UserAccount：
+
+[19:16:29] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+保存错误：
+
+[19:17:55] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+CardNumberNew：0000010027
+
+[19:17:55] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+entity.UserAccount：
+
+[19:17:55] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+保存错误：
+

@@ -1,0 +1,90 @@
+﻿@using AiJiaXi.Domain.Enums
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.Order>
+
+@{
+    ViewBag.Title = "订单管理";
+    ViewBag.Top = "订单管理";
+    ViewBag.Second = "退款订单";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-default btn-sm" data-toggle="modal" data-type="batch" data-url="@Url.Action("Batch", "Orders")" data-ordername="订单批量管理" data-target="#OrderModal" style="margin-left: 10px; margin-bottom: 10px">
+                <i class="fa fa-cogs" aria-hidden="true"></i>&nbsp; 批量管理订单
+            </a>
+        </div>
+        <div class="pull-right" style="padding-right: 15px;">
+            @using (Ajax.BeginForm("OrderRefundSearchPost", new RouteValueDictionary { { "id", "" } }, new AjaxOptions { UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new RouteValueDictionary { { "id", "searchForm" }, { "class", "form-inline" } }))
+            {
+                if (!(bool)ViewBag.IsAgency)
+                {
+                    <div class="form-group">
+                        <label class="sr-only" for="agency">代理商</label>
+                        @Html.DropDownList("agency", (IEnumerable<SelectListItem>)ViewBag.Agencies, "全部", new Dictionary<string, object>() { { "class", "selectpicker show-tick form-control" }, { "data-live-search", "true" } })
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="sr-only" for="status">代理商</label>
+                    <select id="status" name="status" class='selectpicker show-tick form-control' data-live-search="true">
+                        <option value="-1" selected="selected">全部</option>
+                        @foreach (var item in Enum.GetValues(typeof(OrderStatus)))
+                        {
+                            var s = (int)item;
+                            if (s >= 1 && s <= 6)
+                            {
+                                <option value="@item">@item.GetDescription()</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="sr-only" for="orderNo">订单编号</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">订单编号</div>
+                        <input type="text" class="form-control" id="orderNo" name="orderNo" placeholder="订单编号">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span class="fa  fa-search" aria-hidden="true"></span> 搜索
+                </button>
+            }
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_OrderRefundSearchResult", Model)
+</div>
+@Html.Partial("_OrderModal")
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+
+    <script>
+        $('.form_datetime').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 1
+        });
+
+        $('#OrderModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var url = button.data('url'); // Extract info from data-* attributes
+            var ordername = button.data('ordername'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            $('#order_content').load(url);
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('.modal-title').text(ordername);
+        });
+    </script>
+}

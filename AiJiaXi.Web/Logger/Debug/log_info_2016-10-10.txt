@@ -1,0 +1,62 @@
+[20:13:57] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[20:13:57] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[20:58:23] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[20:58:23] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[20:58:30] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[20:58:30] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[20:59:29] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9256</remainpoint>
+    <taskID>1610104459592564</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[21:03:20] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:03:20] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:08:59] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:08:59] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:09:34] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+<?xml version="1.0" encoding="utf-8" ?>
+<returnsms>
+    <returnstatus>Success</returnstatus>
+    <message>操作成功</message>
+    <remainpoint>9251</remainpoint>
+    <taskID>1610104510041366</taskID>
+    <successCounts>1</successCounts>
+</returnsms>
+
+[21:11:57] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:11:57] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+
+[21:15:45] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_OpenId:oFZzeshY4KsD1tKYdBFs9csUA95Y
+
+[21:15:45] - [Debug] - [AiJiaXi.Common.NLogger.Debug]
+Index_165:
+

@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+@model AiJiaXi.Domain.Entities.Orders.Order
+<head>
+    <title>支付订单</title>
+    <!--<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5788146" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>-->
+    <script>
+        
+        store('countyId', '@ViewBag.CountyId');//设置当前首页选中的区域ID
+        store('pageName', 'order_pay');
+        var ajaxData = new Array();
+    </script>
+</head>
+<section class="order_pay">
+    <header class="reback"><span class="left back"><i class="icon back"></i>支付</span><i class="icon home"></i></header>
+    <input id="orderId" value="@Model.OrderNo" type="hidden" data-openid="@ViewBag.user.OpenId">
+    <input id="payType" value="alipay" type="hidden">
+    <ul class="info">
+        <li class="flashLeft flashShow" flash-step="100">洗涤数量<span>@Model.CartItems.Count 件</span></li>
+        <li class="flashLeft flashShow" flash-step="200">洗涤金额<span>@Model.TotalPrice 元</span></li>
+        <li class="flashLeft flashShow" flash-step="300">运费<b style="display:none"></b><span>@Model.Freight 元</span></li>  
+    @{ 
+        string voucherAmount = Model.Voucher != null ? Model.Voucher.Amount.ToString() : "0";
+    }
+           <li class="flashLeft flashShow" flash-step="400">洗衣优惠券<span>@voucherAmount 元</span></li>
+        <li class="flashLeft flashShow" flash-step="500">订单金额<span class="g">@Model.Fact 元</span></li>
+    </ul>
+    <p class="title flashUp flashShow" flash-step="600"><span>选择支付方式</span></p>
+    <ul class="pay flashUp flashShow" flash-step="800">
+        <li><i class="icon l pay_yue" data-type="balance"></i>余额支付<span>余额 @ViewBag.user.Balance 元 <a class="pageTurn" data-url="/frontpage/recharge?openid=@ViewBag.user.OpenId" href="javascript:;">充值</a></span><i class="pay"><b></b></i></li>
+        <li><i class="icon l pay_weixin" data-type="wechat"></i>微信支付<i class="pay"><b></b></i></li>
+        @*<li><i class="icon l pay_other" data-type="other"></i>线下支付<i class="pay"><b></b></i></li>*@
+    </ul>
+    <div class="clear grey flashUp flashShow" flash-step="800"></div>
+    <footer class="order_pay flashUp flashShow" flash-step="900">
+        <div id="submit" class="btn gre2">立 即 支 付</div>
+    </footer>
+</section>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/order_pay.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Order.init_page();
+    });
+</script>

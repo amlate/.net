@@ -1,0 +1,48 @@
+﻿@using AiJiaXi.Domain.Enums
+@model System.Collections.Generic.List<AiJiaXi.Domain.Entities.UserProfile.UserAddress>
+
+@{
+    ViewBag.Title = "会员地址管理";
+    ViewBag.Top = "会员地址管理";
+    ViewBag.Second = "会员地址列表";
+}
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="text-center">
+            联系人
+        </th>
+        <th class="text-center">
+            性别
+        </th>
+        <th class="text-center">
+            联系电话
+        </th>
+        <th class="text-center">
+            详细地址
+        </th>
+        <th class="text-center">
+            是否为默认收货地址
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @item.Gender.GetDescription()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPhoneNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Addr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Note)
+            </td>
+        </tr>
+    }
+</table>

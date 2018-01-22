@@ -1,0 +1,157 @@
+﻿@{
+    Layout = null;
+}
+@model AiJiaXi.Domain.Entities.Orders.Order
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>我的</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0"> 
+    <link rel="stylesheet" href="/front_css/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="/front_css/main.css" type="text/css">
+    <link rel="stylesheet" href="/front_css/transition.css" type="text/css">
+    <link rel="stylesheet" href="/front_css/timer.css" type="text/css">
+    <script type="text/javascript" src="/Scripts/front_js/jquery-1.js"></script>
+    <script type="text/javascript" src="/Scripts/front_js/store.js"></script>
+    <script type="text/javascript" src="/Scripts/front_js/fastclick.js"></script>
+    @*<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>*@  
+    <script>
+       
+        //store('cityId','1');//设置当前首页选中的区域ID
+        store('pageName','order_list');
+        var ajaxData = new Array();
+    </script>
+</head>
+<!--主体部分-->
+<body>
+    <section class="order_list">
+        <header class="reback"><span class="left back"><i class="icon back"></i>订单</span><i class="icon home"></i></header>
+        @*<nav>
+            <span class="sel">待支付</span>
+            <span class="">服务中</span>
+            <span class="">已完成</span>
+            <i><b><i class="icon order_nav"></i></b></i>
+        </nav>*@
+        <section class="comment">
+            <section class="all-content">
+                <span class="pj">总体评价</span>
+                <span class="star" data-value="1"></span>
+                <span class="star" data-value="2"></span>
+                <span class="star" data-value="3"></span>
+                <span class="star" data-value="4"></span>
+                <span class="star" data-value="5"></span>
+            </section>
+            <section class="textarea">
+                @{
+                    string coment = Model.OrderRate == null ? "" : Model.OrderRate.OrderComment;
+                }
+                <textarea id="writeContent" placeholder="说说哪里满意，帮大家选择">@coment</textarea>
+            </section>
+        </section>
+        <section class="photolist">
+            @{
+                if (Model.OrderRate != null)
+                {
+                    string[] picList = Model.OrderRate.ShareOrderImgUrls.Split(',');
+                    foreach (var item in picList)
+                    {
+
+                        if (!string.IsNullOrEmpty(item))
+                        {
+                            <span><img src="@item" width="100%" height="100%" /></span>
+                        }
+
+                    }
+                }
+            }
+            @*<span><img src="images/icons/photo.png" width="100%" height="100%" /></span><span><img src="images/icons/photo.png" width="100%" height="100%" /></span><span><img src="images/icons/photo.png" width="100%" height="100%" /></span>*@
+        </section>
+
+        <section class="photo">
+            <form id="form" action="/frontpage/ordergrade" method="post" enctype="multipart/form-data" data-ajax="false">
+                <input type="file" name="pic" id="fileField" multiple="multiple"/>
+                <input type="hidden" name="starts" id="start" value="5"/>
+                <input type="hidden" name="orderId" value="@Model.OrderNo"/>
+                <input type="hidden" name="content" id="content"/>
+                <input type="hidden" name="openid" value="@ViewBag.userInfo.ApplicationUser.OpenId"/>
+                @*<input type="submit" name="submit" class="btn" value="上传" />*@
+            </form>
+        </section>
+@{
+    if (Model.OrderRate == null)
+    {
+        <section class="tj">
+            <a href="javascript:void(0);" class="sub">提交评价</a>
+        </section>
+    }
+}
+    </section>
+
+
+
+@*<script type="text/javascript" src="js/mynormal.js"></script>
+    <script type="text/javascript" src="js/order_list.js"></script>
+    <script type="text/javascript" src="js/order_info.js"></script>*@
+
+
+<script type="text/javascript">
+    $(function() {
+        GoBack();
+        @{
+            string isRate = "0";
+            float startCount = 5;
+            if (@Model.OrderRate!=null)
+            {
+                isRate = "1";
+               startCount=  @Model.OrderRate.Stars;
+            }
+        }
+        ChangeColor(@startCount);
+        if (@isRate == 0) {
+            $(".sub").bind("click", function() {
+                $("#content").val($("#writeContent").val());
+                $("#form").submit();
+            });
+            ForStart();
+            $(".photolist").hide();
+        } else {
+            $(".photo").hide();
+        }
+    });
+
+    function ForStart() {
+        $(".all-content .star").each(function() {
+            $(this).bind("click", function() {
+                var count = $(this).attr("data-value");
+                $("#start").val(count);
+                ChangeColor(count);
+            });
+        });
+    }
+
+    function ChangeColor(count) {
+        var spanList = $(".all-content span");
+        for (var i = 1; i < spanList.length; i++) {
+            if (i <= count) {
+                $(spanList[i]).attr("class", "star");
+            } else {
+                $(spanList[i]).attr("class", "star_w");
+            }
+        }
+    }
+
+    function GoBack() {
+        $("header i.icon.back").bind("click",function() {
+            history.go(-1);
+        });
+    }
+
+</script>
+</body>
+</html>

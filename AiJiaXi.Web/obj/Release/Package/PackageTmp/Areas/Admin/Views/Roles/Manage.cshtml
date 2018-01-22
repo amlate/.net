@@ -1,0 +1,35 @@
+﻿@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationRole
+
+@{
+    ViewBag.Title = "角色管理";
+    ViewBag.Top = "角色管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "Roles", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">角色名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "角色名称" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Description" class="col-sm-2 control-label">角色描述</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder = "角色描述" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+

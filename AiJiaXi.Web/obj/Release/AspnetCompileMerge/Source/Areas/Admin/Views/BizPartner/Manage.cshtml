@@ -1,0 +1,95 @@
+﻿@model AiJiaXi.Domain.Entities.BizPartner
+
+@{
+    ViewBag.Title = "合作伙伴管理";
+    ViewBag.Top = "合作伙伴管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "BizPartner", FormMethod.Post, new {@class = "form-horizontal", enctype = "multipart/form-data"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">合作伙伴名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "合作伙伴名称"})
+            </div>
+        </div>
+
+        if (Model != null && !string.IsNullOrWhiteSpace(Model.ThumbNail))
+        {
+            <div class="form-group">
+                <label for="Thumbnail" class="col-sm-2 control-label">当前合作伙伴Logo缩略图</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.ThumbNail" alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+
+        <div class="form-group">
+            <label for="Thumbnail" class="col-sm-2 control-label">合作伙伴Logo缩略图</label>
+            <div class="col-sm-4">
+                <input id="b_thumbnail" name="b_thumbnail"data-show-upload="false" class="file" type="file" data-min-file-count="0">
+            </div>
+        </div>
+
+        if (Model != null && Model.ImageEntity != null && !string.IsNullOrWhiteSpace(Model.ImageEntity.ImgUrl))
+        {
+            <div class="form-group">
+                <label for="Thumbnail" class="col-sm-2 control-label">当前合作伙伴Logo图片</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.ImageEntity.ImgUrl"  alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="b_image" class="col-sm-2 control-label">合作伙伴展示图</label>
+            <div class="col-sm-4">
+                <input id="b_image" name="b_image" class="file"data-show-upload="false" type="file" data-min-file-count="0">
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <label for="Desc" class="col-sm-2 control-label">合作伙伴展示</label>
+            <div class="col-sm-8">
+                @if (string.IsNullOrWhiteSpace(Model.Desc))
+                {
+                    @Html.TextAreaFor(model => model.Desc, new { @class = "summernote", title = "Content" })
+                }
+                else
+                {
+                    <textarea id="Desc" name="Desc" class="summernote" title="Content">
+                        @Html.Raw(Model.Desc)
+                    </textarea>
+                }
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts{
+    <script>
+        $('.file').fileinput({
+            language: 'zh',
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+
+        $(function () {
+            $('.summernote').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+}

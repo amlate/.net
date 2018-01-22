@@ -1,0 +1,103 @@
+﻿@model AiJiaXi.Domain.Entities.Orders.EventPrize
+
+@{
+    ViewBag.Title = "优惠券管理";
+
+    ViewBag.Top = "优惠券管理";
+}
+
+<div class="container">
+    @using (Html.BeginForm("Manage", "EventPrizes", FormMethod.Post, new {@class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group"></div>
+
+        <div class="form-group">
+            <label for="agency" class="col-sm-2 control-label">奖品所属活动</label>
+            <div class="col-sm-4">
+                @Html.DropDownListFor(model => model.EventId, (IEnumerable<SelectListItem>) ViewBag.Events, new Dictionary<string, object>() {{"class", "selectpicker show-tick form-control"}, {"data-live-search", "true"}})
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="Name" class="col-sm-2 control-label">名称</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Name, new {@class = "form-control", placeholder = "名称" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <label for="Desc" class="col-sm-2 control-label">描述</label>
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.Desc, new { @class = "summernote", title = "Content" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <label for="nums" class="col-sm-2 control-label">权重系数</label>
+            <div class="col-sm-4">
+                @Html.TextBoxFor(model => model.Weight, new {@class = "form-control", placeholder = "权重系数"})
+            </div>
+            <div class="col-sm-4">
+                <p class="text-danger">填写数字，越大则该奖品中奖几率越大</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="nums" class="col-sm-2 control-label">奖品数量</label>
+            <div class="col-sm-4">
+                <input type="text" id="nums" name="nums" class="form-control" placeholder="奖品数量"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="c_icon_hover" class="col-sm-2 control-label">是否记录</label>
+            <div class="col-sm-4">
+                @Html.CheckBoxFor(model => model.IsLog, new Dictionary<string, object>() { { "class", "form-control" }, { "data-on-text", "记录" }, { "data-off-text", "不记录" } })
+            </div>
+        </div>
+        @*if (Model != null && !string.IsNullOrWhiteSpace(Model.Images))
+        {
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">当前图片</label>
+                <div class="col-sm-4">
+                    <img src="/Upload/@Model.Images" alt="..." class="img-rounded">
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <label for="prize_img" class="col-sm-2 control-label">奖品图片</label>
+            <div class="col-sm-4">
+                <input id="prize_img" name="prize_img" class="file" data-show-upload="false" type="file" data-min-file-count="0">
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">保 存</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/laydate/laydate.js"></script>
+    <script>
+        $('.file').fileinput({
+            language: 'zh',
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+
+        $(function () {
+            $('.summernote').summernote({
+                height: 200,
+                tabsize: 2,
+                lang: 'zh-CN'
+            });
+        });
+    </script>
+}

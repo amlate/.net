@@ -1,0 +1,26 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.EventPrize>
+
+@{
+    ViewBag.Title = "活动管理";
+    ViewBag.Top = "活动管理";
+    ViewBag.Second = "奖品设置";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <a class="btn btn-default btn-sm" href="@Url.Action("Manage")" style="margin-left: 10px; margin-bottom: 10px">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> 新增
+            </a>
+        </div>
+    </div>
+    <div class="row" style="height: 5px;"></div>
+</div>
+
+<div id="datatable">
+    @Html.Partial("_EventPrizesResult", Model)
+</div>
+@section scripts
+{
+    @{Html.RegisterMvcPagerScriptResource();}
+}

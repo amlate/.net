@@ -1,0 +1,175 @@
+﻿@{
+    Layout = "~/Views/Shared/_FrontLayout.cshtml";
+}
+@using AiJiaXi.Domain.Enums
+@model AiJiaXi.Domain.Entities.UserProfile.UserAccount
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+
+    store('countyId', '@ViewBag.countyId');//设置当前首页选中的区域ID
+    store('pageName', 'recharge');
+    var ajaxData = new Array();
+</script>
+<section class="recharge">
+    <header class="reback"><span class="left back"><i class="icon back"></i>充值</span><i class="icon home"></i></header>
+    <input id="payType" value="alipay" type="hidden">
+    <input id="chargeNum" value="50" type="hidden">
+    <input id="userid" value="@Model.Id" type="hidden">
+    <input id="openid" value="@Model.ApplicationUser.OpenId" type="hidden">
+    <div class="yue">
+        <p style="display:none"><img src="images/chongzhi.png"></p>
+        <div class="info"><b><i class="icon menu_yue"></i></b>我的账户余额<span>@Model.Balance 元</span></div>
+    </div>
+    <div class="selMoney">
+        <span>充值</span><i class="icon lt"></i>
+    </div>
+    <p class="title"><span>我的余额使用记录</span></p>
+    <ul class="usedRecord">
+        @{
+            foreach (var item in ViewBag.ConsumeList)
+            {
+                <li>
+                    <i>@EnumExtensions.GetDescription(item.TradeType)</i> <i>@item.TradeMoney</i><br>
+                    <i>@item.RiseTime</i>
+                </li>
+            }
+        }
+    </ul>
+    <div class="clear" style="height:48px;"></div>
+    <footer class="space">
+        <div class="btn gre2 callTel"><i class="icon kefu"></i>联系客服</div>
+    </footer>
+</section>
+<section class="recharge_choose">
+    <header class="reback"><span class="left back"><i class="icon back"></i>充值</span><i class="icon home"></i></header>
+    @*<div id="assetChangeBox" class="change">
+        <input maxlength="35" placeholder="输入已有券码" type="text">
+        <div class="btn grey">验 证</div>
+        <div class="msg"><img src="images/order_success.png">恭喜您验证成功<br><br></div>
+    </div>*@
+    <p class="title"><span class="cz_msg">选择充值金额</span></p>
+    <ul class="money">
+        <li data-num="50">50<span>( 送10元礼品 )</span><b class="sel"><i class="round"></i></b></li>
+        <li data-num="100">100<span>( 送50元 )</span><b><i class="round"></i></b></li>
+        <li data-num="200">200<span>( 送150元 )</span><b><i class="round"></i></b></li>
+        <li data-num="500">500<span>( 送400元 )</span><b><i class="round"></i></b></li>
+        <li data-num="1000">1000<span>( 送10元礼品 )</span><b><i class="round"></i></b></li>
+        <li data-num="2000">2000<span>( 送50元 )</span><b><i class="round"></i></b></li>
+        <li data-num="5000">5000<span>( 送150元 )</span><b><i class="round"></i></b></li>
+        <li data-num="10000">10000<span>( 送400元 )</span><b><i class="round"></i></b></li>
+    </ul>
+    <span class="xieyi"><b class="checkbox sel"><i class="icon checkbox"></i></b>我已同意 《<a id="xieyi">白洗么用户充值协议</a>》</span>
+    <footer class="space">
+        <div class="btn gre2">提交订单</div>
+    </footer>
+</section>
+<!-- style="display:block;left:0;" -->
+<section class="recharge_pay">
+    <header class="reback"><span class="left back"><i class="icon back"></i>支付</span><i class="icon home"></i></header>
+    <div class="pay_money">
+        <span class="fl">支付金额</span>
+        <span id="chargeNumShow" class="fr">50元</span>
+    </div>
+    <p class="title"  style="display:none"><span>选择支付方式</span></p>
+    <ul class="pay"  style="display:none">
+        <li data-type="alipay"  style="display:none"><i class="icon l pay_zhifu"></i>支付宝支付<b class="sel"><i class="round"></i></b></li>
+        <li data-type="wechat"><i class="icon l pay_weixin"></i>微信支付<b><i class="round"></i></b></li>
+        <li style="display:none"><i class="icon l pay_other"></i>其他支付方式<i class="icon add"></i></li>
+    </ul>
+    <footer class="recharge">
+        <div id="submit" class="btn gre2">立 即 支 付</div>
+    </footer>
+</section>
+<style>
+    section.recharge_xieyi div h3 {
+        color: #0269b6;
+        min-height: 32px;
+        line-height: 32px;
+        margin: 18px 0;
+        padding: 0 14px;
+        font-size: 18px;
+    }
+
+    section.recharge_xieyi div p {
+        color: #0269b6;
+        min-height: 32px;
+        line-height: 32px;
+        margin: 8px 0;
+        padding: 0 14px;
+    }
+
+    section.recharge_xieyi div span {
+        color: #545454;
+        line-height: 24px;
+        padding: 0 14px;
+        display: block;
+        text-indent: 2em;
+    }
+</style>
+<section class="recharge_xieyi news">
+    <header class="reback"><span class="left back"><i class="icon back"></i>充值</span><i class="icon home"></i><i class="icon home"></i></header>
+    <div>
+        <h3>白洗么充值用户协议</h3>
+        <p>1.特别提示</p>
+        <span>
+            白洗么的所有服务均由大连艾佳洗网络科技发展有限公司基于以下服务条款及使用条件而提供（以下称“白洗么”），白洗么同意按照本协议的规定 及其不时发布的操作规则提供基于互联网的点，卡充值服务(以下称“充值服务”)，包括为获得充值服务，服务使用人(以下称“用户”)同意本协议的全部条款 并按照页面上的提示完成全部的充值程序。
+        </span><span>
+            用户在进行充值程序过程中点击“同意”按钮即表示用户完全接受本协议项下的全部条款。
+            这些条款可由白洗么随时更新，本服务协议一旦发生变动，白洗么将会在相关的页面上提示修改内容。修改后的服务协议一旦在页面上公布即有效代替原来的服务协
+            议。用户可随时造访白洗么平台充值付费页面查阅最新充值用户协议。
+        </span><span>用户在使用白洗么提供的各项服务之前，应仔细阅读本服务协议，如用户不同意本充值用户协议及/或随时对其的修改，请停止使用白洗么提供的服务。</span>
+        <p>2.服务内容</p>
+        <span>2.1 白洗么充值服务的具体内容由白洗么根据实际情况提供。白洗么保留随时变更、中断或终止部分或全部网络服务的权利。</span>
+        <span>2.2 白洗么在提供取送服务时，可能会对部分服务范围的用户收取一定的费用。在此情况下，白洗么会在相关页面上做明确的提示。如用户不同意支付该等费用，则可不接受相关的服务。</span>
+        <p>3.使用规则</p>
+        <span>
+            3.1
+            用户必须采用白洗么所指定的充值方式进行充值，可供充值方式包括：实物卡、微信支付、支付宝支付及其他白洗么指定的方式，以增加用户账户所有的虚拟货币的
+            数量。若使用非白洗么所指定的充值系统进行充值，或以非法的方式进行充值而造成用户权益受损时，不得因此要求白洗么作任何补偿或赔偿，白洗么也保留随时终
+            止其账户资格及使用各项充值服务的权利。
+        </span>
+        <span>3.2用户充值一旦成功，充值即确定完成，白洗么将不提供任何更改、修正服务。用户不得向白洗么要求退还充值金额，除非产品本身无法使用。若发生异议用户可通过客服热线查询处理。</span>
+        <span>3.3 在使用白洗么充值系统时，用户必须仔细确认自己的账号，若因为用户自身输入账号错误、操作不当或不了解充值计费方式等因素造成充错账号、错选充值金额等情形而损害自身权益，不得因此要求白洗么作任何补偿或赔偿。</span>
+        <span>3.4 若因用户违返白洗么用户协议条款或本充值协议，白洗么因此冻结账号及终止账号使用资格者，不得因此要求白洗么作任何补偿或赔偿。</span>
+        <span>3.5 使用白洗么充值卡进行充值后，必须保留充值成功凭证至有效期期限结束为止，以作为今后发生问题核对依据凭证。若因为未保存充值凭证而造成用户受损时，不得因此要求白洗么作任何补偿或赔偿。</span>
+        <span>3.6 若因白洗么充值系统原因造成用户充值失实，在白洗么恢复、存有有效数据和用户提供合法有效凭证的情况下，白洗么将根据用户充值情况作出变动措施：</span>
+        <span>3.6.1 因充值系统原因，造成系统充值额小于用户实际充值额的，白洗么予以补其差额；</span>
+        <span>3.6.2 因充值系统原因，造成系统充值额大于用户实际充值额的，白洗么有权追回差额。</span>
+        <p>4.隐私保护</p>
+        <span>4.1 保护用户的隐私是白洗么的一项基本政策，白洗么保证不对外公开或向第三方 （4.2所列情况除外）提供用户注册资料及用户在使用服务时存储在白洗么的非公开内容，但下列情况除外：</span>
+        <span>(A) 事先获得用户的明确授权；</span>
+        <span>(B) 根据有关的法律法规要求；</span>
+        <span>(C) 按照相关政府主管部门的要求；</span>
+        <span>(D) 为维护社会公众的利益；</span>
+        <span>(E) 为维护白洗么的合法权益。</span>
+        <span>4.2 白洗么可能会与第三方合作向用户提供相关的服务，在此情况下，如该第三方同意承担与白洗么同等的保护用户隐私的责任，则白洗么可将用户的注册资料等提供给该第三方。</span>
+        <span>4.3在不透露单个用户隐私资料的前提下，白洗么有权对整个用户数据库进行技术分析并对已进行分析、整理后的用户数据库进行商业上的利用。 尽管白洗么对用户的隐私权保护做了极大的努力，但是仍然不能保证现有的安全技术措施使用户的技术信息等不受任何形式的损失。</span>
+        <p>5.免责声明</p>
+        <span>5.1白洗么充值系统不保证以下事宜：</span>
+        <span>(i) 本服务将符合您的要求</span>
+        <span>(ii) 本服务将不受干扰、及时提供、安全可靠或不会出错。</span>
+        <span>5.2用户明确同意其使用白洗么充值服务所存在的风险将完全由其自己承担；因其使用白洗么充值服务而产生的一切后果也由其自己承担，白洗么对用户不承担任何责任。</span>
+        <p>6.服务变更、中断或终止</p>
+        <span>6.1 如因系统维护或升级的需要而需暂停网络充值服务，白洗么将尽可能事先进行通告。</span>
+        <span>6.2 如发生下列任何一种情形，白洗么有权随时中断或终止向用户提供本协议项下的服务而无需通知用户：</span>
+        <span>(a) 用户提供的个人资料不真实；</span>
+        <span>(b) 用户违反本协议中规定的使用规则。</span>
+        <span>6.3 除前款所述情形外，白洗么同时保留在不事先通知用户的情况下随时中断或终止部分或全部充值服务的权利，对于充值服务的中断或终止而造成的任何损失，白洗么无需对用户或任何第三方承担任何责任。</span>
+        <p>7.违约赔偿</p>
+        <span>7.1 用户同意保障和维护白洗么及其他用户的利益，如因用户违反有关法律、法规或本协议项下的任何条款而给白洗么或任何其他第三人造成损失，用户同意承担由此造成的损害赔偿责任。</span>
+        <p>8.法律管辖</p>
+        <span>8.1 本协议的订立、执行和解释及争议的解决均应适用中国法律。</span>
+        <span>8.2 如双方就本协议内容或其执行发生任何争议，双方应尽量友好协商解决；协商不成时，任何一方均应向白洗么所在地的人民法院提起诉讼。</span>
+        <p>9.其他规定</p>
+        <span>9.1 本协议构成双方对本协议之约定事项及其他有关事宜的完整协议，除本协议规定的之外，未赋予本协议各方其他权利。</span>
+        <span>9.2 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。</span>
+        <span>9.3 本协议中的标题仅为方便而设，不具法律或契约效果。</span>
+    </div>
+</section>
+<script type="text/javascript" src="~/Scripts/front_js/mynormal.js"></script>
+<script type="text/javascript" src="~/Scripts/front_js/recharge.js"></script>
+<script type="text/javascript">
+	$(function(){
+		Recharge.init_page();
+	});
+</script>

@@ -1,0 +1,114 @@
+﻿@using AiJiaXi.Common.Helpers
+@using AiJiaXi.Domain.Enums
+@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.Orders.OrderItem>
+
+<table class="table table-bordered table-hover table-striped text-center">
+    <tr>
+        <th class="nowrap text-center">
+            序号
+        </th>
+        <th class="text-center">
+            名称
+        </th>
+        <th class="text-center">
+            产品描述
+        </th>
+        <th class="text-center">
+            图标
+        </th>
+        <th class="text-center">
+            图标（hover）
+        </th>
+        <th class="text-center">
+            价格
+        </th>
+        <th class="text-center">
+            包含物件数量
+        </th>
+        <th class="text-center">
+            所属类别
+        </th>
+        <th class="text-center">
+            洗涤周期
+        </th>
+        <th class="text-center">
+            下单次数
+        </th>
+        <th class="text-center">
+            活动专用（类型）
+        </th>
+        <th class="text-center">
+            添加时间
+        </th>
+        <th class="text-center">
+            添加用户
+        </th>
+        <th class="text-center">
+            修改时间
+        </th>
+        <th class="text-center">
+            修改用户
+        </th>
+        <th class="text-center">
+            操作
+        </th>
+    </tr>
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @(Model.StartItemIndex + i++)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoverImageUrl)
+            </td>
+            <td>
+                @(string.Format("￥{0}", item.Price))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nums) 件
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemClass.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Days) 天
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CartItems.Count)
+            </td>
+            <td>
+                @item.ClientEventType.GetDescription();
+            </td>
+            <td>
+                @item.AddTime.SimpleDateFull()
+            </td>
+            <td>
+                @item.AddUser
+            </td>
+            <td>
+                @(item.ModifyTime == null ? string.Empty : item.ModifyTime.Value.SimpleDateFull())
+            </td>
+            <td>
+                @item.ModifyUser
+            </td>
+            <td>
+                <a class="btn btn-default btn-xs" href="@Url.Action("Manage", "Products", new RouteValueDictionary() { {"id", item.Id}, { "ClassId", ViewBag.ClassId } })">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 编辑
+                </a>
+                @Ajax.ActionLink("删除", "Recycle", new { id = item.Id }, new AjaxOptions() { Confirm = "确认删除么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,38 @@
+﻿@model AiJiaXi.Domain.Entities.Configs.SmsConfig
+
+<div class="tab-pane active" id="sms-tab" style="margin-top: 15px">
+    <div class="form-group">
+        <label for="EntId" class="col-lg-2 control-label">企业Id（可空）</label>
+        <div class="col-lg-4">
+            @Html.TextBoxFor(model => model.EntId, new {@class = "form-control", placeholder = "企业Id"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Account" class="col-lg-2 control-label">短信接口账号</label>
+        <div class="col-lg-4">
+            @Html.TextBoxFor(model => model.Account, new {@class = "form-control", placeholder = "短信接口账号" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Password" class="col-lg-2 control-label">短信接口密码</label>
+        <div class="col-lg-4">
+            @Html.TextBoxFor(model => model.Password, new {@class = "form-control", placeholder = "短信接口密码" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ExtNo" class="col-lg-2 control-label">扩展编号（可空）</label>
+        <div class="col-lg-4">
+            @Html.TextBoxFor(model => model.ExtNo, new {@class = "form-control", placeholder = "扩展编号（可空）" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="SmsSendUrl" class="col-lg-2 control-label">短信接口地址</label>
+        <div class="col-lg-4">
+            @Html.TextBoxFor(model => model.SmsSendUrl, new {@class = "form-control", placeholder = "短信接口地址" })
+        </div>
+    </div>
+</div>
