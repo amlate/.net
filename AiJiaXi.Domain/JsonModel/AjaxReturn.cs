@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace AiJiaXi.Domain.JsonModel
+namespace Project.Domain.JsonModel
 {
     public class LoginReturn
     {

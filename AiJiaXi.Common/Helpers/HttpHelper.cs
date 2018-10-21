@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public static class HttpHelper
     {

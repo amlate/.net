@@ -5,19 +5,19 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain;
-using AiJiaXi.Domain.Entities.Configs;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Repositories.Impl;
+using Project.Common.Helpers;
+using Project.Domain;
+using Project.Domain.Entities.Configs;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Repositories.Impl;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using AiJiaXi.Web.Models;
+using Project.Web.Models;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public class EmailService : IIdentityMessageService
     {

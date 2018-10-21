@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AiJiaXi.Web.Provider
+namespace Project.Web.Provider
 {
     public class JsonNetResult:JsonResult
     {

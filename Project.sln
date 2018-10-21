@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Web", "AiJiaXi.Web\AiJiaXi.Web.csproj", "{F86F64D9-6663-4F6B-836B-F6D157B52E08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Web", "AiJiaXi.Web\Project.Web.csproj", "{F86F64D9-6663-4F6B-836B-F6D157B52E08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Web.Tests", "AiJiaXi.Web.Tests\AiJiaXi.Web.Tests.csproj", "{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Web.Tests", "AiJiaXi.Web.Tests\Project.Web.Tests.csproj", "{AA1DE584-7E4A-4B28-98C5-2148775D4E5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Domain", "AiJiaXi.Domain\AiJiaXi.Domain.csproj", "{245162B6-1ACC-4E45-BB41-00107551C3FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Domain", "AiJiaXi.Domain\Project.Domain.csproj", "{245162B6-1ACC-4E45-BB41-00107551C3FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Common", "AiJiaXi.Common\AiJiaXi.Common.csproj", "{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Common", "AiJiaXi.Common\Project.Common.csproj", "{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiJiaXi.Plugin", "AiJiaXi.Plugin\AiJiaXi.Plugin.csproj", "{347FF0C4-B41F-4EEC-B7F2-195ADB243558}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Plugin", "AiJiaXi.Plugin\Project.Plugin.csproj", "{347FF0C4-B41F-4EEC-B7F2-195ADB243558}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiPay", "WeiPay\WeiPay.csproj", "{D137DE17-657E-45E8-9F97-6E0F836B5C6E}"
 EndProject
@@ -51,5 +51,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {9372E090-1F6D-4339-AD3B-79277571F228}
 	EndGlobalSection
 EndGlobal

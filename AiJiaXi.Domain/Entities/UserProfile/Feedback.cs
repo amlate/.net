@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Enums;
 
-namespace AiJiaXi.Domain.Entities.UserProfile
+namespace Project.Domain.Entities.UserProfile
 {
     public class Feedback
     {

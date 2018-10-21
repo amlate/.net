@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AiJiaXi.Domain.Entities.IdentityModel
+namespace Project.Domain.Entities.IdentityModel
 {
     /// <summary>
     /// 导航菜单

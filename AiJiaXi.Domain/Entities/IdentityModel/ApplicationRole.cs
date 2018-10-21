@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace AiJiaXi.Domain.Entities.IdentityModel
+namespace Project.Domain.Entities.IdentityModel
 {
     public class ApplicationRole : IdentityRole
     {

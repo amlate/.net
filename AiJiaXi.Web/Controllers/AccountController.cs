@@ -5,16 +5,16 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.Configs;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Repositories.Impl;
+using Project.Common.Helpers;
+using Project.Domain.Entities.Configs;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Repositories.Impl;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AiJiaXi.Web.Models;
+using Project.Web.Models;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller

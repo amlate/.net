@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Repositories.Interface;
 using Webdiyer.WebControls.Mvc;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.PromoterManager;
+using Project.Domain.Enums;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.UserProfile;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     //总后台-推广员提现记录

@@ -3,7 +3,7 @@
     //ViewBag.Title = "抽奖纪录";
     ViewBag.Title = "用户评价";
 }
-@model AiJiaXi.Domain.Entities.UserProfile.UserAccount
+@model Project.Domain.Entities.UserProfile.UserAccount
 
 <section class="space">
     @*<header class="reback"><span class="left back"><i class="icon back"></i>抽奖纪录</span><i class="icon home"></i></header>*@
@@ -22,7 +22,7 @@
             @{
                 foreach (var itema in ViewBag.OrderRate)
                 {
-                    var item = (AiJiaXi.Domain.Entities.Orders.OrderRate)itema;
+                    var item = (Project.Domain.Entities.Orders.OrderRate)itema;
                     <li>
                         <div class="plinfo">
                             <span class="pluser">用户：@item.Order.ApplicationUser.UserAccount.CardNumber</span>

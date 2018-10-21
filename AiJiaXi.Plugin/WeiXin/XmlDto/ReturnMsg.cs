@@ -1,4 +1,4 @@
-﻿namespace AiJiaXi.Plugin.WeiXin.XmlDto
+﻿namespace Project.Plugin.WeiXin.XmlDto
 {
     public class ReturnMsg
     {

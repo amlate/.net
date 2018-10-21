@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class Md5
     {

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.Orders;
+using Project.Domain.Entities.Orders;
 
-namespace AiJiaXi.Domain.Entities.Location
+namespace Project.Domain.Entities.Location
 {
     public class City
     {

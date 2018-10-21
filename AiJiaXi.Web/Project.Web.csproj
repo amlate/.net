@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -922,17 +923,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AiJiaXi.Common\AiJiaXi.Common.csproj">
+    <ProjectReference Include="..\AiJiaXi.Common\Project.Common.csproj">
       <Project>{b2e88566-5da1-4b63-a97c-bb9d5c71dacc}</Project>
-      <Name>AiJiaXi.Common</Name>
+      <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AiJiaXi.Domain\AiJiaXi.Domain.csproj">
+    <ProjectReference Include="..\AiJiaXi.Domain\Project.Domain.csproj">
       <Project>{245162b6-1acc-4e45-bb41-00107551c3fd}</Project>
-      <Name>AiJiaXi.Domain</Name>
+      <Name>Project.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AiJiaXi.Plugin\AiJiaXi.Plugin.csproj">
+    <ProjectReference Include="..\AiJiaXi.Plugin\Project.Plugin.csproj">
       <Project>{347ff0c4-b41f-4eec-b7f2-195adb243558}</Project>
-      <Name>AiJiaXi.Plugin</Name>
+      <Name>Project.Plugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\WeiPay\WeiPay.csproj">
       <Project>{d137de17-657e-45e8-9f97-6e0f836b5c6e}</Project>
@@ -953,7 +954,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>15658</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

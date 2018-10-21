@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Enums;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using ZhiYuan.IAR.Repository.EF;
 
-namespace AiJiaXi.Web.Filters
+namespace Project.Web.Filters
 {
     public class AdminAuthorizeAttribute : AuthorizeAttribute
     {

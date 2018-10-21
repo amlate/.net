@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Web.Filters;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class EmployeeController : Controller

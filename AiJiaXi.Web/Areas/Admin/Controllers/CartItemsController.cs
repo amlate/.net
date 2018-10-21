@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class CartItemsController : Controller

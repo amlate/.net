@@ -103,17 +103,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AiJiaXi.Common\AiJiaXi.Common.csproj">
+    <ProjectReference Include="..\AiJiaXi.Common\Project.Common.csproj">
       <Project>{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}</Project>
-      <Name>AiJiaXi.Common</Name>
+      <Name>Project.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AiJiaXi.Domain\AiJiaXi.Domain.csproj">
+    <ProjectReference Include="..\AiJiaXi.Domain\Project.Domain.csproj">
       <Project>{245162b6-1acc-4e45-bb41-00107551c3fd}</Project>
-      <Name>AiJiaXi.Domain</Name>
+      <Name>Project.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AiJiaXi.Web\AiJiaXi.Web.csproj">
+    <ProjectReference Include="..\AiJiaXi.Web\Project.Web.csproj">
       <Project>{F86F64D9-6663-4F6B-836B-F6D157B52E08}</Project>
-      <Name>AiJiaXi.Web</Name>
+      <Name>Project.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

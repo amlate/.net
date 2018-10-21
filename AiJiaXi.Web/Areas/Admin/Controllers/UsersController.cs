@@ -4,17 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Logs;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Common.Helpers;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Logs;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 using Microsoft.AspNet.Identity;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class UsersController : Controller

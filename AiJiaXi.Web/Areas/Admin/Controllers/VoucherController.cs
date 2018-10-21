@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Helpers;
-using AiJiaXi.Domain.JsonModel;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Helpers;
+using Project.Domain.JsonModel;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using Senparc.Weixin.Helpers;
 using Webdiyer.WebControls.Mvc;
 using WebGrease.Css.Extensions;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class VoucherController : Controller

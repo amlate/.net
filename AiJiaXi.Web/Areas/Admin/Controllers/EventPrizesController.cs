@@ -5,16 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
-using AiJiaXi.Web.Provider;
+using Project.Common.Helpers;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
+using Project.Web.Provider;
 using Microsoft.AspNet.Identity;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class EventPrizesController : Controller

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AiJiaXi.Domain.Entities.News
+namespace Project.Domain.Entities.News
 {
     public class NewsClass
     {

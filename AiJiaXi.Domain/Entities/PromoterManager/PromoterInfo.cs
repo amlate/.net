@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Enums;
 
-namespace AiJiaXi.Domain.Entities.PromoterManager
+namespace Project.Domain.Entities.PromoterManager
 {
     /// <summary>
     /// 推广信息

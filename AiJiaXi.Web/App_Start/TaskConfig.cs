@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Helpers;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.PromoterManager;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Helpers;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 using Microsoft.Ajax.Utilities;
 using Quartz;
 using Quartz.Impl;
-using AiJiaXi.Common;
+using Project.Common;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public class OrderAutoDealTaskConfig : IJob
     {

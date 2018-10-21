@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 
-namespace AiJiaXi.Domain.Helpers
+namespace Project.Domain.Helpers
 {
     public class SqlBulkHelper
     {

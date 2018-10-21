@@ -14,7 +14,7 @@ using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.MvcExtension;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
     using Common;
     using Domain.Entities.IdentityModel;

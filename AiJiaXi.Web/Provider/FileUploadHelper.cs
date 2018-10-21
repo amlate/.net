@@ -2,7 +2,7 @@
 using System.IO;
 using System.Web;
 
-namespace AiJiaXi.Web.Provider
+namespace Project.Web.Provider
 {
     public class FileUploadHelper
     {

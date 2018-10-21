@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AiJiaXi.Domain.Entities.Configs
+namespace Project.Domain.Entities.Configs
 {
     public class SmsConfig
     {

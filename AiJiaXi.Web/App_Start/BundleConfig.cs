@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public class BundleConfig
     {

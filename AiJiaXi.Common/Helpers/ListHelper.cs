@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class ListHelper
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     /// <summary>
     /// 时间格式扩展类.

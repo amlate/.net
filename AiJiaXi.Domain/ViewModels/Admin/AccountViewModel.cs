@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AiJiaXi.Domain.ViewModels.Admin
+namespace Project.Domain.ViewModels.Admin
 {
     public class LoginViewModel
     {

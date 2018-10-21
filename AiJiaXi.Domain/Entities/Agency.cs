@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
 
-namespace AiJiaXi.Domain.Entities
+namespace Project.Domain.Entities
 {
     public class Agency
     {

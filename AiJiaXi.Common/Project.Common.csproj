@@ -7,8 +7,8 @@
     <ProjectGuid>{B2E88566-5DA1-4B63-A97C-BB9D5C71DACC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AiJiaXi.Common</RootNamespace>
-    <AssemblyName>AiJiaXi.Common</AssemblyName>
+    <RootNamespace>Project.Common</RootNamespace>
+    <AssemblyName>Project.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -82,9 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AiJiaXi.Domain\AiJiaXi.Domain.csproj">
+    <ProjectReference Include="..\AiJiaXi.Domain\Project.Domain.csproj">
       <Project>{245162b6-1acc-4e45-bb41-00107551c3fd}</Project>
-      <Name>AiJiaXi.Domain</Name>
+      <Name>Project.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

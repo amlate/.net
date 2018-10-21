@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Controllers;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AiJiaXi.Web.Tests.Controllers
+namespace Project.Web.Tests.Controllers
 {
     [TestClass]
     public class AjaxControllerTest

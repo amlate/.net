@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class AccountRecordController : Controller

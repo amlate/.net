@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using AiJiaXi.Domain.Entities.Configs;
+using Project.Domain.Entities.Configs;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class SmsHelper
     {

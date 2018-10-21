@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace AiJiaXi.Domain.Enums
+namespace Project.Domain.Enums
 {
     /// <summary>
     /// 枚举的扩展方法（获得描述值）.

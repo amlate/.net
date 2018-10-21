@@ -1,4 +1,4 @@
-namespace AiJiaXi.Domain.Migrations
+namespace Project.Domain.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

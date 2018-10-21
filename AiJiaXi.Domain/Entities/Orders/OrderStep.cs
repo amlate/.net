@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
 
-namespace AiJiaXi.Domain.Entities.Orders
+namespace Project.Domain.Entities.Orders
 {
     public class OrderStep
     {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AiJiaXi.Domain.Entities.Location
+namespace Project.Domain.Entities.Location
 {
     public class County
     {

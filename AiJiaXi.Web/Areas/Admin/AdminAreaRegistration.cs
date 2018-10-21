@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin
+namespace Project.Web.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration 
     {
@@ -18,7 +18,7 @@ namespace AiJiaXi.Web.Areas.Admin
                "Admin_default",
                "Admin/{controller}/{action}/{id}",
                new { action = "Index", id = UrlParameter.Optional },
-               namespaces: new[] { "AiJiaXi.Web.Areas.Admin.Controllers" }
+               namespaces: new[] { "Project.Web.Areas.Admin.Controllers" }
            );
         }
     }

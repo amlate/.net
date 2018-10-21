@@ -4,15 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 using Microsoft.AspNet.Identity.Owin;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class NavbarsController : Controller

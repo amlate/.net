@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AiJiaXi.Domain.Entities.Logs
+namespace Project.Domain.Entities.Logs
 {
     public class OperationLog
     {

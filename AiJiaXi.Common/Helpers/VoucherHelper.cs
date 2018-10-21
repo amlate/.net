@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class VoucherHelper
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace AiJiaXi.Domain.Enums
+namespace Project.Domain.Enums
 {
     public enum UserType
     {

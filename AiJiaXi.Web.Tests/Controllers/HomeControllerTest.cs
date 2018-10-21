@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AiJiaXi.Web;
-using AiJiaXi.Web.Controllers;
+using Project.Web;
+using Project.Web.Controllers;
 
-namespace AiJiaXi.Web.Tests.Controllers
+namespace Project.Web.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest

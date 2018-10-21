@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 
-namespace AiJiaXi.Web.Filters
+namespace Project.Web.Filters
 {
     public class AdminHandleErrorAttribute:FilterAttribute, IExceptionFilter
     {

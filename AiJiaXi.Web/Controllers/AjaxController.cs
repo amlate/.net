@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.JsonModel;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Areas.Admin.Controllers;
-using AiJiaXi.Web.Provider;
-using AiJiaXi.Domain.Entities.PromoterManager;
+using Project.Common.Helpers;
+using Project.Domain.Enums;
+using Project.Domain.Entities;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.JsonModel;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Areas.Admin.Controllers;
+using Project.Web.Provider;
+using Project.Domain.Entities.PromoterManager;
 using Microsoft.AspNet.Identity;
 using WeiPay;
-using AiJiaXi.Domain.Entities.Configs;
-using AiJiaXi.Common;
+using Project.Domain.Entities.Configs;
+using Project.Common;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
     public class AjaxController : Controller
     {

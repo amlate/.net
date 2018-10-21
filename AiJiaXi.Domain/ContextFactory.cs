@@ -1,5 +1,5 @@
 ﻿using System.Runtime.Remoting.Messaging;
-using AiJiaXi.Domain;
+using Project.Domain;
 
 namespace ZhiYuan.IAR.Repository.EF
 {

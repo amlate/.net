@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Domain.ViewModels.Admin
+namespace Project.Domain.ViewModels.Admin
 {
     public class SummaryViewModel
     {

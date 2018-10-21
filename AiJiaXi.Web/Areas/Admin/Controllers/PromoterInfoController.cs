@@ -4,19 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Repositories.Interface;
 using Webdiyer.WebControls.Mvc;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.PromoterManager;
+using Project.Domain.Enums;
 using Microsoft.AspNet.Identity;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Repositories.Impl;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     //推广员后台-我的推广信息

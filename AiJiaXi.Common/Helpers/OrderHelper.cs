@@ -1,9 +1,9 @@
 ﻿using System;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class OrderHelper
     {

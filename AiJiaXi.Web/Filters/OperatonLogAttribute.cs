@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using AiJiaXi.Domain.Entities.Logs;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities.Logs;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 using ZhiYuan.IAR.Repository.EF;
 
-namespace AiJiaXi.Web.Filters
+namespace Project.Web.Filters
 {
     public class OperatonLogAttribute : ActionFilterAttribute
     {

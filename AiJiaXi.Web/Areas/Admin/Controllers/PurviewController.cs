@@ -6,23 +6,23 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Logs;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.JsonModel;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Controllers;
-using AiJiaXi.Web.Filters;
-using AiJiaXi.Web.Models;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Logs;
+using Project.Domain.Enums;
+using Project.Domain.JsonModel;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Controllers;
+using Project.Web.Filters;
+using Project.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Newtonsoft.Json;
-using LoginViewModel = AiJiaXi.Domain.ViewModels.Admin.LoginViewModel;
+using LoginViewModel = Project.Domain.ViewModels.Admin.LoginViewModel;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [Authorize]
     public class PurviewController : Controller

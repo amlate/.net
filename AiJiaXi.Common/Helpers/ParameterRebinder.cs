@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     /// <summary>
     /// Linq拼接帮助类.

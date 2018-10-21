@@ -1,16 +1,16 @@
-﻿@using AiJiaXi.Domain.Entities
-@using AiJiaXi.Domain.Repositories.Interface;
-@using AiJiaXi.Domain.Repositories.Impl;
-@model AiJiaXi.Domain.Entities.Location.City
+﻿@using Project.Domain.Entities
+@using Project.Domain.Repositories.Interface;
+@using Project.Domain.Repositories.Impl;
+@model Project.Domain.Entities.Location.City
 @using ZhiYuan.IAR.Repository.EF
 @{
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
-    List<AiJiaXi.Domain.Entities.Orders.OrderItemClass> Class = ViewBag.Class as List<AiJiaXi.Domain.Entities.Orders.OrderItemClass>;
-    List<IGrouping<long, AiJiaXi.Domain.Entities.Orders.OrderItem>> OrderItem = ViewBag.OrderItem as List<IGrouping<long, AiJiaXi.Domain.Entities.Orders.OrderItem>>;
+    List<Project.Domain.Entities.Orders.OrderItemClass> Class = ViewBag.Class as List<Project.Domain.Entities.Orders.OrderItemClass>;
+    List<IGrouping<long, Project.Domain.Entities.Orders.OrderItem>> OrderItem = ViewBag.OrderItem as List<IGrouping<long, Project.Domain.Entities.Orders.OrderItem>>;
 
-    IRepository<AiJiaXi.Domain.Entities.Location.City> _cityRepository = new Repository<AiJiaXi.Domain.Entities.Location.City>();
+    IRepository<Project.Domain.Entities.Location.City> _cityRepository = new Repository<Project.Domain.Entities.Location.City>();
 
-    IQueryable<AiJiaXi.Domain.Entities.Agency> AgencyLi = ViewBag.Range as IQueryable<AiJiaXi.Domain.Entities.Agency>;
+    IQueryable<Project.Domain.Entities.Agency> AgencyLi = ViewBag.Range as IQueryable<Project.Domain.Entities.Agency>;
 
     string countyId = ViewBag.countyId;
 }
@@ -153,7 +153,7 @@
                             if (item.ItemClass.Name == "活动")
                             {
                                 //var type = "";
-                                if (item.ClientEventType == AiJiaXi.Domain.Enums.ClientEventType.Goods)//58元洗几件
+                                if (item.ClientEventType == Project.Domain.Enums.ClientEventType.Goods)//58元洗几件
                                 //if (item.Name == "58洗三件")//58元洗几件
                                 {
                                     <div class="cate flashLeft flashShow" flash-step="100">
@@ -171,7 +171,7 @@
                                         </span>
                                     </div>
                                 }
-                                else if (item.ClientEventType == AiJiaXi.Domain.Enums.ClientEventType.Benefit)//满多少减多少
+                                else if (item.ClientEventType == Project.Domain.Enums.ClientEventType.Benefit)//满多少减多少
                                 {
                                     <div onClick="javascript: setGoods('@g','@OrderItem.Count');" class="cate flashLeft flashShow" flash-step="150">
                                         <img src="/Upload/@item.ImageUrl">
@@ -180,7 +180,7 @@
 
                                     </div>
                                 }
-                                else if (item.ClientEventType == AiJiaXi.Domain.Enums.ClientEventType.Recharge)//充值多少送多少
+                                else if (item.ClientEventType == Project.Domain.Enums.ClientEventType.Recharge)//充值多少送多少
                                                                                                               //else if (item.Name == "充值200送50")//充值多少送多少
                                 {
                                     <div onClick="javascript: pageTurn('/FrontPage/recharge?openid=' + store('OpenId') + '&countyId=' + store('cityId'));" class="cate flashLeft flashShow" flash-step="150">
@@ -190,7 +190,7 @@
 
                                     </div>
                                 }
-                                else if (item.ClientEventType == AiJiaXi.Domain.Enums.ClientEventType.LuckyDraw)////大转盘
+                                else if (item.ClientEventType == Project.Domain.Enums.ClientEventType.LuckyDraw)////大转盘
                                 {
                                     <div onClick="javascript: pageTurn('/FrontPage/Turntable?OpenId=' + store('OpenId'));" class="cate flashLeft flashShow" flash-step="150">
                                         <img src="/Upload/@item.ImageUrl">
@@ -279,7 +279,7 @@
                     foreach (var age in AgencyArr)
                     {
                         //转换已开通城市MODEL
-                        //AiJiaXi.Domain.Entities.Agency age = (AiJiaXi.Domain.Entities.Agency)ra;
+                        //Project.Domain.Entities.Agency age = (Project.Domain.Entities.Agency)ra;
                         if (String.IsNullOrWhiteSpace(cityCur) || cityCur != age.CityId.ToString())
                         {
                     string cityName = "";

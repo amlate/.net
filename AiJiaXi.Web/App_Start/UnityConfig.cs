@@ -1,17 +1,17 @@
 using System;
 using System.Data.Entity;
 using System.Web;
-using AiJiaXi.Domain;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Models;
+using Project.Domain;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Microsoft.Practices.Unity;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.

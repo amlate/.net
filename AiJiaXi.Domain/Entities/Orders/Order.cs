@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Migrations.Model;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
 
-namespace AiJiaXi.Domain.Entities.Orders
+namespace Project.Domain.Entities.Orders
 {
     public class Order
     {

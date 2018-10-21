@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.Orders;
+using Project.Domain.Entities.Orders;
 
-namespace AiJiaXi.Domain.Entities.UserProfile
+namespace Project.Domain.Entities.UserProfile
 {
     public class Voucher
     {

@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace AiJiaXi.Common
+namespace Project.Common
 {
     /// <summary>
     /// 日志记录组件.

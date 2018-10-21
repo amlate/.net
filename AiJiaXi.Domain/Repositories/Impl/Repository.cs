@@ -5,11 +5,11 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Repositories.Interface;
 using EntityFramework.Extensions;
 using ZhiYuan.IAR.Repository.EF;
 
-namespace AiJiaXi.Domain.Repositories.Impl
+namespace Project.Domain.Repositories.Impl
 {
     public class Repository<T> : IRepository<T> where T : class
     {

@@ -2,3 +2,8 @@ F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Debug\WeiPay.dll
 F:\aijiaxi\trunk\AiJiaXi\WeiPay\bin\Debug\WeiPay.pdb
 F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Debug\WeiPay.dll
 F:\aijiaxi\trunk\AiJiaXi\WeiPay\obj\Debug\WeiPay.pdb
+D:\Project\Code\GitProject\myproject\WeiPay\bin\Debug\WeiPay.dll
+D:\Project\Code\GitProject\myproject\WeiPay\bin\Debug\WeiPay.pdb
+D:\Project\Code\GitProject\myproject\WeiPay\obj\Debug\WeiPay.csproj.CoreCompileInputs.cache
+D:\Project\Code\GitProject\myproject\WeiPay\obj\Debug\WeiPay.dll
+D:\Project\Code\GitProject\myproject\WeiPay\obj\Debug\WeiPay.pdb

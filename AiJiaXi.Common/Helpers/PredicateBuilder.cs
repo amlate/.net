@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     /// <summary>
     /// Linq条件表达式拼接工具类.

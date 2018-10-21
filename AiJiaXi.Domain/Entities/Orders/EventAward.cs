@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.UserProfile;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.UserProfile;
 
-namespace AiJiaXi.Domain.Entities.Orders
+namespace Project.Domain.Entities.Orders
 {
     /// <summary>
     /// 抽奖活动的得奖者

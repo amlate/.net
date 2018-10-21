@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Enums;
 using System.Collections.Generic;
 
-namespace AiJiaXi.Domain.Entities.PromoterManager
+namespace Project.Domain.Entities.PromoterManager
 {
     /// <summary>
     /// 返回 access_token

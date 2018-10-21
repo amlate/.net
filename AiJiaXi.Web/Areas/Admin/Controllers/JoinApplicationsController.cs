@@ -5,15 +5,15 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.JsonModel;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Enums;
+using Project.Domain.JsonModel;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class JoinApplicationsController : Controller

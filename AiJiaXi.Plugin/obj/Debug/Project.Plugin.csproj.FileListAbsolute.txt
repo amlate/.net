@@ -1,0 +1,5 @@
+D:\Project\Code\GitProject\myproject\AiJiaXi.Plugin\bin\Debug\AiJiaXi.Plugin.dll
+D:\Project\Code\GitProject\myproject\AiJiaXi.Plugin\bin\Debug\AiJiaXi.Plugin.pdb
+D:\Project\Code\GitProject\myproject\AiJiaXi.Plugin\obj\Debug\Project.Plugin.csproj.CoreCompileInputs.cache
+D:\Project\Code\GitProject\myproject\AiJiaXi.Plugin\obj\Debug\AiJiaXi.Plugin.dll
+D:\Project\Code\GitProject\myproject\AiJiaXi.Plugin\obj\Debug\AiJiaXi.Plugin.pdb

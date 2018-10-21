@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 
-namespace AiJiaXi.Web.Filters
+namespace Project.Web.Filters
 {
     /// <summary>
     /// 压缩Http响应，提高访问效率

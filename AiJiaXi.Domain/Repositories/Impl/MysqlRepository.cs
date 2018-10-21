@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Domain.Repositories.Impl
+namespace Project.Domain.Repositories.Impl
 {
     public class MysqlRepository<T> : IRepository<T> where T : class
     {

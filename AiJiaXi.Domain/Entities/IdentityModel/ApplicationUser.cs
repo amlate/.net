@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace AiJiaXi.Domain.Entities.IdentityModel
+namespace Project.Domain.Entities.IdentityModel
 {
     public class ApplicationUser : IdentityUser
     {

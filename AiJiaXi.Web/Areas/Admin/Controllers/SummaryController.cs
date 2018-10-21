@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.ViewModels.Admin;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities;
+using Project.Domain.Enums;
+using Project.Domain.ViewModels.Admin;
+using Project.Web.Filters;
 using Microsoft.AspNet.Identity;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class SummaryController : Controller

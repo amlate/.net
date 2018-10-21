@@ -1,8 +1,8 @@
-﻿using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Interface;
+﻿using Project.Common.Helpers;
+using Project.Domain.Entities.PromoterManager;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Interface;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
@@ -15,9 +15,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Web.Filters;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     //用户二维码页面

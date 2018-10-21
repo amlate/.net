@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Repositories.Interface;
 using Webdiyer.WebControls.Mvc;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Web.Filters;
+using Project.Domain.Entities.PromoterManager;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     //总后台-我的推广信息 所有好友列表

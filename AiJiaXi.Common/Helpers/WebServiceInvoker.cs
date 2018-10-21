@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Xml.Serialization;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class WebServiceInvoker
     {
         public static void CreateWebServiceDll(string url)
         {
-            string @namespace = "AiJiaXi.WebService.DynamicWebLoad";
+            string @namespace = "Project.WebService.DynamicWebLoad";
             // 1. 使用 WebClient 下载 WSDL 信息。
             WebClient web = new WebClient();
             Stream stream = web.OpenRead(url);
@@ -62,7 +62,7 @@ namespace AiJiaXi.Common.Helpers
 
         public static string GetNamespace()
         {
-            return "AiJiaXi.WebService.DynamicWebLoad";
+            return "Project.WebService.DynamicWebLoad";
         }
     }
 }

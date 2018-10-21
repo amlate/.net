@@ -1,15 +1,15 @@
 ﻿using System;
-using AiJiaXi.Domain;
-using AiJiaXi.Domain.Entities.IdentityModel;
+using Project.Domain;
+using Project.Domain.Entities.IdentityModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using AiJiaXi.Web.Models;
+using Project.Web.Models;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public partial class Startup
     {

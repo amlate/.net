@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using AiJiaXi.Domain.Entities.News;
+using Project.Domain.Entities.News;
 
-namespace AiJiaXi.Domain.Configs
+namespace Project.Domain.Configs
 {
     public class NewsClassConfig : EntityTypeConfiguration<NewsClass>
     {

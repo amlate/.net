@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public class RouteConfig
     {
@@ -19,7 +19,7 @@ namespace AiJiaXi.Web
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "AiJiaXi.Web.Controllers" });
+                namespaces: new[] { "Project.Web.Controllers" });
 
             routes.MapRoute(
               name: "Baixime",

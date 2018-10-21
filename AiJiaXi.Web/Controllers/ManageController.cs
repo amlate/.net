@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using AiJiaXi.Web.Models;
+using Project.Web.Models;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

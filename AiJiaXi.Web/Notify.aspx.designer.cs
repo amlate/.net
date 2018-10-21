@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AiJiaXi.Web {
+namespace Project.Web {
     
     
     public partial class Notify {

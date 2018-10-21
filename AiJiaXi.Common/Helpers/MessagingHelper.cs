@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     /// <summary>
     /// 数据传输工具类 - 用于生成与管局service交互所需的参数

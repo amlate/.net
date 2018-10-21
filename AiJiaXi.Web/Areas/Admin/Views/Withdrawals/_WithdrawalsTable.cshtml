@@ -1,5 +1,5 @@
-﻿@using AiJiaXi.Common.Helpers
-@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+﻿@using Project.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<Project.Domain.Entities.PromoterManager.Withdrawals>
 
 <table class="table table-bordered table-hover table-striped text-center">
     <tr>
@@ -42,7 +42,7 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.State)*@
 
-                @Html.Raw(AiJiaXi.Domain.Enums.EnumExtensions.GetDescription((AiJiaXi.Domain.Enums.WithdrawalsStatus)item.State))
+                @Html.Raw(Project.Domain.Enums.EnumExtensions.GetDescription((Project.Domain.Enums.WithdrawalsStatus)item.State))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PreApplyDate)

@@ -1,8 +1,8 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Web.Filters;
+using Project.Web.Filters;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public class FilterConfig
     {

@@ -1,9 +1,9 @@
-﻿@using AiJiaXi.Common.Helpers
+﻿@using Project.Common.Helpers
 @using Webdiyer.WebControls.Mvc
-@using AiJiaXi.Domain.Entities.UserProfile
-@using AiJiaXi.Domain.Repositories.Interface
-@using AiJiaXi.Domain.Repositories.Impl
-@using AiJiaXi.Domain.Entities.IdentityModel
+@using Project.Domain.Entities.UserProfile
+@using Project.Domain.Repositories.Interface
+@using Project.Domain.Repositories.Impl
+@using Project.Domain.Entities.IdentityModel
 @model Webdiyer.WebControls.Mvc.PagedList<ApplicationUser>
 @{
     IRepository<ApplicationUser> _applicationUserRepository = new Repository<ApplicationUser>();
@@ -39,7 +39,7 @@
         string ye = "0";
 
         //获取【公众号或APP】端用户信息  用户类型为 用户
-        var withdraUser = _applicationUserRepository.Find(a => true && a.UserType == AiJiaXi.Domain.Enums.UserType.User && a.PhoneNumber == item.PhoneNumber);
+        var withdraUser = _applicationUserRepository.Find(a => true && a.UserType == Project.Domain.Enums.UserType.User && a.PhoneNumber == item.PhoneNumber);
         if (withdraUser != null)
         {
             //取出自定义用户数据

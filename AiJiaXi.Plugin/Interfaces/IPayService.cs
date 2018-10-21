@@ -1,4 +1,4 @@
-﻿namespace AiJiaXi.Plugin.Interfaces
+﻿namespace Project.Plugin.Interfaces
 {
     public interface IPayService
     {

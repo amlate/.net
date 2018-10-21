@@ -4,22 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AiJiaXi.Plugin;
-using AiJiaXi.Plugin.WeiXin;
-using AiJiaXi.Domain;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Plugin;
+using Project.Plugin.WeiXin;
+using Project.Domain;
+using Project.Domain.Entities;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 using ZhiYuan.IAR.Repository.EF;
-using AiJiaXi.Domain.Entities.PromoterManager;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.Configs;
+using Project.Domain.Entities.PromoterManager;
+using Project.Common.Helpers;
+using Project.Domain.Entities.Configs;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
 
     //LC专用Controller

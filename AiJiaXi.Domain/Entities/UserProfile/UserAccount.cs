@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using AiJiaXi.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.IdentityModel;
 
-namespace AiJiaXi.Domain.Entities.UserProfile
+namespace Project.Domain.Entities.UserProfile
 {
     public class UserAccount
     {

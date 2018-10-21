@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Location;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public class AgencyHelper
     {

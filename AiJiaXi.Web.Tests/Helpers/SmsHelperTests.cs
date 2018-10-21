@@ -1,9 +1,9 @@
 ﻿using System;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities.Configs;
+using Project.Common.Helpers;
+using Project.Domain.Entities.Configs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AiJiaXi.Web.Tests.Helpers
+namespace Project.Web.Tests.Helpers
 {
     [TestClass()]
     public class SmsHelperTests

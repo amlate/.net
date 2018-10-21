@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     public static class StringExtension
     {

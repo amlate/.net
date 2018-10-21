@@ -1,5 +1,5 @@
-﻿@using AiJiaXi.Domain.Enums
-@model AiJiaXi.Domain.Entities.Orders.OrderItem
+﻿@using Project.Domain.Enums
+@model Project.Domain.Entities.Orders.OrderItem
 
 @{
     ViewBag.Title = "产品管理";
@@ -87,9 +87,9 @@
             <label for="ClientEventType" class="col-sm-2 control-label">活动专用（类型）</label>
             <div class="col-sm-4">
                 <select id="ClientEventType" name="ClientEventType" class="multi_select">
-                    @foreach (var item in Enum.GetValues(typeof(AiJiaXi.Domain.Enums.ClientEventType)))
+                    @foreach (var item in Enum.GetValues(typeof(Project.Domain.Enums.ClientEventType)))
                     {
-                        if (Model != null && Model.ClientEventType == (AiJiaXi.Domain.Enums.ClientEventType)item)
+                        if (Model != null && Model.ClientEventType == (Project.Domain.Enums.ClientEventType)item)
                         {
                             <option value="@item.ToString()" selected="selected">@item.GetDescription()</option>
                         }

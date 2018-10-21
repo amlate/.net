@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  Async="true"CodeBehind="Notify.aspx.cs" Inherits="AiJiaXi.Web.Notify" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  Async="true"CodeBehind="Notify.aspx.cs" Inherits="Project.Web.Notify" %>
 
 <!DOCTYPE html>
 

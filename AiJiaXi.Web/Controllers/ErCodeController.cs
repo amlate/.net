@@ -1,6 +1,6 @@
-﻿using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Interface;
+﻿using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Interface;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AiJiaXi.Web.Controllers
+namespace Project.Web.Controllers
 {
     public class ErCodeController : Controller
     {

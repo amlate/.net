@@ -1,5 +1,5 @@
-﻿@using AiJiaXi.Common.Helpers
-@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+﻿@using Project.Common.Helpers
+@model Webdiyer.WebControls.Mvc.PagedList<Project.Domain.Entities.PromoterManager.Withdrawals>
 
 
 <table class="table table-bordered table-hover table-striped text-center">
@@ -79,12 +79,12 @@
             <td>
                 @*@Html.DisplayFor(modelItem => item.State)*@
 
-               @Html.Raw(AiJiaXi.Domain.Enums.EnumExtensions.GetDescription((AiJiaXi.Domain.Enums.WithdrawalsStatus)item.State))
+               @Html.Raw(Project.Domain.Enums.EnumExtensions.GetDescription((Project.Domain.Enums.WithdrawalsStatus)item.State))
             </td>
             <td>
           
-                @Ajax.ActionLink("同意转帐", "Transfer", new { Id = item.Id, TempState = item.State,State = AiJiaXi.Domain.Enums.WithdrawalsStatus.Success, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
-                @Ajax.ActionLink("拒绝转帐", "CancelWidth", new { Id = item.Id, TempState = item.State, State = AiJiaXi.Domain.Enums.WithdrawalsStatus.Failed, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要取消转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-xs" })
+                @Ajax.ActionLink("同意转帐", "Transfer", new { Id = item.Id, TempState = item.State,State = Project.Domain.Enums.WithdrawalsStatus.Success, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })
+                @Ajax.ActionLink("拒绝转帐", "CancelWidth", new { Id = item.Id, TempState = item.State, State = Project.Domain.Enums.WithdrawalsStatus.Failed, HandleDate = DateTime.Now.ToString() }, new AjaxOptions() { Confirm = "确定要取消转帐么？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-success btn-xs" })
             </td>
         </tr>
     }

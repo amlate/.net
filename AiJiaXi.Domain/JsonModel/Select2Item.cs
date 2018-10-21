@@ -1,4 +1,4 @@
-﻿namespace AiJiaXi.Domain.JsonModel
+﻿namespace Project.Domain.JsonModel
 {
     public class Select2Item
     {

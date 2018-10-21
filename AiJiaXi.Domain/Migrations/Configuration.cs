@@ -1,27 +1,27 @@
 using System.Collections.Generic;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Configs;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Impl;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Configs;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Impl;
+using Project.Domain.Repositories.Interface;
 
-namespace AiJiaXi.Domain.Migrations
+namespace Project.Domain.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AiJiaXi.Domain.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Project.Domain.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(AiJiaXi.Domain.ApplicationDbContext context)
+        protected override void Seed(Project.Domain.ApplicationDbContext context)
         {
             return;
             // 添加初始化数据;

@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Data.Entity;
-using AiJiaXi.Domain.Configs;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Configs;
-using AiJiaXi.Domain.Entities.IdentityModel;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Logs;
-using AiJiaXi.Domain.Entities.News;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
+using Project.Domain.Configs;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Configs;
+using Project.Domain.Entities.IdentityModel;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Logs;
+using Project.Domain.Entities.News;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
 using Microsoft.AspNet.Identity.EntityFramework;
 using ZhiYuan.IAR.Repository.EF;
-using AiJiaXi.Domain.Entities.PromoterManager;
+using Project.Domain.Entities.PromoterManager;
 
-namespace AiJiaXi.Domain
+namespace Project.Domain
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

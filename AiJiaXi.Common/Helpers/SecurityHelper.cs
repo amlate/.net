@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AiJiaXi.Common.Helpers
+namespace Project.Common.Helpers
 {
     /// <summary>
     /// 验证码工具类.

@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_FrontLayout.cshtml";
     ViewBag.Title = "用户信息";
 }
-@model AiJiaXi.Domain.Entities.IdentityModel.ApplicationUser
+@model Project.Domain.Entities.IdentityModel.ApplicationUser
 
 <script>
     store('login', '@ViewBag.login');
@@ -129,7 +129,7 @@
         @{
             foreach (var itema in ViewBag.OrderRate)
             {
-                var item = (AiJiaXi.Domain.Entities.Orders.OrderRate)itema;
+                var item = (Project.Domain.Entities.Orders.OrderRate)itema;
                 <li>
                     <div class="plinfo">
                         <span class="pluser">用户：@item.Order.ApplicationUser.UserAccount.CardNumber</span>
@@ -435,7 +435,7 @@
         @{
             foreach (var ra in ViewBag.Range)
             {
-                AiJiaXi.Domain.Entities.Agency age = (AiJiaXi.Domain.Entities.Agency)ra;
+                Project.Domain.Entities.Agency age = (Project.Domain.Entities.Agency)ra;
                 <box data-value="@age.CityId">
                     <span><b><img src="~/Images/icons/icon.png"></b>@age.County.Name</span>
                     <p>@age.Title</p>

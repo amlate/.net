@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Location;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.JsonModel;
-using AiJiaXi.Domain.Repositories.Interface;
-using AiJiaXi.Web.Filters;
-using AiJiaXi.Web.Provider;
+using Project.Common.Helpers;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Location;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Enums;
+using Project.Domain.JsonModel;
+using Project.Domain.Repositories.Interface;
+using Project.Web.Filters;
+using Project.Web.Provider;
 using Microsoft.AspNet.Identity;
 using Webdiyer.WebControls.Mvc;
 
-namespace AiJiaXi.Web.Areas.Admin.Controllers
+namespace Project.Web.Areas.Admin.Controllers
 {
     [AdminAuthorize]
     public class ProductClassesController : Controller

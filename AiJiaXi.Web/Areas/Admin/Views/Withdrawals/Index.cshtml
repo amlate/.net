@@ -1,5 +1,5 @@
 ﻿@using Webdiyer.WebControls.Mvc
-@model Webdiyer.WebControls.Mvc.PagedList<AiJiaXi.Domain.Entities.PromoterManager.Withdrawals>
+@model Webdiyer.WebControls.Mvc.PagedList<Project.Domain.Entities.PromoterManager.Withdrawals>
 
 @{
     ViewBag.Title = "我的提现记录";
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <br />
-                    @*@Ajax.ActionLink("提现", "Withdrawals", new { Phone = ViewBag.MyPhone, ApplyDate = DateTime.Now.ToString(), State = AiJiaXi.Domain.Enums.PreWithdrawalsStatus.CanWithdrawals }, new AjaxOptions() { Confirm = "确定准备预提现申请吗？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })*@
+                    @*@Ajax.ActionLink("提现", "Withdrawals", new { Phone = ViewBag.MyPhone, ApplyDate = DateTime.Now.ToString(), State = Project.Domain.Enums.PreWithdrawalsStatus.CanWithdrawals }, new AjaxOptions() { Confirm = "确定准备预提现申请吗？", HttpMethod = "Post", UpdateTargetId = "datatable", InsertionMode = InsertionMode.Replace }, new { @class = "btn btn-danger btn-xs" })*@
 
 
 

@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using AiJiaXi.Common.Helpers;
-using AiJiaXi.Web.Controllers;
+using Project.Common.Helpers;
+using Project.Web.Controllers;
 using WeiPay;
-using AiJiaXi.Domain.Entities;
-using AiJiaXi.Domain.Entities.Orders;
-using AiJiaXi.Domain.Entities.UserProfile;
-using AiJiaXi.Domain.Enums;
-using AiJiaXi.Domain.Repositories.Interface;
+using Project.Domain.Entities;
+using Project.Domain.Entities.Orders;
+using Project.Domain.Entities.UserProfile;
+using Project.Domain.Enums;
+using Project.Domain.Repositories.Interface;
 using ZhiYuan.IAR.Repository.EF;
 
-namespace AiJiaXi.Web
+namespace Project.Web
 {
     public partial class Notify : System.Web.UI.Page
     {
